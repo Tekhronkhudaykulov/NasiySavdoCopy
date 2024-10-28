@@ -13,6 +13,9 @@ export const requests = {
     $api.get(`${API_URL}/product/by-tag?slug=${payload}`),
   addToBasket: (payload: any) => $api.post(`${API_URL}/cart/add`, payload),
   basketList: () => $api.get(`${API_URL}/cart`),
+  minusToBasket: (payload: any) => $api.post(`${API_URL}/cart/minus`, payload),
+  removeToBasket: (payload: any) =>
+    $api.post(`${API_URL}/cart/remove`, payload),
 
   // sendCode: (payload: any) =>
   //   $api.post(`${API_URL}/api/v1/clients/send-code`, payload),

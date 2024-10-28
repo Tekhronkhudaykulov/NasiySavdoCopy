@@ -55,3 +55,13 @@ export const getBasketList = async () => {
   const { data } = await requests.basketList();
   return data.data;
 };
+
+export const minus = async (payload: any) => {
+  const { data } = await requests.minusToBasket(payload);
+  return data;
+};
+
+export const remove = async (payload: any) => {
+  const { data } = await requests.removeToBasket(payload);
+  return data;
+};

@@ -3,6 +3,8 @@ import { ASSETS } from "../../../assets/img/assets";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { FiTrash2 } from "react-icons/fi";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { add, minus, remove } from "../../../hook/queries";
 function BasketSingleCard({
   isChecked,
   index,
@@ -15,6 +17,41 @@ function BasketSingleCard({
   onCheckChange: any;
   item: any;
 }) {
+  const queryClient = useQueryClient();
+
+  const addMutation = useMutation({
+    mutationFn: add,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["basket"] });
+    },
+  });
+
+  const minusMutation = useMutation({
+    mutationFn: minus,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["basket"] });
+    },
+  });
+
+  const removeMutation = useMutation({
+    mutationFn: remove,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["basket"] });
+    },
+  });
+
+  const handleAddToBasket = (productId: any) => {
+    addMutation.mutate({ product_id: productId, amount: 1 });
+  };
+
+  const handeMinusToBasket = (productId: any) => {
+    minusMutation.mutate({ product_id: productId });
+  };
+
+  const handleRemoveToBasket = (productId: any) => {
+    removeMutation.mutate({ product_id: productId });
+  };
+
   return (
     <div className="border-t py-[20px] border-line relative flex md:flex-row flex-col items-start justify-between">
       <div className="flex flex-col xl:gap-5 gap-4">
@@ -59,6 +96,7 @@ function BasketSingleCard({
           <div className="bg-buttonBg mx-auto md:mx-0 p-[10px_14px] flex gap-5 items-center rounded-[8px]">
             <button
               onClick={() => {
+                handeMinusToBasket(item?.product?.id);
                 // if (currentNumber !== 1) {
                 //   setCurrentNumber(currentNumber - 1);
                 // }
@@ -69,9 +107,10 @@ function BasketSingleCard({
             </button>
             <span className="text-[16px] text-mainBlack">{item?.amount}</span>
             <button
-            // onClick={() => {
-            //   setCurrentNumber(currentNumber + 1);
-            // }}
+              onClick={() => {
+                handleAddToBasket(item?.product?.id);
+                // setCurrentNumber(currentNumber + 1);
+              }}
             >
               <AddIcon fontSize="small" />
             </button>
@@ -79,7 +118,10 @@ function BasketSingleCard({
         </div>
       </div>
       <div className="flex md:flex-col flex-row-reverse justify-between md:w-max w-full md:items-end">
-        <button className="flex gap-1 text-txtSecondary md:static absolute top-[40px] right-[18px]">
+        <button
+          onClick={() => handleRemoveToBasket(item?.product?.id)}
+          className="flex gap-1 text-txtSecondary md:static absolute top-[40px] right-[18px]"
+        >
           <FiTrash2 className="md:text-[18px] text-[22px]" />
           <span className="md:block hidden">Удалить</span>
         </button>

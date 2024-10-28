@@ -38,17 +38,12 @@ const Card = ({ discount, setIsNumberModalOpen, prod }: CardProps) => {
     Boolean(localStorage.getItem(tokenName))
   );
 
-  const { data: basketList } = useQuery({
-    queryKey: ["basket"],
-    queryFn: getBasketList,
-  });
-
-  const { data: saleProd } = productByTagQuery("rasprodaja");
   const { mutate } = useMutation({
     mutationFn: add,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["basket"] });
       queryClient.invalidateQueries({ queryKey: ["rasprodaja"] });
+      queryClient.invalidateQueries({ queryKey: ["novinki"] });
     },
   });
 
