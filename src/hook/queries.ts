@@ -53,5 +53,5 @@ export const add = async (payload: any) => {
 
 export const getBasketList = async () => {
   const { data } = await requests.basketList();
-  return data;
+  return data.data;
 };

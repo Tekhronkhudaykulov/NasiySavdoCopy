@@ -8,7 +8,7 @@ import {
   Star,
 } from "../../assets/icon";
 import { ASSETS } from "../../assets/img/assets";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { APP_ROUTES } from "../../router";
 import { tokenName } from "../../helpers/api";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -34,7 +34,9 @@ const Card = ({ discount, setIsNumberModalOpen, prod }: CardProps) => {
   const queryClient = useQueryClient();
   const [isFavourite, setIsFavourite] = useState(false);
 
-  const authed = Boolean(localStorage.getItem(tokenName));
+  const [authed, setAuthed] = useState(
+    Boolean(localStorage.getItem(tokenName))
+  );
 
   const { data: basketList } = useQuery({
     queryKey: ["basket"],

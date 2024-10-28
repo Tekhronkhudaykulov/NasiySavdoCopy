@@ -4,6 +4,8 @@ import VerificationInput from "react-verification-input";
 import "./style.scss";
 import { authStore } from "../../store";
 import { useSendCode } from "../../hook/auth/auth";
+import { useNavigate } from "react-router-dom";
+import { APP_ROUTES } from "../../router";
 
 type SendNumProps = {
   isCodeModalOpen: boolean;
@@ -14,6 +16,7 @@ const SendCode: React.FC<SendNumProps> = ({
   isCodeModalOpen,
   setIsCodeModalOpen,
 }) => {
+  const navigate = useNavigate();
   const [timer, setTimer] = useState<number>(59);
   const [code, setCode] = useState<string>("");
   const { userNumber } = authStore();
@@ -49,6 +52,7 @@ const SendCode: React.FC<SendNumProps> = ({
         {
           onSuccess: () => {
             setIsCodeModalOpen(false);
+            navigate(`${APP_ROUTES.PROFILE}/${APP_ROUTES.PROFILE_ACCOUNT}`);
           },
           onError: () => {
             setIsCodeModalOpen(true);

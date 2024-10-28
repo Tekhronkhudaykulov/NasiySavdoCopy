@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Checkbox } from "antd";
 import { ASSETS } from "../../../assets/img/assets";
 import AddIcon from "@mui/icons-material/Add";
@@ -8,14 +7,14 @@ function BasketSingleCard({
   isChecked,
   index,
   onCheckChange,
+  item,
 }: {
   setAllChecked: any;
   isChecked: boolean;
   index: number;
   onCheckChange: any;
+  item: any;
 }) {
-  const [currentNumber, setCurrentNumber] = useState(1);
-
   return (
     <div className="border-t py-[20px] border-line relative flex md:flex-row flex-col items-start justify-between">
       <div className="flex flex-col xl:gap-5 gap-4">
@@ -35,13 +34,14 @@ function BasketSingleCard({
           </div>
           <div className="xl:max-w-[360px] max-w-[320px] flex flex-col">
             <h2 className="text-mainBlack font-[500] md:text-[16px] text-[14px] text-hidden-2">
-              Сковорода антипригарная Elegant, с крышкой, гранитное покрытие,
-              24, 26, 28 см
+              {item?.product?.name}
             </h2>
             <div className="flex md:flex-col gap-2 md:mt-auto mt-4 justify-between">
               <div className="text-[14px] flex gap-1 md:flex-row flex-col">
                 <span className="text-gray">Продовец:</span>
-                <span className="text-mainBlack font-medium">Universe</span>
+                <span className="text-mainBlack font-medium">
+                  {item?.product?.brand?.name}
+                </span>
               </div>
               <div className="text-[14px] flex gap-1 md:flex-row flex-col">
                 <span className="text-gray">Размер:</span>
@@ -59,19 +59,19 @@ function BasketSingleCard({
           <div className="bg-buttonBg mx-auto md:mx-0 p-[10px_14px] flex gap-5 items-center rounded-[8px]">
             <button
               onClick={() => {
-                if (currentNumber !== 1) {
-                  setCurrentNumber(currentNumber - 1);
-                }
+                // if (currentNumber !== 1) {
+                //   setCurrentNumber(currentNumber - 1);
+                // }
               }}
-              className={`${currentNumber === 1 && "text-line"}`}
+              className={`${item?.amount === 1 && "text-line"}`}
             >
               <RemoveIcon fontSize="small" />
             </button>
-            <span className="text-[16px] text-mainBlack">{currentNumber}</span>
+            <span className="text-[16px] text-mainBlack">{item?.amount}</span>
             <button
-              onClick={() => {
-                setCurrentNumber(currentNumber + 1);
-              }}
+            // onClick={() => {
+            //   setCurrentNumber(currentNumber + 1);
+            // }}
             >
               <AddIcon fontSize="small" />
             </button>
@@ -88,7 +88,7 @@ function BasketSingleCard({
             35 000 сум x 12
           </p>
           <p className="text-mainBlack md:text-[20px] text-[16px] font-[600] md:mb-[4px]">
-            156 000 сум
+            {item?.price.toLocaleString("ru-RU")} сум
           </p>
           <p className="text-gray font-[400] md:text-[14px] text-[12px] line-through">
             260 000 сум

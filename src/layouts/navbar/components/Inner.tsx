@@ -8,6 +8,8 @@ import {
 } from "../../../assets/icon";
 import { APP_ROUTES } from "../../../router";
 import { tokenName } from "../../../helpers/api";
+import { useQuery } from "@tanstack/react-query";
+import { getBasketList } from "../../../hook/queries";
 
 const list = [
   {
@@ -43,10 +45,17 @@ const Inner = ({ setIsNumberModalOpen }: { setIsNumberModalOpen: any }) => {
   const location = useLocation();
   const currentPath = location.pathname;
 
+  const { data: basketList } = useQuery({
+    queryKey: ["basket"],
+    queryFn: getBasketList,
+  });
+
+  console.log(basketList?.length, "basketlist");
+
   return (
     <>
       <div className="flex lg:gap-[22px] gap-[16px] 2md:hidden">
-        {list.map((item, idx) => {
+        {/* {list.map((item, idx) => {
           const displayName =
             item.name === "Войти" && authed ? "Профиль" : item.name;
           const isActive =
@@ -72,6 +81,48 @@ const Inner = ({ setIsNumberModalOpen }: { setIsNumberModalOpen: any }) => {
                 }`}
               >
                 <img className="w-full h-full" src={item.img} alt={item.name} />
+              </div>
+              <div
+                className={`text-[10px] font-[500] group-hover:text-darkGreen ${
+                  isActive ? "text-darkGreen" : "text-gray"
+                }`}
+              >
+                {displayName}
+              </div>
+            </Link>
+          );
+        })} */}
+        {list.map((item, idx) => {
+          const displayName =
+            item.name === "Войти" && authed ? "Профиль" : item.name;
+          const isActive =
+            currentPath.split("/")?.[1] === item.link.split("/")?.[1];
+
+          return (
+            <Link
+              onClick={(event) => {
+                if (!authed && item.name === "Войти") {
+                  event.preventDefault();
+                  setIsNumberModalOpen(true);
+                }
+              }}
+              to={item.link}
+              className={`group text-center flex flex-col items-center justify-center lg:gap-[5px] gap-[0px] ${
+                isActive ? "text-darkGreen" : "text-gray"
+              }`}
+              key={idx}
+            >
+              <div
+                className={`flex items-center justify-center relative lg:w-[27px] lg:h-[27px] w-[24px] h-[24px] flex-shrink-0 p-[3px] rounded-full ${
+                  isActive ? "bg-buttonBg" : ""
+                }`}
+              >
+                <img className="w-full h-full" src={item.img} alt={item.name} />
+                {item.name === "Корзина" && basketList?.length > 0 && (
+                  <span className="text-[8px] bg-red-500 text-white rounded-full px-[5px] py-[1px] absolute top-[-5px] right-[-5px]">
+                    {basketList?.length}
+                  </span>
+                )}
               </div>
               <div
                 className={`text-[10px] font-[500] group-hover:text-darkGreen ${

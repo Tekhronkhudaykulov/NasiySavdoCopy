@@ -5,7 +5,9 @@ import BasketSingleCard from "./BasketSingleCard";
 import { Link } from "react-router-dom";
 import { APP_ROUTES } from "../../../router";
 
-function BasketProducts() {
+function BasketProducts({ prod }: any) {
+  console.log(prod);
+
   const [checkedItems, setCheckedItems] = useState([false, false, false]);
   const [allChecked, setAllChecked] = useState(false);
 
@@ -44,11 +46,12 @@ function BasketProducts() {
               Выбрат все
             </Checkbox>
           </div>
-          {checkedItems.map((isChecked, index) => (
+          {prod?.map((item: any, index: any) => (
             <BasketSingleCard
+              item={item}
               key={index}
               onCheckChange={onCheckChange}
-              isChecked={isChecked}
+              isChecked={checkedItems[index]}
               index={index}
               setAllChecked={setAllChecked}
             />
