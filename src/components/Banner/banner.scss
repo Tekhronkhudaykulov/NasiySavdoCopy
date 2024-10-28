@@ -1,0 +1,35 @@
+.swiper-arrow {
+  .swiper-pagination {
+    @media (max-width: 640px) {
+      display: none;
+    }
+  }
+  .swiper-button-prev,
+  .swiper-button-next {
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border: 1px solid #76797f4d;
+    border-radius: 50%;
+    opacity: 0.5;
+    z-index: 1;
+    &::after {
+      font-size: 20px;
+      color: #000;
+    }
+    @media (max-width: 640px) {
+      display: none;
+    }
+  }
+  .swiper-pagination-bullet {
+    background: #ffffff80;
+    height: 6px;
+    width: 6px;
+    margin: 0 3px 0 0;
+  }
+  .ant-image-mask {
+    &:hover {
+      opacity: 0 !important;
+    }
+  }
+}

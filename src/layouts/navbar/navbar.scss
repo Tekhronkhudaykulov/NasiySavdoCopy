@@ -1,0 +1,66 @@
+.nav-search {
+  display: flex;
+  border-radius: 24px;
+  border: 1.5px solid #027373;
+  padding-left: 8px;
+  &:hover {
+    border-color: #027373 !important;
+  }
+  button {
+    &:hover {
+      svg {
+        path {
+          stroke: #fff;
+        }
+      }
+    }
+  }
+  input {
+    height: 48px;
+    padding-inline: 16px;
+    border-radius: 24px;
+    font-size: 14px !important;
+    border: none !important;
+    &::placeholder {
+      color: #80848f;
+    }
+    &:focus {
+      border: none;
+      box-shadow: none;
+    }
+  }
+  .ant-input-group-addon {
+    padding-right: 4px !important;
+  }
+  button {
+    border-radius: 100px !important;
+    background: rgb(2, 115, 115, 0.15);
+    color: #027373;
+    font-size: 12px;
+    font-weight: 500;
+    svg {
+      path {
+        transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+      }
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    margin-right: 20px;
+    input {
+      height: 42px;
+      padding-inline: 14px;
+      font-size: 13px !important;
+    }
+    button {
+      height: 100% !important;
+      padding-block: 8px !important;
+      svg {
+        width: 18px;
+      }
+    }
+  }
+  @media screen and (max-width: 940px) {
+    margin-right: 0px;
+  }
+}

@@ -1,0 +1,193 @@
+@import "leaflet/dist/leaflet.css";
+
+.bg-gradient-sale {
+  background: linear-gradient(to right, #f4d968, #d0813f);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Inter";
+  font-weight: 400;
+}
+
+.wrapper {
+  max-width: 1396px;
+  padding-inline: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.ant-btn-primary {
+  font-size: 16px;
+  height: 48px;
+  box-shadow: none;
+  display: block;
+}
+
+
+.text-hidden-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  /* Number of lines to show */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+  /* Adjust based on your font-size */
+  max-height: 3em;
+  /* 2 lines * line-height */
+}
+.text-hidden-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  /* Number of lines to show */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+  /* Adjust based on your font-size */
+  max-height: 3em;
+  /* 2 lines * line-height */
+}
+
+.text-hidden-4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  /* Number of lines to show */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.text-hidden-7 {
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  /* Number of lines to show */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.7;
+}
+
+.basket_form .ant-select-selector {
+  background: inherit !important;
+  border: none !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  color: inherit !important;
+  font-size: inherit !important;
+}
+
+.basket_form .ant-select-open * {
+  color: inherit !important;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  content: none !important;
+}
+
+.aboutProductScroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.categScroll::-webkit-scrollbar {
+  display: none;
+}
+
+.aboutProductScroll::-webkit-scrollbar-thumb {
+  background-color: #D9D9D9;
+  border-radius: 2px;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Hide step arrows for Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Optional: Remove border for input fields if needed */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  border: none;
+
+}
+
+
+.lds-ellipsis,
+.lds-ellipsis div {
+  box-sizing: border-box;
+}
+
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.lds-ellipsis div {
+  position: absolute;
+  top: 33.33333px;
+  width: 13.33333px;
+  height: 13.33333px;
+  border-radius: 50%;
+  background: #027373;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(24px, 0);
+  }
+}

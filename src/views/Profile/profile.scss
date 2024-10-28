@@ -1,0 +1,58 @@
+.active-route {
+  p {
+    color: #fff;
+  }
+  svg {
+    path {
+      stroke: #fff;
+    }
+  }
+}
+
+.profileContainer {
+  display: grid;
+  gap: 20px;
+  @media (min-width: 1400px) {
+    grid-template-columns: 25% 1fr;
+  }
+}
+
+.order-text p {
+  color: #80848f;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.css-1086bdv-MuiPaper-root-MuiAccordion-root {
+  box-shadow: none !important;
+  border-bottom: none !important;
+  padding: 0 !important;
+}
+
+.css-1f773le-MuiButtonBase-root-MuiAccordionSummary-root {
+  padding: 0 !important;
+}
+
+.css-smkl36-MuiCollapse-wrapper ::after {
+  border: none !important;
+}
+
+.css-eqpfi5-MuiAccordionSummary-content {
+  color: #03a5a5;
+}
+.css-i4bv87-MuiSvgIcon-root {
+  color: #03a5a5 !important;
+}
+
+.active-orders-button {
+  background-color: #027373;
+  color: white;
+}
+.active-orders-button:hover {
+  color: white !important;
+  background-color: #027373 !important;
+}
+.default {
+  color: #212121;
+  background: #f2f5f7;
+}

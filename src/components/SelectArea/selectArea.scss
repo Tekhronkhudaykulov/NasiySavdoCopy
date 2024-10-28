@@ -1,0 +1,22 @@
+.select-area {
+  &:hover {
+    .ant-select-selector {
+      background: #d3eded !important;
+    }
+  }
+  .ant-select-selector {
+    background: #f2f5f7 !important;
+    border-color: transparent !important;
+    border-radius: 10px !important;
+  }
+  .ant-select-selection-item {
+    font-family: "Inter" !important;
+    font-weight: 500;
+    font-size: 12px;
+    color: #80848f;
+  }
+
+  .ant-select-arrow {
+    color: #027373 !important;
+  }
+}

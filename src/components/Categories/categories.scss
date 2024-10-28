@@ -1,0 +1,15 @@
+.category-btn {
+  &:hover {
+    img {
+      filter: brightness(0) saturate(100%) invert(32%) sepia(67%) saturate(524%)
+        hue-rotate(131deg) brightness(97%) contrast(105%);
+    }
+  }
+  img {
+    transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
+  span {
+    font-size: 12px;
+    font-weight: 500;
+  }
+}
