@@ -6,6 +6,8 @@ import AboutProductPopUp from "./components/AboutProductPopUp";
 import SingleProductRight from "./components/SingleProductRight";
 import SingleProductLeft from "./components/SingleProductLeft";
 import ReviewProductPopUp from "./components/ReviewProductPopUp";
+import { useParams } from "react-router-dom";
+import { productDetail } from "../../hook/queries";
 
 function ProductSingle() {
   const [aboutPopUp, setAboutPopUp] = useState(false);
@@ -21,11 +23,17 @@ function ProductSingle() {
       document.body.style.overflow = "auto";
     };
   }, [aboutPopUp, reviewPopUp]);
+
+  const { id } = useParams();
+
+  const { data } = productDetail(id);
+
   return (
     <>
       <BreadCrumb items={[{ name: "Продукт название" }]} />
       <div className="grid xl:grid-cols-[2fr,1fr] grid-cols-1 lg:grid-cols-[1.5fr,1fr] gap-[28px] md:mb-[60px] mb-6">
         <SingleProductLeft
+          prod={data}
           setAboutPopUp={setAboutPopUp}
           setReviewPoUp={setReviewPoUp}
         />

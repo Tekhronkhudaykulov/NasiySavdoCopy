@@ -15,7 +15,8 @@ import {
   CategoryPage,
   ProfileSaleSingle,
   Compare,
-  QuestionsAndAnswers,Vacancies
+  QuestionsAndAnswers,
+  Vacancies,
 } from "../views";
 
 export const _routes = [
@@ -29,7 +30,7 @@ export const _routes = [
     element: CategoryPage,
   },
   {
-    path: APP_ROUTES.PRODUCTSINGLE,
+    path: `${APP_ROUTES.PRODUCTSINGLE}/:id`,
     element: ProductSingle,
   },
   {

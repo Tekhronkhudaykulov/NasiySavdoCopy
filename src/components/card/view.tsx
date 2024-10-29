@@ -75,7 +75,7 @@ const Card = ({ discount, setIsNumberModalOpen, prod }: CardProps) => {
           <Scale />
         </Link>
         {/* Product Image */}
-        <Link to={`/productSingle`}>
+        <Link to={`${APP_ROUTES.PRODUCTSINGLE}/${prod?.id}`}>
           <img
             className="w-full 2md:min-h-[235px] rounded-[10px]"
             src={ASSETS.CardImg}

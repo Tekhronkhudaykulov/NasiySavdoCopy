@@ -8,9 +8,11 @@ import SizeSelect from "./SizeSelect";
 function SingleProductLeft({
   setAboutPopUp,
   setReviewPoUp,
+  prod,
 }: {
   setAboutPopUp: any;
   setReviewPoUp: any;
+  prod: any;
 }) {
   const data = [
     { location: ASSETS.CardImg },
@@ -83,8 +85,7 @@ function SingleProductLeft({
               </p>
             </div>
             <h1 className="text-mainBlack font-[500] lg:text-[20px] md:text-[18px] text-[16px]">
-              Сковорода антипригарная Elegant, с крышкой, гранитное покрытие,
-              24, 26, 28 см
+              {prod?.name}
             </h1>
             <p className="text-gray text-[12px] font-[500]">
               Осталось: 12 штук

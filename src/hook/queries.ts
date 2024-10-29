@@ -65,3 +65,12 @@ export const remove = async (payload: any) => {
   const { data } = await requests.removeToBasket(payload);
   return data;
 };
+
+export const productDetail = (payload: any) =>
+  useQuery({
+    queryKey: ["detail" + payload],
+    queryFn: async () => {
+      const { data } = await requests.productDetail(payload);
+      return data.data;
+    },
+  });
