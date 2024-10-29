@@ -4,7 +4,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { FiTrash2 } from "react-icons/fi";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { add, minus, remove } from "../../../hook/queries";
+import { add, minus, productByTagQuery, remove } from "../../../hook/queries";
 function BasketSingleCard({
   isChecked,
   index,
@@ -19,6 +19,9 @@ function BasketSingleCard({
 }) {
   const queryClient = useQueryClient();
 
+  const { data: newProd } = productByTagQuery("novinki");
+  const { data: saleProd } = productByTagQuery("rasprodaja");
+
   const addMutation = useMutation({
     mutationFn: add,
     onSuccess: () => {
@@ -30,8 +33,6 @@ function BasketSingleCard({
     mutationFn: minus,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["basket"] });
-      queryClient.invalidateQueries({ queryKey: ["rasprodaja"] });
-      queryClient.invalidateQueries({ queryKey: ["novinki"] });
     },
   });
 
@@ -39,6 +40,8 @@ function BasketSingleCard({
     mutationFn: remove,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["basket"] });
+      queryClient.invalidateQueries({ queryKey: ["novinki"] });
+      queryClient.invalidateQueries({ queryKey: ["rasprodaja"] });
     },
   });
 

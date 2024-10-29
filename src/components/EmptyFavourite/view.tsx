@@ -8,7 +8,7 @@ function EmptyFavourite() {
         <img className="mx-auto" src={EmptyFavouriteImg} />
         <div className="flex flex-col gap-[12px]">
           <h3 className="text-[20px] font-medium text-mainBlack">
-            В корзине пока пусто.
+            В избранные пока пусто.
           </h3>
           <p className="text-txtSecondary">
             Посмотрите каталог чтобы найти товары, или воспользуйтесь поиском

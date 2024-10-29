@@ -4,6 +4,7 @@ import { BreadCrumb } from "../../components";
 // import EmptyBasket from "../../components/EmptyBusket/view";
 import BasketProducts from "./components/BasketProducts";
 import { getBasketList } from "../../hook/queries";
+import EmptyBasket from "../../components/EmptyBusket/view";
 
 function Basket() {
   const { data: basketList } = useQuery({
@@ -11,11 +12,16 @@ function Basket() {
     queryFn: getBasketList,
   });
 
+  console.log(basketList, "basket");
+
   return (
     <>
       <BreadCrumb items={[{ name: "Корзина" }]} />
-      {/* <EmptyBasket /> */}
-      <BasketProducts prod={basketList} />
+      {basketList?.length > 0 ? (
+        <BasketProducts prod={basketList} />
+      ) : (
+        <EmptyBasket />
+      )}
     </>
   );
 }

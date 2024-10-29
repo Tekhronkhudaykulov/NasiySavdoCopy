@@ -12,7 +12,7 @@ import { useState } from "react";
 import { APP_ROUTES } from "../../router";
 import { tokenName } from "../../helpers/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { add, addFavourites } from "../../hook/queries";
+import { add, addFavourites, productByTagQuery } from "../../hook/queries";
 
 interface CardProps {
   discount?: boolean;
@@ -22,6 +22,9 @@ interface CardProps {
 
 const Card = ({ discount, setIsNumberModalOpen, prod }: CardProps) => {
   const queryClient = useQueryClient();
+
+  const { data: newProd } = productByTagQuery("novinki");
+  const { data: saleProd } = productByTagQuery("rasprodaja");
 
   const [authed, setAuthed] = useState(
     Boolean(localStorage.getItem(tokenName))
