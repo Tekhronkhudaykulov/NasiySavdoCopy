@@ -30,6 +30,8 @@ function BasketSingleCard({
     mutationFn: minus,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["basket"] });
+      queryClient.invalidateQueries({ queryKey: ["rasprodaja"] });
+      queryClient.invalidateQueries({ queryKey: ["novinki"] });
     },
   });
 

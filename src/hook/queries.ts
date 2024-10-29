@@ -74,3 +74,13 @@ export const productDetail = (payload: any) =>
       return data.data;
     },
   });
+
+export const addFavourites = async (payload: any) => {
+  const { data } = await requests.addFavouriteList(payload);
+  return data;
+};
+
+export const getFavouriteList = async () => {
+  const { data } = await requests.favouriteList();
+  return data.data;
+};

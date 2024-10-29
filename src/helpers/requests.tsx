@@ -18,6 +18,9 @@ export const requests = {
     $api.post(`${API_URL}/cart/remove`, payload),
   productDetail: (payload: any) =>
     $api.get(`${API_URL}/product/detail?id=${payload}`),
+  addFavouriteList: (payload: any) =>
+    $api.post(`${API_URL}/product/set-favorite`, payload),
+  favouriteList: () => $api.get(`${API_URL}/product/favorites`),
 
   // sendCode: (payload: any) =>
   //   $api.post(`${API_URL}/api/v1/clients/send-code`, payload),

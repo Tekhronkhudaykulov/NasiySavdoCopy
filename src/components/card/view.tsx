@@ -8,21 +8,11 @@ import {
   Star,
 } from "../../assets/icon";
 import { ASSETS } from "../../assets/img/assets";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { APP_ROUTES } from "../../router";
 import { tokenName } from "../../helpers/api";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { add, getBasketList, productByTagQuery } from "../../hook/queries";
-
-// interface CardType {
-//   title: string;
-//   saleIsHas: boolean;
-//   img: string;
-//   reyting: number | string;
-//   price: number | string;
-//   oldPrice: number | string;
-//   priceMonth: string;
-// }
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { add, addFavourites } from "../../hook/queries";
 
 interface CardProps {
   discount?: boolean;
@@ -32,13 +22,12 @@ interface CardProps {
 
 const Card = ({ discount, setIsNumberModalOpen, prod }: CardProps) => {
   const queryClient = useQueryClient();
-  const [isFavourite, setIsFavourite] = useState(false);
 
   const [authed, setAuthed] = useState(
     Boolean(localStorage.getItem(tokenName))
   );
 
-  const { mutate } = useMutation({
+  const addMutaionBasketList = useMutation({
     mutationFn: add,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["basket"] });
@@ -47,8 +36,21 @@ const Card = ({ discount, setIsNumberModalOpen, prod }: CardProps) => {
     },
   });
 
+  const addMutationFavouriteList = useMutation({
+    mutationFn: addFavourites,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["favourites"] });
+      queryClient.invalidateQueries({ queryKey: ["rasprodaja"] });
+      queryClient.invalidateQueries({ queryKey: ["novinki"] });
+    },
+  });
+
   const handleAddToBasket = (productId: any) => {
-    mutate({ product_id: productId, amount: 1 });
+    addMutaionBasketList.mutate({ product_id: productId, amount: 1 });
+  };
+
+  const handleAddToFavouriteList = (productId: any) => {
+    addMutationFavouriteList.mutate({ product_id: productId });
   };
 
   return (
@@ -61,11 +63,11 @@ const Card = ({ discount, setIsNumberModalOpen, prod }: CardProps) => {
         {/* Heart Icon */}
         <button
           onClick={() => {
-            setIsFavourite(!isFavourite);
+            handleAddToFavouriteList(prod?.id);
           }}
           className="absolute top-[11px] right-[11px]"
         >
-          {isFavourite ? <Favourited /> : <Favourite />}
+          {prod?.isFavorite ? <Favourited /> : <Favourite />}
         </button>
         {/*  Balance Icon */}
         <Link

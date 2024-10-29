@@ -7,9 +7,11 @@ import {
   Star,
 } from "../../../assets/icon";
 import AnorCard from "./AnorCard";
-import UzumCard from "./UzumCard";
+import UzumCard from "./UzumCard.tsx";
 
-function SingleProductRight() {
+function SingleProductRight({data} : any) {
+
+  console.log(data)
   const [activeCard, setActiveCart] = useState(0);
   const [selected, setSelected] = useState<string>("6 мес");
   const durations = ["3 мес", "6 мес", "12 мес", "24 мес"];
@@ -38,7 +40,7 @@ function SingleProductRight() {
       </div>
       <div className="bg-buttonBg rounded-[16px] md:p-[20px_16px] p-[16px] flex flex-col md:gap-5 gap-3">
         <h2 className="text-mainBlack md:text-[24px] text-[20px] font-semibold">
-          156 000 сум
+          {data?.price.toLocaleString()} сум
         </h2>
         <div className="flex flex-col gap-2">
           <div className="flex gap-3 items-center">
@@ -47,7 +49,7 @@ function SingleProductRight() {
             </span>
             <div className="flex items-center gap-[2px]">
               <span className="text-black text-[12px] font-medium">
-                Universe
+                {data?.brand?.name}
               </span>
               <div className="flex items-center gap-x-[2px]">
                 <Star />

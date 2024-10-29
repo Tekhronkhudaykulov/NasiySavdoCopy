@@ -9,7 +9,7 @@ import {
 import { APP_ROUTES } from "../../../router";
 import { tokenName } from "../../../helpers/api";
 import { useQuery } from "@tanstack/react-query";
-import { getBasketList } from "../../../hook/queries";
+import { getBasketList, getFavouriteList } from "../../../hook/queries";
 
 const list = [
   {
@@ -50,7 +50,10 @@ const Inner = ({ setIsNumberModalOpen }: { setIsNumberModalOpen: any }) => {
     queryFn: getBasketList,
   });
 
-  console.log(basketList?.length, "basketlist");
+  const { data: favouriteList } = useQuery({
+    queryKey: ["favourites"],
+    queryFn: getFavouriteList,
+  });
 
   return (
     <>
@@ -121,6 +124,11 @@ const Inner = ({ setIsNumberModalOpen }: { setIsNumberModalOpen: any }) => {
                 {item.name === "Корзина" && basketList?.length > 0 && (
                   <span className="text-[8px] bg-red-500 text-white rounded-full px-[5px] py-[1px] absolute top-[-5px] right-[-5px]">
                     {basketList?.length}
+                  </span>
+                )}
+                {item.name === "Избранные" && favouriteList?.length > 0 && (
+                  <span className="text-[8px] bg-red-500 text-white rounded-full px-[5px] py-[1px] absolute top-[-5px] right-[-5px]">
+                    {favouriteList?.length}
                   </span>
                 )}
               </div>

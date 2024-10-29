@@ -5,6 +5,7 @@ import { I18nextProvider } from "react-i18next";
 import i18n from "./i18/i18n";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
