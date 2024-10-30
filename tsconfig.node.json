@@ -11,3 +11,18 @@
   },
   "include": ["vite.config.ts"]
 }
+
+// {
+//   "compilerOptions": {
+//     "target": "es5", // Yoki sizga mos boshqa versiya
+//     "module": "commonjs", // Yoki "esnext" kabi boshqa mos modullar
+//     "jsx": "react-jsx", // React 17+ dan foydalanayotgan bo'lsangiz
+//     "lib": ["dom", "dom.iterable", "esnext"], // DOM kutubxonalarini qo'shing
+//     "strict": true, // Qattiq tahlil qilish
+//     "esModuleInterop": true, // Importlarni to'g'ri aniqlash
+//     "skipLibCheck": true, // Boshqa kutubxonalarni tekshirishni o'tkazib yuborish
+//     "forceConsistentCasingInFileNames": true // Fayl nomlarida katta-kichik harfga e'tibor bering
+//   },
+//   "include": ["src"], // Sizning manba kodlaringiz joylashgan papka
+//   "exclude": ["node_modules"]
+// }

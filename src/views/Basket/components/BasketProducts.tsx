@@ -4,6 +4,8 @@ import type { CheckboxProps } from "antd";
 import BasketSingleCard from "./BasketSingleCard";
 import { Link } from "react-router-dom";
 import { APP_ROUTES } from "../../../router";
+import { useQuery } from "@tanstack/react-query";
+import { cardInfo } from "../../../hook/queries";
 
 function BasketProducts({ prod }: any) {
   console.log(prod);
@@ -25,6 +27,14 @@ function BasketProducts({ prod }: any) {
       setCheckedItems(newCheckedItems);
       setAllChecked(newCheckedItems.every((item) => item));
     };
+
+  const { data: cardInfoList } = useQuery({
+    queryKey: ["cardInfo"],
+    queryFn: cardInfo,
+  });
+
+  console.log(typeof cardInfoList?.price);
+
   return (
     <section>
       <div className="flex items-end gap-4 md:mb-5 mb-3 md:mt-[30px] mt-5">
@@ -32,7 +42,7 @@ function BasketProducts({ prod }: any) {
           Корзина
         </h2>
         <span className="pb-[2px] text-txtSecondary2 md:text-[16px] text-[14px]">
-          2 товара
+          {cardInfoList?.amount} товара
         </span>
       </div>
       <div className="grid lg:grid-cols-[2fr,1fr] xl:gap-5 gap-3">
@@ -64,10 +74,10 @@ function BasketProducts({ prod }: any) {
           <div className="flex flex-col gap-[10px] mt-auto">
             <div className="flex justify-between items-end">
               <span className="text-txtSecondary md:text-[16px] text-[14px]">
-                Товары: 2
+                Товары: {cardInfoList?.amount}
               </span>
               <span className="text-mainBlack font-semibold md:text-[20px]">
-                788 000 uzs
+                {cardInfoList?.price.toLocaleString("ru-RU")} uzs
               </span>
             </div>
             <div className="flex justify-between items-end">

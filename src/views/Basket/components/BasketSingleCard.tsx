@@ -11,15 +11,16 @@ function BasketSingleCard({
   onCheckChange,
   item,
 }: {
-  setAllChecked: any;
+  setAllChecked: unknown;
   isChecked: boolean;
   index: number;
-  onCheckChange: any;
-  item: any;
+  onCheckChange: unknown;
+  item: unknown;
 }) {
   const queryClient = useQueryClient();
 
   const { data: newProd } = productByTagQuery("novinki");
+
   const { data: saleProd } = productByTagQuery("rasprodaja");
 
   const addMutation = useMutation({
@@ -53,9 +54,22 @@ function BasketSingleCard({
     minusMutation.mutate({ product_id: productId });
   };
 
-  const handleRemoveToBasket = (productId: any) => {
+  const handleRemoveToBasket = (productId: unknown) => {
     removeMutation.mutate({ product_id: productId });
   };
+
+
+
+  const priceWithComma: string = "9,882,000"; // Vergul bilan berilgan narx
+
+// Vergullarni olib tashlash
+  const priceWithoutComma: string = priceWithComma.replace(/,/g, '');
+
+// Raqamga aylantirish
+  const priceNumber: number = Number(priceWithoutComma);
+
+  console.log(`Vergulsiz narx: ${priceNumber}`); // Natija: 9882000
+
 
   return (
     <div className="border-t py-[20px] border-line relative flex md:flex-row flex-col items-start justify-between">

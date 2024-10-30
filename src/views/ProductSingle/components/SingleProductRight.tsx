@@ -8,14 +8,33 @@ import {
 } from "../../../assets/icon";
 import AnorCard from "./AnorCard";
 import UzumCard from "./UzumCard.tsx";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { add } from "../../../hook/queries.ts";
+import { useNavigate } from "react-router-dom";
+import { APP_ROUTES } from "../../../router/index.ts";
 
-function SingleProductRight({data} : any) {
+function SingleProductRight({ data }: any) {
 
   console.log(data)
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const [activeCard, setActiveCart] = useState(0);
   const [selected, setSelected] = useState<string>("6 мес");
   const durations = ["3 мес", "6 мес", "12 мес", "24 мес"];
   const [isFavourite, setIsFavourite] = useState(false);
+
+  const addMutation = useMutation({
+    mutationFn: add,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["basket"] });
+      navigate(APP_ROUTES.BASKET);
+    },
+  });
+
+  const handleAddToBasket = (productId: never) => {
+    addMutation.mutate({ product_id: productId, amount: 1 });
+  };
+
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between md:gap-[30px] lg:gap-[20px] xl:gap-[30px] gap-[12px]">
@@ -40,7 +59,7 @@ function SingleProductRight({data} : any) {
       </div>
       <div className="bg-buttonBg rounded-[16px] md:p-[20px_16px] p-[16px] flex flex-col md:gap-5 gap-3">
         <h2 className="text-mainBlack md:text-[24px] text-[20px] font-semibold">
-          {data?.price.toLocaleString()} сум
+          {data?.price?.toLocaleString()} сум
         </h2>
         <div className="flex flex-col gap-2">
           <div className="flex gap-3 items-center">
@@ -70,7 +89,10 @@ function SingleProductRight({data} : any) {
           <button className="md:text-[16px] text-[14px] md:max-w-[201px] w-full font-medium md:py-[14px] py-[10px] bg-darkGreen text-white rounded-[8px]">
             Купить сейчас
           </button>
-          <button className="md:text-[16px] text-[14px] md:max-w-[201px] w-full font-medium md:py-[14px] py-[10px] text-darkGreen bg-[rgb(2,115,115,.15)] rounded-[8px]">
+          <button
+            onClick={() => handleAddToBasket(data?.id)}
+            className="md:text-[16px] text-[14px] md:max-w-[201px] w-full font-medium md:py-[14px] py-[10px] text-darkGreen bg-[rgb(2,115,115,.15)] rounded-[8px]"
+          >
             В корзину
           </button>
         </div>

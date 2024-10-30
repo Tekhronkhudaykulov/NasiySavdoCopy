@@ -22,6 +22,8 @@ export const requests = {
     $api.post(`${API_URL}/product/set-favorite`, payload),
   favouriteList: () => $api.get(`${API_URL}/product/favorites`),
 
+  cardInfoFetch: () => $api.get(`${API_URL}/cart/info`),
+
   // sendCode: (payload: any) =>
   //   $api.post(`${API_URL}/api/v1/clients/send-code`, payload),
   // signIn: (payload: any) =>

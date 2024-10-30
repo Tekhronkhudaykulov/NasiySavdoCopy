@@ -12,8 +12,6 @@ function Basket() {
     queryFn: getBasketList,
   });
 
-  console.log(basketList, "basket");
-
   return (
     <>
       <BreadCrumb items={[{ name: "Корзина" }]} />

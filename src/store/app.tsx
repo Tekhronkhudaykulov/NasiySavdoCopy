@@ -18,7 +18,6 @@ const initialState: StateAction = {
 
 const appStore = create<StateAction>((set) => ({
   ...initialState,
-
   changeTheme: (theme: "dark" | "light") => {
     set({ theme: theme });
   },

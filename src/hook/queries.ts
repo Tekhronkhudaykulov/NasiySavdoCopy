@@ -84,3 +84,8 @@ export const getFavouriteList = async () => {
   const { data } = await requests.favouriteList();
   return data.data;
 };
+
+export const cardInfo = async () => {
+  const { data } = await requests.cardInfoFetch();
+  return data;
+};
