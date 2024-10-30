@@ -1,28 +1,21 @@
 {
   "compilerOptions": {
-    "composite": true,
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
-    "skipLibCheck": true,
-    "module": "ESNext",
-    "moduleResolution": "bundler",
+    "target": "es6",                 
+    "lib": ["dom", "dom.iterable", "esnext"], 
+    "allowJs": true,                
+    "skipLibCheck": true,            
+    "esModuleInterop": true,         // CommonJS va ES modulini moslashtirish
     "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "noEmit": true
+    "allowImportingTsExtensions": true,  // Default importlarga ruxsat berish
+    "strict": true,                  // Qattiq TypeScript qoidalari
+    "forceConsistentCasingInFileNames": true,  // Fayl nomlarini mos yozish
+    "module": "esnext",              // Modul tizimi
+    "moduleResolution": "node",      // Modul rezolyutsiyasi
+    "resolveJsonModule": true,       // JSON modullarini import qilishga ruxsat
+    "isolatedModules": true,         // Modullarni ajratilgan holda ishlash
+    "noEmit": true,                  // Kompilyatsiya natijasini chiqarib yubormaslik
+    "jsx": "react-jsx"               // JSX ni React uchun ishlatish
   },
-  "include": ["vite.config.ts"]
+  "include": ["src"],                // `src` katalogidagi fayllarni qo'shish
+  "exclude": ["node_modules"]        // `node_modules` ni chiqarib tashlash
 }
-
-// {
-//   "compilerOptions": {
-//     "target": "es5", // Yoki sizga mos boshqa versiya
-//     "module": "commonjs", // Yoki "esnext" kabi boshqa mos modullar
-//     "jsx": "react-jsx", // React 17+ dan foydalanayotgan bo'lsangiz
-//     "lib": ["dom", "dom.iterable", "esnext"], // DOM kutubxonalarini qo'shing
-//     "strict": true, // Qattiq tahlil qilish
-//     "esModuleInterop": true, // Importlarni to'g'ri aniqlash
-//     "skipLibCheck": true, // Boshqa kutubxonalarni tekshirishni o'tkazib yuborish
-//     "forceConsistentCasingInFileNames": true // Fayl nomlarida katta-kichik harfga e'tibor bering
-//   },
-//   "include": ["src"], // Sizning manba kodlaringiz joylashgan papka
-//   "exclude": ["node_modules"]
-// }

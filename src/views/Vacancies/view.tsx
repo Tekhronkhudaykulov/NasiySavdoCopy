@@ -1,3 +1,5 @@
+import React from "react";
+
 import { BreadCrumb } from "../../components";
 
 function Vacancies() {
@@ -7,7 +9,9 @@ function Vacancies() {
       <div className="bg-white flex md:my-[100px] my-[50px] justify-center">
         <div className="md:p-[31px] p-[25px] border text-mainBlack border-line rounded-[16px]">
           <div className="max-w-[700px]">
-            <h1 className="md:mb-[24px] mb-[16px] font-medium md:text-[32px] text-[26px]">ВАКАНСИИ</h1>
+            <h1 className="md:mb-[24px] mb-[16px] font-medium md:text-[32px] text-[26px]">
+              ВАКАНСИИ
+            </h1>
             <p className="md:text-[16px] text-[13px]">
               Хотите быть частью команды Nasiya Uz? Расскажите почему вы нам
               подходите и отправляйте свое резюме

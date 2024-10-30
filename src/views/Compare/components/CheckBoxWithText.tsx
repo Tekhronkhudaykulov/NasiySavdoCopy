@@ -19,7 +19,9 @@ function CheckBoxWithText({
       <div
         className={`md:w-[24px] w-[20px] select-none aspect-square border-[2px] border-txtSecondary2 rounded-[6px] grid place-content-center text-mainBlack`}
       >
-        {active === id && <FaCheck className="md:text-[14px] text-[10px] text-darkGreen" />}
+        {active === id && (
+          <FaCheck className="md:text-[14px] text-[10px] text-darkGreen" />
+        )}
       </div>
       <span
         className={`${

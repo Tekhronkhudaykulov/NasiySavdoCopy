@@ -38,7 +38,7 @@ function ReviewComment({ review }: { review: Review }) {
                   <IoIosStar key={index} />
                 ) : (
                   <IoIosStarOutline key={index} />
-                )
+                ),
               )}
             </div>
             <p className="flex items-center gap-[5px] md:text-[14px] text-[12px] text-txtSecondary2 font-normal">

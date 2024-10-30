@@ -164,16 +164,16 @@ function GraphicCard({
           payment.status === "paid"
             ? "bg-[#EDFEED] text-[#6CBD6C]"
             : payment.status === "overdue"
-            ? "bg-[#FFEEEE] text-[#FF4D4F]"
-            : "bg-[#E2E3E5] text-txtSecondary2"
+              ? "bg-[#FFEEEE] text-[#FF4D4F]"
+              : "bg-[#E2E3E5] text-txtSecondary2"
         } md:p-[8px_16px] p-[6px_12px] rounded-[4px] min-w-[135px] flex items-center justify-center gap-[10px]`}
       >
         <span className="text-[14px] md:text-[16px]">
           {payment.status === "paid"
             ? "Оплачен"
             : payment.status === "overdue"
-            ? "Просрочен"
-            : "Waiting"}
+              ? "Просрочен"
+              : "Waiting"}
         </span>
         {payment.status === "paid" ? (
           <PaymentDone />

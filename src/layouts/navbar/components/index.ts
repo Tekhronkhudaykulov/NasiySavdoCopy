@@ -4,10 +4,4 @@ import Category from "./Category";
 import Search from "./Search";
 import Inner from "./Inner";
 
-export {
-    NavbarTop,
-    NavbarCenter,
-    Category,
-    Search,
-    Inner
-}
+export { NavbarTop, NavbarCenter, Category, Search, Inner };

@@ -36,7 +36,9 @@ function MobileNavbar({ setIsNumberModalOpen }: { setIsNumberModalOpen: any }) {
           </span>
           <span
             className={`${
-              currentPath == "/category" ? "text-darkGreen" : "text-txtSecondary2"
+              currentPath == "/category"
+                ? "text-darkGreen"
+                : "text-txtSecondary2"
             } text-[10px]`}
           >
             Каталог

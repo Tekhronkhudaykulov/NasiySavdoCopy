@@ -30,7 +30,7 @@ const Router = () => {
                 path={path}
                 element={<PrivateRoute child={<Component />} />}
               />
-            )
+            ),
           )}
           <Route path="" />
         </Routes>

@@ -82,7 +82,7 @@ const BreadCrumb = ({ items, className }: BreadCrumbType) => {
                 />
               </svg>
             </div>
-          )
+          ),
         )}
       </div>
     </div>

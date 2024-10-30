@@ -5,17 +5,18 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { FiTrash2 } from "react-icons/fi";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { add, minus, productByTagQuery, remove } from "../../../hook/queries";
+import { errorNotification } from "../../../components/Notifikation/view";
 function BasketSingleCard({
   isChecked,
   index,
   onCheckChange,
   item,
 }: {
-  setAllChecked: unknown;
+  setAllChecked: any;
   isChecked: boolean;
   index: number;
-  onCheckChange: unknown;
-  item: unknown;
+  onCheckChange: any;
+  item: any;
 }) {
   const queryClient = useQueryClient();
 
@@ -27,6 +28,10 @@ function BasketSingleCard({
     mutationFn: add,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["basket"] });
+      queryClient.invalidateQueries({ queryKey: ["cardInfo"] });
+    },
+    onError: (err) => {
+      errorNotification(err.message);
     },
   });
 
@@ -34,6 +39,7 @@ function BasketSingleCard({
     mutationFn: minus,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["basket"] });
+      queryClient.invalidateQueries({ queryKey: ["cardInfo"] });
     },
   });
 
@@ -58,18 +64,15 @@ function BasketSingleCard({
     removeMutation.mutate({ product_id: productId });
   };
 
-
-
   const priceWithComma: string = "9,882,000"; // Vergul bilan berilgan narx
 
-// Vergullarni olib tashlash
-  const priceWithoutComma: string = priceWithComma.replace(/,/g, '');
+  // Vergullarni olib tashlash
+  const priceWithoutComma: string = priceWithComma.replace(/,/g, "");
 
-// Raqamga aylantirish
+  // Raqamga aylantirish
   const priceNumber: number = Number(priceWithoutComma);
 
   console.log(`Vergulsiz narx: ${priceNumber}`); // Natija: 9882000
-
 
   return (
     <div className="border-t py-[20px] border-line relative flex md:flex-row flex-col items-start justify-between">

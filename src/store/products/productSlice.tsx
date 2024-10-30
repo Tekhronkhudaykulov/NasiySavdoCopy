@@ -30,7 +30,7 @@ const productStore = create(
         set({ productLoading: false });
       }
     },
-  }))
+  })),
 );
 
 export default productStore;

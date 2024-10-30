@@ -16,7 +16,7 @@ const Compare = lazy(() => import("./Compare/view"));
 const Vacancies = lazy(() => import("./Vacancies/view"));
 const QuestionsAndAnswers = lazy(() => import("./QuestionsAndAnswers/view"));
 const ProfileSaleSingle = lazy(
-  () => import("./Profile/view/ProfileSaleSingle")
+  () => import("./Profile/view/ProfileSaleSingle"),
 );
 const ProfileCard = lazy(() => import("./Profile/view/ProfileCard"));
 

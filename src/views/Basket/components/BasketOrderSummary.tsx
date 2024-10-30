@@ -13,8 +13,13 @@ const BasketOrderSummary: React.FC = () => {
           Ваш заказ
         </h2>
         <div className="flex justify-between items-center">
-          <span className="text-txtSecondary md:text-[16px] text-[14px]">Товары: 2</span>
-          <Link className="text-[#03A5A5] font-medium md:text-[16px] text-[14px]" to={APP_ROUTES.BASKET}>
+          <span className="text-txtSecondary md:text-[16px] text-[14px]">
+            Товары: 2
+          </span>
+          <Link
+            className="text-[#03A5A5] font-medium md:text-[16px] text-[14px]"
+            to={APP_ROUTES.BASKET}
+          >
             Изменить
           </Link>
         </div>
@@ -31,7 +36,9 @@ const BasketOrderSummary: React.FC = () => {
       {/*  */}
       <div className="flex flex-col gap-2">
         <div className="flex justify-between items-center">
-          <span className="md:text-[14px] text-[12px] text-txtSecondary">Товары:</span>
+          <span className="md:text-[14px] text-[12px] text-txtSecondary">
+            Товары:
+          </span>
           <span className="text-mainBlack font-semibold md:text-[16px] text-[14px]">
             368 000 uzs
           </span>
@@ -53,7 +60,9 @@ const BasketOrderSummary: React.FC = () => {
           </span>
         </div>
         <div className="flex justify-between items-center">
-          <span className="md:text-[14px] text-[12px] text-txtSecondary">Итого:</span>
+          <span className="md:text-[14px] text-[12px] text-txtSecondary">
+            Итого:
+          </span>
           <span className="text-mainBlack font-semibold md:text-[16px] text-[14px]">
             358 000 uzs
           </span>

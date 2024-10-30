@@ -93,7 +93,7 @@ const productVariantsStore = create(
         set({ productVariantByWithLoading: false });
       }
     },
-  }))
+  })),
 );
 
 export default productVariantsStore;

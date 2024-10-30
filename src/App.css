@@ -25,7 +25,6 @@
   display: block;
 }
 
-
 .text-hidden-1 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -97,7 +96,7 @@
 }
 
 .aboutProductScroll::-webkit-scrollbar-thumb {
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   border-radius: 2px;
 }
 
@@ -116,9 +115,7 @@ input[type="number"] {
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   border: none;
-
 }
-
 
 .lds-ellipsis,
 .lds-ellipsis div {

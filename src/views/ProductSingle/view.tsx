@@ -37,7 +37,7 @@ function ProductSingle() {
           setAboutPopUp={setAboutPopUp}
           setReviewPoUp={setReviewPoUp}
         />
-        <SingleProductRight data={data}/>
+        <SingleProductRight data={data} />
       </div>
       {aboutPopUp && <AboutProductPopUp setAboutPopUp={setAboutPopUp} />}
       {reviewPopUp && <ReviewProductPopUp setReviewPoUp={setReviewPoUp} />}

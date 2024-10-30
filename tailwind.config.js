@@ -25,7 +25,7 @@ export default {
         darkGreen: "#027373",
       },
       screens: {
-       '2md': { 'max': '940px' },
+        "2md": { max: "940px" },
       },
     },
   },

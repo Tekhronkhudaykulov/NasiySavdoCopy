@@ -78,7 +78,7 @@ const clientFavouriteStore = create(
         set({ clientFavouriteClearLoading: false });
       }
     },
-  }))
+  })),
 );
 
 export default clientFavouriteStore;

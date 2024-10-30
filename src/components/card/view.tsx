@@ -27,7 +27,7 @@ const Card = ({ discount, setIsNumberModalOpen, prod }: CardProps) => {
   const { data: saleProd } = productByTagQuery("rasprodaja");
 
   const [authed, setAuthed] = useState(
-    Boolean(localStorage.getItem(tokenName))
+    Boolean(localStorage.getItem(tokenName)),
   );
 
   const addMutaionBasketList = useMutation({

@@ -14,7 +14,7 @@ function SizeSelect() {
       prevSizes.map((size, i) => ({
         ...size,
         active: i === index,
-      }))
+      })),
     );
   };
   return (

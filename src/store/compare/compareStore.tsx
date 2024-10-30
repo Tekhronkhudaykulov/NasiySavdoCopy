@@ -43,7 +43,7 @@ const comparesStore = create(
         set({ compareLoading: false });
       }
     },
-  }))
+  })),
 );
 
 export default comparesStore;

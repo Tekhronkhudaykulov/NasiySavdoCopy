@@ -26,7 +26,7 @@ const LanguageSwitcher: FC<Props> = ({ className }) => {
     },
   ];
   const [selectedLanguageKey, setSelectedLanguageKey] = useState<string>(
-    i18n.language
+    i18n.language,
   );
 
   const selectedLanguage = useMemo(() => {

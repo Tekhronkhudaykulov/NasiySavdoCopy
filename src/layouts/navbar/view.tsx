@@ -25,7 +25,11 @@ const Navbar = ({ setIsNumberModalOpen }: { setIsNumberModalOpen: any }) => {
   return (
     <>
       <NavbarTop />
-      <NavbarCenter setIsNumberModalOpen={setIsNumberModalOpen} setActiveCateg={setActiveCateg} activeCateg={activeCateg} />
+      <NavbarCenter
+        setIsNumberModalOpen={setIsNumberModalOpen}
+        setActiveCateg={setActiveCateg}
+        activeCateg={activeCateg}
+      />
       {activeCateg && <MultiLevelDropdown />}
     </>
   );

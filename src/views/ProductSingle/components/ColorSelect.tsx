@@ -13,7 +13,7 @@ function ColorSelect() {
       prevColors.map((item, i) => ({
         ...item,
         active: i === index,
-      }))
+      })),
     );
   };
   return (

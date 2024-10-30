@@ -94,7 +94,7 @@ const clientCartStore = create(
         set({ clientCardDeleteSelectedLoading: false });
       }
     },
-  }))
+  })),
 );
 
 export default clientCartStore;

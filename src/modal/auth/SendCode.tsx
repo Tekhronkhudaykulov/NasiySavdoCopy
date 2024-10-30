@@ -21,11 +21,11 @@ const SendCode: React.FC<SendNumProps> = ({
   const [code, setCode] = useState<string>("");
   const { userNumber } = authStore();
 
-  let countryCode = userNumber?.slice(0, 3); // 998
-  let firstPart = userNumber?.slice(3, 5); // 90
-  let lastPart = userNumber?.slice(10, 12); // 06
+  const countryCode = userNumber?.slice(0, 3); // 998
+  const firstPart = userNumber?.slice(3, 5); // 90
+  const lastPart = userNumber?.slice(10, 12); // 06
 
-  let num = `${countryCode} ${firstPart}*****${lastPart}`;
+  const num = `${countryCode} ${firstPart}*****${lastPart}`;
 
   const [isResendEnabled, setIsResendEnabled] = useState<boolean>(false);
 
@@ -57,7 +57,7 @@ const SendCode: React.FC<SendNumProps> = ({
           onError: () => {
             setIsCodeModalOpen(true);
           },
-        }
+        },
       );
     }
   };

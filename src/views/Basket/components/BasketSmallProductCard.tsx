@@ -11,8 +11,11 @@ function BasketSmallProductCard() {
         />
       </div>
       <div className="max-w-[330px] flex flex-col">
-        <h2 title="Сковорода антипригарная Elegant, с крышкой, гранитное покрытие, 24,
-          26, 28 см" className="text-mainBlack font-[400] md:text-[14px] text-[13px] mb-1 text-hidden-2">
+        <h2
+          title="Сковорода антипригарная Elegant, с крышкой, гранитное покрытие, 24,
+          26, 28 см"
+          className="text-mainBlack font-[400] md:text-[14px] text-[13px] mb-1 text-hidden-2"
+        >
           Сковорода антипригарная Elegant, с крышкой, гранитное покрытие, 24,
           26, 28 см
         </h2>

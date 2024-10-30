@@ -14,8 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { APP_ROUTES } from "../../../router/index.ts";
 
 function SingleProductRight({ data }: any) {
-
-  console.log(data)
+  console.log(data);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [activeCard, setActiveCart] = useState(0);
@@ -31,7 +30,7 @@ function SingleProductRight({ data }: any) {
     },
   });
 
-  const handleAddToBasket = (productId: never) => {
+  const handleAddToBasket = (productId: any) => {
     addMutation.mutate({ product_id: productId, amount: 1 });
   };
 

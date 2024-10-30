@@ -30,7 +30,7 @@ const brandStore = create(
         set({ brandLoading: false });
       }
     },
-  }))
+  })),
 );
 
 export default brandStore;

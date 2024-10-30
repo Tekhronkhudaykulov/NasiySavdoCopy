@@ -20,7 +20,7 @@ const Search = () => {
 
     if (value) {
       const results = searchResults.filter((result) =>
-        result.toLowerCase().includes(value.toLowerCase())
+        result.toLowerCase().includes(value.toLowerCase()),
       );
       setFilteredResults(results);
     } else {

@@ -7,7 +7,7 @@ import { categoryQuery } from "../../../hook/queries";
 
 const MultiLevelDropdown = () => {
   const [activeCategory, setActiveCategory] = useState<number | undefined>(
-    undefined
+    undefined,
   );
   const [activeSubCategory, setActiveSubCategory] = useState<
     number | undefined
@@ -90,7 +90,7 @@ const MultiLevelDropdown = () => {
                       subCateg={subCateg}
                     />
                   </div>
-                )
+                ),
               )}
           </div>
 

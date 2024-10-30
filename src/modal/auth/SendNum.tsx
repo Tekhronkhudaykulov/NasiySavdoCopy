@@ -32,7 +32,7 @@ const SendNum: React.FC<SendNumProps> = ({
             setUserNumber(backendPhoneNumber);
             setIsCodeModalOpen(true);
           },
-        }
+        },
       );
     } else {
       alert("Please enter a valid phone number.");

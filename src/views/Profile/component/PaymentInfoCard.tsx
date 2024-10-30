@@ -45,7 +45,7 @@ function PaymentInfoCardHead({ plan }: { plan: InstallmentPlan }) {
 function PaymentInfoCardStep({ plan }: { plan: InstallmentPlan }) {
   const totalPayments = plan.monthlyPayments.length;
   const paidPayments = plan.monthlyPayments.filter(
-    (payment) => payment.status === "paid"
+    (payment) => payment.status === "paid",
   ).length;
   return (
     <div className="flex flex-col gap-[9px] bg-white lg:p-[16px_20px] p-[12px_10px] md:rounded-[12px] rounded-[8px]">
@@ -71,8 +71,8 @@ function PaymentInfoCardStep({ plan }: { plan: InstallmentPlan }) {
               month.status === "paid"
                 ? "bg-[#6CBD6C]"
                 : month.status === "overdue"
-                ? "bg-[#FF4D4F]"
-                : "bg-[#E2E3E5]"
+                  ? "bg-[#FF4D4F]"
+                  : "bg-[#E2E3E5]"
             } flex-grow rounded-[4px] md:h-[10px] h-[6px]`}
           ></div>
         ))}
@@ -117,16 +117,16 @@ function GraphicCard({
           payment.status === "paid"
             ? "bg-[#EDFEED] text-[#6CBD6C]"
             : payment.status === "overdue"
-            ? "bg-[#FFEEEE] text-[#FF4D4F]"
-            : "bg-[#E2E3E5] text-txtSecondary2"
+              ? "bg-[#FFEEEE] text-[#FF4D4F]"
+              : "bg-[#E2E3E5] text-txtSecondary2"
         } md:p-[8px_16px] p-[6px_12px] rounded-[4px] min-w-[135px] flex items-center justify-center gap-[10px]`}
       >
         <span className="text-[14px] md:text-[16px]">
           {payment.status === "paid"
             ? "Оплачен"
             : payment.status === "overdue"
-            ? "Просрочен"
-            : "Waiting"}
+              ? "Просрочен"
+              : "Waiting"}
         </span>
         {payment.status === "paid" ? (
           <PaymentDone />

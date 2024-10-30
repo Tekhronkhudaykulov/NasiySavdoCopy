@@ -62,7 +62,7 @@ const newsStore = create(
         set({ newsLoading: false });
       }
     },
-  }))
+  })),
 );
 
 export default newsStore;

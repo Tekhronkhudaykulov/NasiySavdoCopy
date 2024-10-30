@@ -46,7 +46,7 @@ const serviceStore = create(
         set({ serviceLoading: false });
       }
     },
-  }))
+  })),
 );
 
 export default serviceStore;

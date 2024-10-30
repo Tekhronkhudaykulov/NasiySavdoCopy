@@ -16,7 +16,7 @@ export default function PriceSlider() {
   const handleChange1 = (
     _: Event,
     newValue: number | number[],
-    activeThumb: number
+    activeThumb: number,
   ) => {
     if (!Array.isArray(newValue)) {
       return;

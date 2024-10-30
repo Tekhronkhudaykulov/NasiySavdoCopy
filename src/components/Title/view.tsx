@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import './title.scss'
+import "./title.scss";
 
 interface Props {
   className?: string;

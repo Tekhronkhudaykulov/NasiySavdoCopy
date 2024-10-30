@@ -30,7 +30,7 @@ const categoryStore = create(
         set({ categoryLoading: false });
       }
     },
-  }))
+  })),
 );
 
 export default categoryStore;

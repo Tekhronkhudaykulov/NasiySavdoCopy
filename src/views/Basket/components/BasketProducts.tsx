@@ -8,8 +8,6 @@ import { useQuery } from "@tanstack/react-query";
 import { cardInfo } from "../../../hook/queries";
 
 function BasketProducts({ prod }: any) {
-  console.log(prod);
-
   const [checkedItems, setCheckedItems] = useState([false, false, false]);
   const [allChecked, setAllChecked] = useState(false);
 
@@ -33,7 +31,11 @@ function BasketProducts({ prod }: any) {
     queryFn: cardInfo,
   });
 
-  console.log(typeof cardInfoList?.price);
+
+
+  const formattedNumber = new Intl.NumberFormat('uz-UZ', { useGrouping: true }).format(cardInfoList?.price);
+
+  const result = formattedNumber.replace(/,/g, ' ');
 
   return (
     <section>
@@ -77,7 +79,7 @@ function BasketProducts({ prod }: any) {
                 Товары: {cardInfoList?.amount}
               </span>
               <span className="text-mainBlack font-semibold md:text-[20px]">
-                {cardInfoList?.price.toLocaleString("ru-RU")} uzs
+                {result} uzs
               </span>
             </div>
             <div className="flex justify-between items-end">

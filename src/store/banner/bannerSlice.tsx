@@ -21,7 +21,7 @@ const bannerStore = create(
     bannerRequest: async () => {
       set({ bannersLoading: true });
       try {
-        const { data } = await requests.banners();
+        const { data } = await requests.banner();
         set({ bannerList: data });
         return data;
       } catch (err) {
@@ -30,7 +30,7 @@ const bannerStore = create(
         set({ bannersLoading: false });
       }
     },
-  }))
+  })),
 );
 
 export default bannerStore;
