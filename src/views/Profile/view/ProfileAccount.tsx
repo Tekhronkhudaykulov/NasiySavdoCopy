@@ -1,7 +1,6 @@
 import ProfileButtons from "../component/ProfileButtons";
 import ProfileSuccess from "../component/ProfileSuccess";
 import ProfileInputs from "../component/ProfileInputs";
-import { profileQuery } from "../../../hook/queries";
 
 const ProfileAccount = () => {
   return (

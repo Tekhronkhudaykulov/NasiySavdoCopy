@@ -6,7 +6,7 @@ export const profileQuery = () =>
     queryKey: ["profile"],
     queryFn: async () => {
       const { data } = await requests.profile();
-      return data.data;
+    return data.data.client
     },
   });
 
@@ -75,6 +75,24 @@ export const productDetail = (payload: any) =>
     },
   });
 
+
+export const similarProduct = (payload: any) =>
+    useQuery({
+      queryKey: ["similar" + payload],
+      queryFn: async () => {
+        const { data } = await requests.similarProductFetch(payload);
+        return data.data;
+      },
+});
+  
+  export const productViews = () =>
+      useQuery({
+        queryKey: ["productViews"],
+        queryFn: async () => {
+          const { data } = await requests.productViewsList();
+          return data.data;
+        },
+  });
 export const addFavourites = async (payload: any) => {
   const { data } = await requests.addFavouriteList(payload);
   return data;
@@ -88,4 +106,9 @@ export const getFavouriteList = async () => {
 export const cardInfo = async () => {
   const { data } = await requests.cardInfoFetch();
   return data;
+};
+
+export const editProfile = async (payload:any) => {
+  const { data } = await requests.editProfileFetch(payload);
+  return data.client;
 };

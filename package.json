@@ -39,6 +39,7 @@
     "react-router-dom": "^6.24.1",
     "react-verification-input": "^4.1.2",
     "rimraf": "^6.0.1",
+    "rsuite": "^5.73.1",
     "swiper": "^11.1.9",
     "typescript": "^5.6.3",
     "zustand": "^4.5.4"

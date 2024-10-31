@@ -28,6 +28,8 @@ function BasketSingleCard({
     mutationFn: add,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["basket"] });
+      queryClient.invalidateQueries({ queryKey: ["novinki"] });
+      queryClient.invalidateQueries({ queryKey: ["rasprodaja"] });
       queryClient.invalidateQueries({ queryKey: ["cardInfo"] });
     },
     onError: (err) => {
@@ -40,6 +42,8 @@ function BasketSingleCard({
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["basket"] });
       queryClient.invalidateQueries({ queryKey: ["cardInfo"] });
+      queryClient.invalidateQueries({ queryKey: ["novinki"] });
+      queryClient.invalidateQueries({ queryKey: ["rasprodaja"] });
     },
   });
 

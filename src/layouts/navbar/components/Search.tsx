@@ -14,7 +14,7 @@ const Search = () => {
     "DeepCool case",
   ];
 
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInput = (e:any) => {
     const value = e.target.value;
     setInputValue(value);
 

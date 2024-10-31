@@ -7,7 +7,7 @@ import SingleProductRight from "./components/SingleProductRight";
 import SingleProductLeft from "./components/SingleProductLeft";
 import ReviewProductPopUp from "./components/ReviewProductPopUp";
 import { useParams } from "react-router-dom";
-import { productDetail } from "../../hook/queries";
+import { productDetail, productViews, similarProduct } from "../../hook/queries";
 
 function ProductSingle() {
   const [aboutPopUp, setAboutPopUp] = useState(false);
@@ -28,6 +28,10 @@ function ProductSingle() {
 
   const { data } = productDetail(id);
 
+  const {data: similarProdList} = similarProduct(id)
+
+  const {data: productViewsList} = productViews()
+
   return (
     <>
       <BreadCrumb items={[{ name: "Продукт название" }]} />
@@ -44,12 +48,12 @@ function ProductSingle() {
       <ProductsSection
         className="md:mt-[48px] mt-5"
         title="Ещё может подойти"
-        products={[...Array(5)]}
+        products={similarProdList}
       />
       <ProductsSection
         className="md:mt-[48px] mt-5"
         title="Просмотренные товары"
-        products={[...Array(5)]}
+        products={productViewsList}
       />
     </>
   );
