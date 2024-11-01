@@ -97,7 +97,7 @@ function BasketProducts({ prod }: any) {
                 Итого:
               </span>
               <span className="text-mainBlack font-semibold md:text-[20px]">
-                368 000 uzs
+              {result} uzs
               </span>
             </div>
             <Link

@@ -3,8 +3,17 @@ import { Link } from "react-router-dom";
 import BasketSmallProductCard from "../components/BasketSmallProductCard";
 import InputBasketForm from "../../../components/InputBasketForm/InputBasketForm";
 import { APP_ROUTES } from "../../../router";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { getBasketList } from "../../../hook/queries";
 
 const BasketOrderSummary: React.FC = () => {
+  const { data: basketList } = useQuery({
+    queryKey: ["basket"],
+    queryFn: getBasketList,
+  });
+
+
+
   return (
     <div className="border border-line h-max p-5 flex flex-col gap-[36px] rounded-2xl">
       {/*  */}
@@ -14,7 +23,7 @@ const BasketOrderSummary: React.FC = () => {
         </h2>
         <div className="flex justify-between items-center">
           <span className="text-txtSecondary md:text-[16px] text-[14px]">
-            Товары: 2
+            Товары: {basketList?.length}
           </span>
           <Link
             className="text-[#03A5A5] font-medium md:text-[16px] text-[14px]"
@@ -26,10 +35,10 @@ const BasketOrderSummary: React.FC = () => {
       </div>
       {/*  */}
       <div className="flex flex-col gap-[10px] mt-auto">
-        {[...Array(2)].map((_, index) => (
+        {basketList?.map((item:any, index:any) => (
           <div key={index}>
             {index !== 0 && <hr className="text-line my-4" />}
-            <BasketSmallProductCard />
+            <BasketSmallProductCard prod={item}/>
           </div>
         ))}
       </div>

@@ -1,6 +1,7 @@
 import { ASSETS } from "../../../assets/img/assets";
 
-function BasketSmallProductCard() {
+function BasketSmallProductCard({prod}: any) {
+  console.log(prod, "prod")
   return (
     <div className="flex gap-[12px]">
       <div className="md:w-[60px] w-[70px] flex-shrink-0 md:h-[76px] bg-[#efefef]">
@@ -16,8 +17,7 @@ function BasketSmallProductCard() {
           26, 28 см"
           className="text-mainBlack font-[400] md:text-[14px] text-[13px] mb-1 text-hidden-2"
         >
-          Сковорода антипригарная Elegant, с крышкой, гранитное покрытие, 24,
-          26, 28 см
+          {prod.product.name}
         </h2>
         <div className="flex flex-col md:gap-1 mt-auto">
           <div className="md:text-[14px] text-[12px] flex gap-1">

@@ -76,7 +76,6 @@ function BasketSingleCard({
   // Raqamga aylantirish
   const priceNumber: number = Number(priceWithoutComma);
 
-  console.log(`Vergulsiz narx: ${priceNumber}`); // Natija: 9882000
 
   return (
     <div className="border-t py-[20px] border-line relative flex md:flex-row flex-col items-start justify-between">
