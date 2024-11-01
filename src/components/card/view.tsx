@@ -11,8 +11,9 @@ import { ASSETS } from "../../assets/img/assets";
 import { useState } from "react";
 import { APP_ROUTES } from "../../router";
 import { tokenName } from "../../helpers/api";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { add, addFavourites, productByTagQuery } from "../../hook/queries";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { add, addFavourites,  cardInfo,  productByTagQuery, profileQuery } from "../../hook/queries";
+import { errorNotification } from "../Notifikation/view";
 
 interface CardProps {
   discount?: boolean;
@@ -26,6 +27,12 @@ const Card = ({ discount, setIsNumberModalOpen, prod }: CardProps) => {
   const { data: newProd } = productByTagQuery("novinki");
   const { data: saleProd } = productByTagQuery("rasprodaja");
 
+  const { data: cardInfoList } = useQuery({
+    queryKey: ["cardInfo"],
+    queryFn: cardInfo,
+  });
+
+
   const [authed, setAuthed] = useState(
     Boolean(localStorage.getItem(tokenName)),
   );
@@ -36,7 +43,13 @@ const Card = ({ discount, setIsNumberModalOpen, prod }: CardProps) => {
       queryClient.invalidateQueries({ queryKey: ["basket"] });
       queryClient.invalidateQueries({ queryKey: ["rasprodaja"] });
       queryClient.invalidateQueries({ queryKey: ["novinki"] });
+      queryClient.invalidateQueries({ queryKey: ["favourites"] });
+      queryClient.invalidateQueries({ queryKey: ["cardInfo"] });
+
     },
+    onError: (res) => {
+      errorNotification(res.message)
+    }
   });
 
   const addMutationFavouriteList = useMutation({

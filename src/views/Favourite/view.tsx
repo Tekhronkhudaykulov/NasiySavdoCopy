@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import BreadCrumb from "../../components/breadCump/view";
 // import EmptyFavourite from "../../components/EmptyFavourite/view";
 import { ProductsSection } from "../../sections";
-import { getFavouriteList } from "../../hook/queries";
+import { getFavouriteList, productByTagQuery } from "../../hook/queries";
 import EmptyFavourite from "../../components/EmptyFavourite/view";
 
 function Favourite() {
@@ -11,7 +11,9 @@ function Favourite() {
     queryFn: getFavouriteList,
   });
 
-  console.log(favouriteList, "los");
+
+ 
+
 
   return (
     <>

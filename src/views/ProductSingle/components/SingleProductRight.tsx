@@ -9,29 +9,48 @@ import {
 import AnorCard from "./AnorCard";
 import UzumCard from "./UzumCard.tsx";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { add } from "../../../hook/queries.ts";
+import { add, addFavourites,  } from "../../../hook/queries.ts";
 import { useNavigate } from "react-router-dom";
 import { APP_ROUTES } from "../../../router/index.ts";
 
 function SingleProductRight({ data }: any) {
-  console.log(data);
+
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [activeCard, setActiveCart] = useState(0);
   const [selected, setSelected] = useState<string>("6 мес");
   const durations = ["3 мес", "6 мес", "12 мес", "24 мес"];
-  const [isFavourite, setIsFavourite] = useState(false);
+
 
   const addMutation = useMutation({
     mutationFn: add,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["basket"] });
+      queryClient.invalidateQueries({ queryKey: ["cardInfo"] });
+
       navigate(APP_ROUTES.BASKET);
+    },
+  });
+
+  const addFavouritesMutaion = useMutation({
+    mutationFn: addFavourites,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["basket"] });
+      queryClient.invalidateQueries({ queryKey: ["detail" + data.id] });
+      queryClient.invalidateQueries({ queryKey: ["favourites"] });
+      queryClient.invalidateQueries({ queryKey: ["novinki"] });
+      queryClient.invalidateQueries({ queryKey: ["rasprodaja"] });
+
     },
   });
 
   const handleAddToBasket = (productId: any) => {
     addMutation.mutate({ product_id: productId, amount: 1 });
+  };
+
+
+  const handleAddToFavourite = (productId: any) => {
+    addFavouritesMutaion.mutate({ product_id: productId, });
   };
 
   return (
@@ -48,10 +67,10 @@ function SingleProductRight({ data }: any) {
         <button
           className="text-mainBlack flex md:gap-[12px] gap-[8px] items-center"
           onClick={() => {
-            setIsFavourite(!isFavourite);
+            handleAddToFavourite(data?.id)
           }}
         >
-          {isFavourite ? <Favourited /> : <Favourite />}
+          {data?.isFavorite ? <Favourited /> : <Favourite />}
           <button className="absolute top-[11px] right-[11px]"></button>
           <span className="md:text-[14px] text-[10px]">В избранное</span>
         </button>

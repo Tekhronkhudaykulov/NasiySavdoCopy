@@ -1,10 +1,16 @@
+import { useQuery } from "@tanstack/react-query";
 import { Banner, Categories } from "../../components";
-import { productByTagQuery } from "../../hook/queries";
+import { cardInfo, productByTagQuery } from "../../hook/queries";
 import { AdvertisingSection, ProductsSection } from "../../sections";
 
 const Home = () => {
   const { data: newProd } = productByTagQuery("novinki");
   const { data: saleProd } = productByTagQuery("rasprodaja");
+
+  const { data: cardInfoList } = useQuery({
+    queryKey: ["cardInfo"],
+    queryFn: cardInfo,
+  });
 
   return (
     <>
