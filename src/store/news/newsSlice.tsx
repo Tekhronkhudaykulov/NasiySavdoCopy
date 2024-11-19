@@ -29,9 +29,7 @@ const newsStore = create(
     newsRequest: async () => {
       set({ newsLoading: true });
       try {
-        const { data } = await requests.news();
-        set({ newsList: data });
-        return data;
+    
       } catch (err) {
         return err;
       } finally {
@@ -41,9 +39,7 @@ const newsStore = create(
     newsDetailRequest: async (id: number) => {
       set({ newsLoading: true });
       try {
-        const { data } = await requests.newsDetail(id);
-        set({ newsDetail: data });
-        return data;
+     
       } catch (err) {
         return err;
       } finally {
@@ -53,9 +49,7 @@ const newsStore = create(
     tagsRequest: async () => {
       set({ newsLoading: true });
       try {
-        const { data } = await requests.tags();
-        set({ tagsList: data });
-        return data;
+     
       } catch (err) {
         return err;
       } finally {

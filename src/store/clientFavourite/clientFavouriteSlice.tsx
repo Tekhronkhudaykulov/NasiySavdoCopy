@@ -36,9 +36,7 @@ const clientFavouriteStore = create(
     clientFavouriteListRequest: async () => {
       set({ clientFavouriteListLoading: true });
       try {
-        const { data } = await requests.clientFavourites();
-        set({ clientFavouriteList: data });
-        return data;
+       
       } catch (err) {
         return err;
       } finally {
@@ -48,8 +46,7 @@ const clientFavouriteStore = create(
     clientFavouriteAddRequest: async (payload: number) => {
       set({ clientFavouriteAddLoading: true });
       try {
-        const { data } = await requests.clientFavouritesAdd(payload);
-        return data;
+   
       } catch (err) {
         return err;
       } finally {
@@ -59,8 +56,7 @@ const clientFavouriteStore = create(
     clientFavouriteDeleteRequest: async (payload: number) => {
       set({ clientFavouriteDeleteLoading: true });
       try {
-        const { data } = await requests.clientFavouritesDelete(payload);
-        return data;
+      
       } catch (err) {
         return err;
       } finally {
@@ -70,8 +66,7 @@ const clientFavouriteStore = create(
     clientFavouriteClearRequest: async (payload: number) => {
       set({ clientFavouriteClearLoading: true });
       try {
-        const { data } = await requests.clientFavouritesClear(payload);
-        return data;
+   
       } catch (err) {
         return err;
       } finally {

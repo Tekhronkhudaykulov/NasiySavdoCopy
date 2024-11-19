@@ -23,9 +23,7 @@ const comparesStore = create(
     compareRequest: async () => {
       set({ compareLoading: true });
       try {
-        const { data } = await requests.compares();
-        set({ compareList: data });
-        return data;
+
       } catch (err) {
         return err;
       } finally {
@@ -35,8 +33,7 @@ const comparesStore = create(
     compareAddRequest: async (id: number) => {
       set({ compareLoading: true });
       try {
-        const { data } = await requests.addCompares(id);
-        return data;
+      
       } catch (err) {
         return err;
       } finally {

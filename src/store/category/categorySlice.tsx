@@ -21,9 +21,7 @@ const categoryStore = create(
     categoryRequest: async () => {
       set({ categoryLoading: true });
       try {
-        const { data } = await requests.categories();
-        set({ categoryList: data });
-        return data;
+ 
       } catch (err) {
         return err;
       } finally {

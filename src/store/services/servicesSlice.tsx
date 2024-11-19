@@ -25,9 +25,7 @@ const serviceStore = create(
     serviceRequest: async () => {
       set({ serviceLoading: true });
       try {
-        const { data } = await requests.services();
-        set({ serviceList: data });
-        return data;
+  
       } catch (err) {
         return err;
       } finally {
@@ -37,9 +35,7 @@ const serviceStore = create(
     serviceDetailRequest: async (id: number) => {
       set({ serviceLoading: true });
       try {
-        const { data } = await requests.serviceDetail(id);
-        set({ serviceDetail: data });
-        return data;
+
       } catch (err) {
         return err;
       } finally {

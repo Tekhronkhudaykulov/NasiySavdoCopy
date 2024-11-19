@@ -98,7 +98,11 @@ function ProfileInputs() {
         value={payload.birthday}
         placeholder="dd.mm.yyyy"
       >
-        {(inputProps) => <input {...inputProps} type="text" />}
+
+        {
+          // @ts-ignore
+        (inputProps) => <input {...inputProps} type="text" />
+        }
       </InputMask>
       
         <PhoneInput

@@ -48,9 +48,7 @@ const productVariantsStore = create(
     productVariantsRequest: async () => {
       set({ productVariantsLoading: true });
       try {
-        const { data } = await requests.productVariants();
-        set({ producVariantsList: data.data });
-        return data;
+    
       } catch (err) {
         return err;
       } finally {
@@ -60,9 +58,7 @@ const productVariantsStore = create(
     productVariantsDetailRequest: async (payload: number) => {
       set({ productVariantsDetailLoading: true });
       try {
-        const { data } = await requests.productVariantsDetail(payload);
-        set({ productVariantsDetail: data });
-        return data;
+ 
       } catch (err) {
         return err;
       } finally {
@@ -72,9 +68,7 @@ const productVariantsStore = create(
     productVariantsFilterRequest: async () => {
       set({ productVariantsFilterLoading: true });
       try {
-        const { data } = await requests.productVariantsFilter();
-        set({ productVariantsFilter: data });
-        return data;
+   
       } catch (err) {
         return err;
       } finally {
@@ -84,9 +78,7 @@ const productVariantsStore = create(
     productVariantsCategoryFilterRequest: async () => {
       set({ productVariantByWithLoading: true });
       try {
-        const { data } = await requests.productVariantsByWith();
-        set({ productVariantByWithList: data });
-        return data;
+     
       } catch (err) {
         return err;
       } finally {

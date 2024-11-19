@@ -41,9 +41,7 @@ const clientCartStore = create(
     clientCardListRequest: async () => {
       set({ clientCardListLoading: true });
       try {
-        const { data } = await requests.clientCartList();
-        set({ clientCardList: data });
-        return data;
+       
       } catch (err) {
         return err;
       } finally {
@@ -53,8 +51,7 @@ const clientCartStore = create(
     clientCardAddRequest: async () => {
       set({ clientCardAddLoading: true });
       try {
-        const { data } = await requests.clientCartAddList();
-        return data;
+      
       } catch (err) {
         return err;
       } finally {
@@ -64,8 +61,7 @@ const clientCartStore = create(
     clientCardDeleteRequest: async () => {
       set({ clientCardDeleteLoading: true });
       try {
-        const { data } = await requests.clientCartDeleteList();
-        return data;
+     
       } catch (err) {
         return err;
       } finally {
@@ -75,8 +71,7 @@ const clientCartStore = create(
     clientCardAddToOrderRequest: async () => {
       set({ clientCardAddToOrderLoading: true });
       try {
-        const { data } = await requests.clientCartAddToOrder();
-        return data;
+      
       } catch (err) {
         return err;
       } finally {
@@ -86,8 +81,7 @@ const clientCartStore = create(
     clientCardDeleteSelectedRequest: async () => {
       set({ clientCardDeleteSelectedLoading: true });
       try {
-        const { data } = await requests.clientCartDeleteSelected();
-        return data;
+       
       } catch (err) {
         return err;
       } finally {

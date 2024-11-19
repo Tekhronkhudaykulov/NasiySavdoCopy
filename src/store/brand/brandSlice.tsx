@@ -21,9 +21,7 @@ const brandStore = create(
     brandRequest: async () => {
       set({ brandLoading: true });
       try {
-        const { data } = await requests.brands();
-        set({ brandList: data });
-        return data;
+      
       } catch (err) {
         return err;
       } finally {
