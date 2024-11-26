@@ -4,6 +4,7 @@ import "./profile.scss";
 import BreadCrumb from "../../components/breadCump/view";
 import { Ava, Card, Exit, Orders, Sale } from "../../assets/icon";
 import { useEffect, useState } from "react";
+import { tokenName } from "../../helpers/api";
 const Profile = () => {
   const { pathname } = useLocation();
   const [show, setShow] = useState(false);
@@ -83,6 +84,11 @@ const Profile = () => {
                     pathname == "/profile/profile_sale_single" &&
                     "bg-[#027373] active-route"
                   }`}
+                  onClick={() => {
+                    if (item.name === "Выйти из системы") {
+                      localStorage.removeItem(tokenName); 
+                    }
+                  }}
                 >
                   {item.icon}
                   <p>{item.name}</p>

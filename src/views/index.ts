@@ -19,6 +19,7 @@ const ProfileSaleSingle = lazy(
   () => import("./Profile/view/ProfileSaleSingle"),
 );
 const ProfileCard = lazy(() => import("./Profile/view/ProfileCard"));
+const Search = lazy(() =>  import("./Search/view"))
 
 export {
   Home,
@@ -38,4 +39,5 @@ export {
   Compare,
   QuestionsAndAnswers,
   Vacancies,
+  Search
 };

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import {
   Basket,
   BasketBought,
@@ -12,7 +12,7 @@ import { useState } from "react";
 import { APP_ROUTES } from "../../router";
 import { tokenName } from "../../helpers/api";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { add, addFavourites,  cardInfo,  productByTagQuery, profileQuery } from "../../hook/queries";
+import { add, addFavourites,  cardInfo,  productByTagQuery, profileQuery, similarProduct } from "../../hook/queries";
 import { errorNotification } from "../Notifikation/view";
 
 interface CardProps {
@@ -22,16 +22,27 @@ interface CardProps {
 }
 
 const Card = ({ discount, setIsNumberModalOpen, prod }: CardProps) => {
+
+  const [searchParamsValue] = useSearchParams();
+
+
+
   const queryClient = useQueryClient();
+
+  const {id} = useParams()
 
   const { data: newProd } = productByTagQuery("novinki");
   const { data: saleProd } = productByTagQuery("rasprodaja");
+
+  const query = searchParamsValue.get("query") || "";
+
+ 
+
 
   const { data: cardInfoList } = useQuery({
     queryKey: ["cardInfo"],
     queryFn: cardInfo,
   });
-
 
   const [authed, setAuthed] = useState(
     Boolean(localStorage.getItem(tokenName)),
@@ -45,6 +56,12 @@ const Card = ({ discount, setIsNumberModalOpen, prod }: CardProps) => {
       queryClient.invalidateQueries({ queryKey: ["novinki"] });
       queryClient.invalidateQueries({ queryKey: ["favourites"] });
       queryClient.invalidateQueries({ queryKey: ["cardInfo"] });
+      queryClient.invalidateQueries({ queryKey: ["similar" + id] });
+      queryClient.invalidateQueries({ queryKey: ["productViews"] });
+      queryClient.invalidateQueries({ queryKey: ["search" + query] });
+
+
+      
 
     },
     onError: (res) => {
@@ -58,6 +75,13 @@ const Card = ({ discount, setIsNumberModalOpen, prod }: CardProps) => {
       queryClient.invalidateQueries({ queryKey: ["favourites"] });
       queryClient.invalidateQueries({ queryKey: ["rasprodaja"] });
       queryClient.invalidateQueries({ queryKey: ["novinki"] });
+      queryClient.invalidateQueries({ queryKey: ["similar" + id] });
+      queryClient.invalidateQueries({ queryKey: ["productViews"] });
+      queryClient.invalidateQueries({ queryKey: ["search" + query] });
+
+
+
+
     },
   });
 

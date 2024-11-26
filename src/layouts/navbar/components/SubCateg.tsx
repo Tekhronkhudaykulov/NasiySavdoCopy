@@ -1,5 +1,6 @@
 import { FaAngleRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { APP_ROUTES } from "../../../router";
 
 function SubCateg({
   subCateg,
@@ -14,7 +15,7 @@ function SubCateg({
 }) {
   return (
     <Link
-      to={`/category?id=${index}`}
+    to={`${APP_ROUTES.CATEGORY}/${index}`}
       className={`${
         active ? "bg-buttonBg text-mainBlack" : "text-txtSecondary2"
       } flex justify-between items-center py-[7.5px] text-[14px] px-[10px] rounded-[6px] gap-3 cursor-pointer`}

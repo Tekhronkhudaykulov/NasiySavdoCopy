@@ -31,5 +31,8 @@ export const requests = {
 
   cardInfoFetch: () => $api.get(`${API_URL}/cart/info`),
 
-  editProfileFetch: (payload: any) => $api.post(`${API_URL}/user/update`,payload)
+  editProfileFetch: (payload: any) => $api.post(`${API_URL}/user/update`,payload),
+  productByCategoryFetch: (payload: any) => $api.get(`${API_URL}/by-category?id=${payload}`),
+  searchFetch: (payload: any) => $api.get(`/product/search?query=${payload}`),
+
 };

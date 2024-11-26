@@ -55,6 +55,7 @@ function BasketSingleCard({
       queryClient.invalidateQueries({ queryKey: ["novinki"] });
       queryClient.invalidateQueries({ queryKey: ["rasprodaja"] });
       queryClient.invalidateQueries({ queryKey: ["cardInfo"] });
+      
     },
   });
 

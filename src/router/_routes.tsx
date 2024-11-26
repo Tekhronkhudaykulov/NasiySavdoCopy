@@ -17,6 +17,7 @@ import {
   Compare,
   QuestionsAndAnswers,
   Vacancies,
+  Search
 } from "../views";
 
 export const _routes = [
@@ -26,7 +27,7 @@ export const _routes = [
     exact: true,
   },
   {
-    path: APP_ROUTES.CATEGORY,
+    path: `${APP_ROUTES.CATEGORY}/:id`,
     element: CategoryPage,
   },
   {
@@ -44,6 +45,10 @@ export const _routes = [
   {
     path: APP_ROUTES.COMPARE,
     element: Compare,
+  },
+  {
+    path: APP_ROUTES.SEARCH,
+    element: Search,
   },
   {
     path: APP_ROUTES.BASKET,

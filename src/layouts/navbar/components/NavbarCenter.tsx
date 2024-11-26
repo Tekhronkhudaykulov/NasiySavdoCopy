@@ -1,5 +1,6 @@
 import { IoMdMenu } from "react-icons/io";
-import { Category, Inner, Search } from ".";
+import { Category, Inner } from ".";
+import SearchContent from "./Search";
 import { Logo } from "../../../components";
 import { useState } from "react";
 import MobileHeader from "./MobileHeader";
@@ -27,7 +28,7 @@ const NavbarCenter = ({
           <Logo className="lg:mr-[40px] md:mr-[20px]" />
           <Category activeCateg={activeCateg} setActiveCateg={setActiveCateg} />
           <div className="w-full ml-4 mr-6 relative md:flex hidden">
-            <Search />
+            <SearchContent />
           </div>
           <Inner setIsNumberModalOpen={setIsNumberModalOpen} />
           {show && <MobileHeader setShow={setShow} />}

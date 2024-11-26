@@ -46,6 +46,17 @@ export const productByTagQuery = (payload: string) =>
     },
   });
 
+  export const productByCategory = (payload: string) =>
+    useQuery({
+      queryKey: [payload],
+      queryFn: async () => {
+        const { data } = await requests.productByCategoryFetch(payload);
+        return data.data;
+      },
+      enabled: !!payload
+    });
+  
+
 export const add = async (payload: any) => {
   const { data } = await requests.addToBasket(payload);
   return data;
@@ -83,6 +94,7 @@ export const similarProduct = (payload: any) =>
         const { data } = await requests.similarProductFetch(payload);
         return data.data;
       },
+     
 });
   
   export const productViews = () =>
@@ -112,3 +124,14 @@ export const editProfile = async (payload:any) => {
   const { data } = await requests.editProfileFetch(payload);
   return data.client;
 };
+
+
+export const productSearch = (payload: any) =>
+  useQuery({
+    queryKey: ["search" + payload],
+    queryFn: async () => {
+      const { data } = await requests.searchFetch(payload);
+      return data.data;
+    },
+    enabled: !!payload, 
+  });

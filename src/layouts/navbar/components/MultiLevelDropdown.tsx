@@ -4,8 +4,11 @@ import SubCateg from "./SubCateg";
 import SubCategLast from "./SubCategLast";
 import { CategoriesDatas } from "../../../data/CategData";
 import { categoryQuery } from "../../../hook/queries";
+import { useNavigate } from "react-router-dom";
+import { APP_ROUTES } from "../../../router";
 
 const MultiLevelDropdown = () => {
+  const navigate = useNavigate()
   const [activeCategory, setActiveCategory] = useState<number | undefined>(
     undefined,
   );
@@ -28,6 +31,7 @@ const MultiLevelDropdown = () => {
             {data?.map((categ: any, index: any) => (
               <div
                 key={index}
+                
                 onMouseEnter={() => {
                   setActiveCategory(index);
                   setActiveSubCategory(undefined);
@@ -38,7 +42,8 @@ const MultiLevelDropdown = () => {
                   activeArrow={
                     categ.subcategories && categ.subcategories.length > 0
                   }
-                  index={index}
+                  
+                  index={categ.id}
                   active={index === activeCategory}
                   categ={categ}
                 />
@@ -58,7 +63,7 @@ const MultiLevelDropdown = () => {
                   }}
                 >
                   <SubCateg
-                    index={index}
+                    index={subCateg.id}
                     activeArrow={
                       subCateg.subcategories &&
                       subCateg.subcategories.length > 0
@@ -81,7 +86,7 @@ const MultiLevelDropdown = () => {
                     onMouseEnter={() => setActiveSubSubCategory(index)}
                   >
                     <SubCateg
-                      index={index}
+                      index={subCateg.id}
                       activeArrow={
                         subCateg.subcategories &&
                         subCateg.subcategories.length > 0
@@ -103,7 +108,7 @@ const MultiLevelDropdown = () => {
                 activeSubSubCategory
               ]?.childs?.map((subCateg: any, index: any) => (
                 <div key={index}>
-                  <SubCategLast index={index} subCateg={subCateg} />
+                  <SubCategLast index={subCateg.id} subCateg={subCateg} />
                 </div>
               ))}
           </div>
