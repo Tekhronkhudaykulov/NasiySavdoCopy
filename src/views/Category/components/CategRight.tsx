@@ -10,17 +10,14 @@ function CategRight() {
 
   const {id} = useParams();
 
-  if(id){
     const {data: categoryData} = productByCategory(id)
-    console.log(categoryData, 'asnfkjasn')
-  }
 
 
   return (
     <div className="flex flex-col gap-[36px] overflow-hidden">
-      <CategRightHead />
-      <ProductsSection products={[...Array(20)]} />
-      <PaginationComp current={+page} totalPages={10} total={120} limit={10} />
+      <CategRightHead product={categoryData}/>
+      <ProductsSection products={categoryData} />
+      {/* <PaginationComp current={+page} totalPages={10} total={120} limit={10} /> */}
     </div>
   );
 }

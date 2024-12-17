@@ -3,9 +3,11 @@ import { ASSETS } from "../../../assets/img/assets";
 function AnorCard({
   active,
   setActiveCart,
+  tariffsName
 }: {
   active: boolean;
   setActiveCart: any;
+  tariffsName?: string
 }) {
   return (
     <div
@@ -16,7 +18,7 @@ function AnorCard({
     >
       <div className="flex flex-col gap-3">
         <span className="text-[12px] text-txtSecondary2 font-medium">
-          Рассрочка от партнера Anorbank
+          {tariffsName}
         </span>
         <div className="flex justify-between items-center">
           <img

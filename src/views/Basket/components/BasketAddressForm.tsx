@@ -2,9 +2,19 @@ import { Select } from "antd";
 import LabelBasketForm from "../../../components/LabelBasketForm/LabelBasketForm";
 import InputBasketForm from "../../../components/InputBasketForm/InputBasketForm";
 import { useState } from "react";
+import { cities, delivery, regions } from "../../../hook/queries";
 
 function BasketAddressForm() {
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(0);
+
+ 
+  const {data: deliveryItems} = delivery();
+  const {data: citiesItems} = cities();
+
+  const [regionsId, setRegionsId] = useState()
+
+  const {data: regionsItems} = regions(regionsId)
+
   return (
     <div className="border border-line rounded-2xl p-[20px]">
       <h2 className="md:text-[24px] text-[18px] font-semibold">
@@ -15,67 +25,78 @@ function BasketAddressForm() {
           <LabelBasketForm text={"Город доставки"} />
           <Select
             className={`h-[48px] px-2 text-[16px] rounded-[10px] bg-secondary text-txtSecondary`}
-            defaultValue={"1"}
+            defaultValue={""}
+            onChange={(e: any) => setRegionsId(e)}
           >
-            <Select.Option value="1">Ташкент</Select.Option>
+            {citiesItems?.map((item: any, ind: any) => (
+            <Select.Option key={ind} value={item.id}>{item.name}</Select.Option>
+            ))}
           </Select>
-        </div>
-        <div className="flex flex-col md:gap-3 gap-2">
-          <LabelBasketForm text={"Способ получения"} />
-          <button
-            onClick={() => setIsChecked(!isChecked)}
-            className="min-h-[68px] select-none cursor-pointer p-[16px_18px] rounded-[10px] flex items-start gap-[16px] bg-secondary"
-          >
-            <div className="rounded-full flex items-center justify-center border-[2px] border-darkGreen w-[24px] h-[24px] flex-shrink-0">
-              <div
-                className={`w-[14px] h-[14px] rounded-full ${
-                  isChecked ? "bg-darkGreen" : ""
-                }`}
-              ></div>
-            </div>
-            <div className="flex flex-col text-start gap-1">
-              <span className="text-[12px] text-txtSecondary2">
-                Платное доставка
-              </span>
-              <h4 className="text-mainBlack text-[14px] font-medium">
-                Курьером выбранное вами время
-              </h4>
-            </div>
-          </button>
         </div>
         <div className="flex flex-col md:gap-3 gap-2">
           <LabelBasketForm text={"Район"} />
           <Select
             className={`h-[48px] text-[16px] px-2 border border-line rounded-[8px] text-txtSecondary`}
-            defaultValue={"1"}
+            defaultValue={""}
           >
-            <Select.Option value="1">Выберите район</Select.Option>
+            {regionsItems?.map((item: any, ind: any) => (
+            <Select.Option key={ind} value={item.id}>{item.name}</Select.Option>
+            ))}
           </Select>
         </div>
-        <div className="grid grid-cols-2 md:gap-x-3 gap-x-2 md:gap-y-5 gap-y-4">
+        <div className="flex flex-col md:gap-3 gap-2">
+          <LabelBasketForm text={"Способ получения"} />
+          {deliveryItems?.map((item: any, ind: any) => (
+            <button
+              onClick={() => setIsChecked(item.id)}
+            className="min-h-[68px] select-none cursor-pointer p-[16px_18px] rounded-[10px] flex items-start gap-[16px] bg-secondary"
+          >
+            <div className="rounded-full flex items-center justify-center border-[2px] border-darkGreen w-[24px] h-[24px] flex-shrink-0">
+              <div
+                className={`w-[14px] h-[14px] rounded-full ${
+                  isChecked === item.id ? "bg-darkGreen" : ""
+                }`}
+              ></div>
+            </div>
+            <div className="flex flex-col text-start gap-1">
+              <span className="text-[12px] text-txtSecondary2">
+                Вид доставки
+              </span>
+              <h4 className="text-mainBlack text-[14px] font-medium">
+               {item.name}
+              </h4>
+            </div>
+          </button>
+          ))}
+    
+        </div>
+
+        {isChecked === 2 && (
+    <>
+      <div className="grid grid-cols-2 md:gap-x-3 gap-x-2 md:gap-y-5 gap-y-4">
           <div className="flex flex-col md:gap-3 gap-2">
             <LabelBasketForm text={"Дом"} />
-            <InputBasketForm value={"Ташкент"} />
+            <InputBasketForm onChange={(e) => console.log(e)} value={""} />
           </div>
           <div className="flex flex-col md:gap-3 gap-2">
-            <LabelBasketForm text={" Улица"} />
-            <InputBasketForm value={"Ташкент"} />
+            <LabelBasketForm text={"Улица"} />
+            <InputBasketForm value={""} />
           </div>
           <div className="flex flex-col md:gap-3 gap-2">
             <LabelBasketForm text={"Квартира/офис"} />
-            <InputBasketForm value={"Ташкент"} />
+            <InputBasketForm value={""} />
           </div>
           <div className="flex flex-col md:gap-3 gap-2">
             <LabelBasketForm text={"Подъезд"} />
-            <InputBasketForm value={"Ташкент"} />
+            <InputBasketForm value={""} />
           </div>
           <div className="flex flex-col md:gap-3 gap-2">
             <LabelBasketForm text={"Этаж"} />
-            <InputBasketForm value={"Ташкент"} />
+            <InputBasketForm value={""} />
           </div>
           <div className="flex flex-col md:gap-3 gap-2">
             <LabelBasketForm text={"Код домофона"} />
-            <InputBasketForm value={"Ташкент"} />
+            <InputBasketForm value={""} />
           </div>
         </div>
         <div className="flex text-txtSecondary flex-col gap-3">
@@ -85,7 +106,11 @@ function BasketAddressForm() {
             defaultValue="Например, куда именно привезти заказ, ближайший адрес или ориентир"
           />
         </div>
-        <div className="flex flex-col gap-3">
+        </>
+        )}
+
+       
+        {/* <div className="flex flex-col gap-3">
           <LabelBasketForm text={"Дата и время доставки"} />
           <div className="grid grid-cols-2 gap-x-3 gap-y-5">
             <Select
@@ -101,7 +126,7 @@ function BasketAddressForm() {
               <Select.Option value="1">10:00 - 22:00</Select.Option>
             </Select>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

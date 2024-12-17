@@ -46,7 +46,7 @@ export const productByTagQuery = (payload: string) =>
     },
   });
 
-  export const productByCategory = (payload: string) =>
+  export const productByCategory = (payload: any) =>
     useQuery({
       queryKey: [payload],
       queryFn: async () => {
@@ -135,3 +135,51 @@ export const productSearch = (payload: any) =>
     },
     enabled: !!payload, 
   });
+
+
+  export const delivery = () =>
+    useQuery({
+      queryKey: ["delivery"],
+      queryFn: async () => {
+        const { data } = await requests.deliveryFetch();
+        return data.data;
+      }, 
+    });
+
+  export const cities = () =>
+    useQuery({
+      queryKey: ["cities"],
+      queryFn: async () => {
+        const { data } = await requests.citiesFetch();
+        return data.data;
+      }, 
+    });
+
+  export const regions = (payload: any) =>
+    useQuery({
+      queryKey: ["regions" + payload],
+      queryFn: async () => {
+        const { data } = await requests.regionsFetch(payload);
+        return data.data;
+      },
+      enabled: !!payload, 
+    });
+
+    export const paymentType = () =>
+      useQuery({
+        queryKey: ["paymentType"],
+        queryFn: async () => {
+          const { data } = await requests.paymentTypeFetch();
+          return data.data;
+        },
+      });
+  export const tariffs = () =>
+    useQuery({
+      queryKey: ["tarrifs"],
+      queryFn: async () => {
+        const { data } = await requests.tarrifFetch();
+        return data;
+      },
+    });
+      
+  

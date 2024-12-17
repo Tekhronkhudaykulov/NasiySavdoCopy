@@ -32,7 +32,13 @@ export const requests = {
   cardInfoFetch: () => $api.get(`${API_URL}/cart/info`),
 
   editProfileFetch: (payload: any) => $api.post(`${API_URL}/user/update`,payload),
-  productByCategoryFetch: (payload: any) => $api.get(`${API_URL}/by-category?id=${payload}`),
+  productByCategoryFetch: (payload: any) => $api.get(`${API_URL}/product/by-category?id=${payload}`),
   searchFetch: (payload: any) => $api.get(`/product/search?query=${payload}`),
+  deliveryFetch: () => $api.get(`/delivery/index`),
+  citiesFetch: () => $api.get(`/order/cities`),
+  regionsFetch: (payload: any) => $api.get(`/order/regions?id=${payload}`),
+  paymentTypeFetch: () => $api.get(`/order/payment-types`),
+  tarrifFetch: () => $api.get(`/order/tariffs`),
+
 
 };

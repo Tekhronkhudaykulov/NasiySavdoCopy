@@ -2,10 +2,12 @@ interface Props {
   placeHolder?: string;
   value?: string;
   className?: string;
+  onChange?: (e: any) => void
 }
-function InputBasketForm({ placeHolder, value, className }: Props) {
+function InputBasketForm({ placeHolder, value, className,onChange }: Props) {
   return (
     <input
+    onChange={onChange}
       placeholder={placeHolder || ""}
       className={`placeholder:text-txtSecondary ${
         className || "text-txtSecondary md:text-[16px] text-[14px]"

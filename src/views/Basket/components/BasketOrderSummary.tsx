@@ -13,6 +13,12 @@ const BasketOrderSummary: React.FC = () => {
   });
 
 
+  
+  let allPrice = basketList?.reduce((sum: any, product: any) => sum + product.price, 0);
+
+  console.log(allPrice)
+
+  
 
   return (
     <div className="border border-line h-max p-5 flex flex-col gap-[36px] rounded-2xl">
@@ -49,7 +55,7 @@ const BasketOrderSummary: React.FC = () => {
             Товары:
           </span>
           <span className="text-mainBlack font-semibold md:text-[16px] text-[14px]">
-            368 000 uzs
+           {allPrice?.toLocaleString("ru-RU")} uzs
           </span>
         </div>
         <div className="flex justify-between items-center">
@@ -73,7 +79,7 @@ const BasketOrderSummary: React.FC = () => {
             Итого:
           </span>
           <span className="text-mainBlack font-semibold md:text-[16px] text-[14px]">
-            358 000 uzs
+          {allPrice?.toLocaleString("ru-RU")} uzs
           </span>
         </div>
       </div>

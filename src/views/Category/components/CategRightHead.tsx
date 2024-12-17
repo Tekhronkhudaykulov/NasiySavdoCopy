@@ -15,7 +15,8 @@ const buttonData = [
   "Сетевые зарядные устройства",
 ];
 
-function CategRightHead() {
+function CategRightHead({product}: any) {
+  console.log(product, 'product')
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [showFilter, setShowFilter] = useState(false);
   const [isAtStart, setIsAtStart] = useState(true);
@@ -75,7 +76,7 @@ function CategRightHead() {
             Смартфоны и телефоны
           </h1>
           <span className="text-txtSecondary2 text-[14px] 2md:text-[12px]">
-            22,867 товаров
+            {product?.length} товаров
           </span>
         </div>
         <div className="flex items-center 2md:justify-between 2md:w-full gap-[10px]">

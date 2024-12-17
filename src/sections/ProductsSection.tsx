@@ -30,15 +30,20 @@ const ProductsSection = ({ className, title, products }: Props) => {
       )}
       <div className={`${className}`}>
         {title ? <Title title={title} /> : null}
-        <div className="grid md:grid-cols-[repeat(auto-fill,minmax(250px,1fr))] grid-cols-2 md:gap-x-5 md:gap-y-[36px] gap-x-[8px] gap-y-[20px]">
-          {products?.map((prod, idx) => (
-            <Card
-              prod={prod}
-              setIsNumberModalOpen={setIsNumberModalOpen}
-              key={idx}
-            />
-          ))}
-        </div>
+        {products?.length > 0 ? (
+            <div className="grid md:grid-cols-[repeat(auto-fill,minmax(250px,1fr))] grid-cols-2 md:gap-x-5 md:gap-y-[36px] gap-x-[8px] gap-y-[20px]">
+            {products?.map((prod, idx) => (
+              <Card
+                prod={prod}
+                setIsNumberModalOpen={setIsNumberModalOpen}
+                key={idx}
+              />
+            ))}
+          </div>
+        ) : (
+          <p className="text-center">Hech nima topilmadi !</p>
+        )}
+      
       </div>
     </>
   );
