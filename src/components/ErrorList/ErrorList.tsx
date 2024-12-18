@@ -17,7 +17,7 @@ const ErrorList: React.FC = () => {
       {Object.entries(errors).map(([key, value]) => (
         <div
           key={key}
-          className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded shadow-lg animate-slide-in"
+          className="bg-[#03a5a5] border-l-4 border-darkGreen text-white p-4 rounded shadow-lg animate-slide-in"
         >
           <strong className="font-bold">{key}:</strong> {value}
         </div>
