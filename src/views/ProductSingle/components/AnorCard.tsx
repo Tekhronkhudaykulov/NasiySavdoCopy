@@ -3,11 +3,13 @@ import { ASSETS } from "../../../assets/img/assets";
 function AnorCard({
   active,
   setActiveCart,
-  tariffsName
+  tariffsName,
+  monthly_payment
 }: {
   active: boolean;
   setActiveCart: any;
-  tariffsName?: string
+  tariffsName?: string,
+  monthly_payment?: string | number
 }) {
   return (
     <div
@@ -27,7 +29,7 @@ function AnorCard({
             alt="anor bank"
           />
           <span className="text-mainBlack font-semibold md:text-[14px] text-[12px]">
-            35 000 сум/мес
+            {monthly_payment?.toLocaleString("RU-ru")} сум/мес
           </span>
         </div>
       </div>

@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import BasketSmallProductCard from "../components/BasketSmallProductCard";
 import InputBasketForm from "../../../components/InputBasketForm/InputBasketForm";
 import { APP_ROUTES } from "../../../router";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { getBasketList } from "../../../hook/queries";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { getBasketList, sendOrder } from "../../../hook/queries";
+import { useFormContext } from "../../../context/FormContext";
+import { errorNotification } from "../../../components/Notifikation/view";
+import { useErrorContext } from "../../../context/ErrorContext";
 
 const BasketOrderSummary: React.FC = () => {
   const { data: basketList } = useQuery({
@@ -12,11 +15,31 @@ const BasketOrderSummary: React.FC = () => {
     queryFn: getBasketList,
   });
 
+  const { formData, setFormData } = useFormContext();
+
+  const { setErrors } = useErrorContext();
+
+  
+
+
 
   
   let allPrice = basketList?.reduce((sum: any, product: any) => sum + product.price, 0);
 
-  console.log(allPrice)
+
+  const sendOrderMutation = useMutation({
+    mutationFn: sendOrder,
+    onError: (e) => {
+      // errorNotification(e)
+      const errors = e.response.data.errors;
+      setErrors(errors);
+    }
+  });
+
+  const handleSendOrder = () => {
+    sendOrderMutation.mutate(formData);
+  };
+
 
   
 
@@ -95,7 +118,7 @@ const BasketOrderSummary: React.FC = () => {
         />
       </div>
       {/*  */}
-      <button className="flex justify-center rounded-[8px] text-white bg-[#03a5a5] hover:bg-darkGreen md:p-[14px_32px] p-[10px_26px]">
+      <button onClick={() => handleSendOrder()} className="flex justify-center rounded-[8px] text-white bg-[#03a5a5] hover:bg-darkGreen md:p-[14px_32px] p-[10px_26px]">
         Оформить
       </button>
     </div>

@@ -39,6 +39,11 @@ export const requests = {
   regionsFetch: (payload: any) => $api.get(`/order/regions?id=${payload}`),
   paymentTypeFetch: () => $api.get(`/order/payment-types`),
   tarrifFetch: () => $api.get(`/order/tariffs`),
+  tagsFetch: () => $api.get(`/product/tags`),
+
+  sendOrderFetch: (payload: any) => $api.post(`${API_URL}/order/send`,payload),
+
+
 
 
 };

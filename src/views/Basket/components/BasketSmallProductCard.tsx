@@ -1,7 +1,6 @@
 import { ASSETS } from "../../../assets/img/assets";
 
 function BasketSmallProductCard({prod}: any) {
-  console.log(prod, "prod")
   return (
     <div className="flex gap-[12px]">
       <div className="md:w-[60px] w-[70px] flex-shrink-0 md:h-[76px] bg-[#efefef]">

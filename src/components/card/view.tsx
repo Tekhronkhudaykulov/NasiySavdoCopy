@@ -78,10 +78,6 @@ const Card = ({ discount, setIsNumberModalOpen, prod }: CardProps) => {
       queryClient.invalidateQueries({ queryKey: ["similar" + id] });
       queryClient.invalidateQueries({ queryKey: ["productViews"] });
       queryClient.invalidateQueries({ queryKey: ["search" + query] });
-
-
-
-
     },
   });
 

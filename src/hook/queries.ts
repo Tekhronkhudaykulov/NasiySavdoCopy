@@ -182,4 +182,19 @@ export const productSearch = (payload: any) =>
       },
     });
       
-  
+
+export const tags = () =>
+  useQuery({
+    queryKey: ["tags"],
+    queryFn: async () => {
+      const { data } = await requests.tagsFetch();
+      return data;
+    },
+  });
+
+
+
+export const sendOrder = async (payload:any) => {
+  const { data } = await requests.sendOrderFetch(payload);
+  return data;
+};
