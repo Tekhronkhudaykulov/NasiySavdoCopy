@@ -71,6 +71,7 @@ const Card = ({ discount, setIsNumberModalOpen, prod }: CardProps) => {
     },
     onError: (res) => {
       // errorNotification(res.message)
+      // @ts-ignore
       const errors = res.response.data.errors;
       setErrors(errors);
     }

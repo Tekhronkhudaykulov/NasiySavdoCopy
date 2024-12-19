@@ -68,8 +68,8 @@ const reviews: Review[] = [
 
 function ReviewProductPopUp({ setReviewPoUp }: { setReviewPoUp: any }) {
   const {id} = useParams();
+  // @ts-ignore
   const {data: reviewsDetailItems} = reviewsDetail(id)
-  console.log(reviewsDetailItems, 'items')
   return (
     <div className="fixed inset-0 z-[999]">
       <div

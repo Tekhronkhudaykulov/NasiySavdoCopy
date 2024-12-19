@@ -27,6 +27,7 @@ const BasketOrderSummary: React.FC = () => {
     mutationFn: sendOrder,
     onError: (e) => {
       // errorNotification(e)
+      // @ts-ignore
       const errors = e.response.data.errors;
       setErrors(errors);
     }
