@@ -12,6 +12,8 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { add, addFavourites,  } from "../../../hook/queries.ts";
 import { useNavigate } from "react-router-dom";
 import { APP_ROUTES } from "../../../router/index.ts";
+import { tokenName } from "../../../helpers/api.tsx";
+import SendNum from "../../../modal/auth/SendNum.tsx";
 
 function SingleProductRight({ data }: any) {
 
@@ -20,6 +22,9 @@ function SingleProductRight({ data }: any) {
   const [activeCard, setActiveCart] = useState(0);
   const [selected, setSelected] = useState<string>("6 мес");
   const durations = ["3 мес", "6 мес", "12 мес", "24 мес"];
+
+  const [isNumberModalOpen, setIsNumberModalOpen] = useState(false);
+  const [isCodeModalOpen, setIsCodeModalOpen] = useState(false);
 
 
   const addMutation = useMutation({
@@ -53,18 +58,42 @@ function SingleProductRight({ data }: any) {
     addFavouritesMutaion.mutate({ product_id: productId, });
   };
 
+  const [authed, setAuthed] = useState(
+    Boolean(localStorage.getItem(tokenName)),
+  );
+
   return (
+
+  <>
+   {isNumberModalOpen && (
+        <SendNum
+          setIsCodeModalOpen={setIsCodeModalOpen}
+          isNumberModalOpen={isNumberModalOpen}
+          setIsNumberModalOpen={setIsNumberModalOpen}
+        />
+    )}
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between md:gap-[30px] lg:gap-[20px] xl:gap-[30px] gap-[12px]">
-        <button className="text-mainBlack flex md:gap-[12px] gap-[8px] items-center">
+        {authed ? (
+          <button onClick={() => navigate(APP_ROUTES.COMPARE)} className="text-mainBlack flex md:gap-[12px] gap-[8px] items-center">
           <Scale />
           <span className="md:text-[14px] text-[10px]">Сравнить</span>
         </button>
+        ) : (
+          <button  onClick={() => {
+            setIsNumberModalOpen(true);
+          }} className="text-mainBlack flex md:gap-[12px] gap-[8px] items-center">
+          <Scale />
+          <span className="md:text-[14px] text-[10px]">Сравнить</span>
+        </button>
+        )}
+      
         <button className="text-mainBlack flex md:gap-[12px] gap-[8px] items-center">
           <Share />
           <span className="md:text-[14px] text-[10px]">Поделиться</span>
         </button>
-        <button
+        {authed ? (
+          <button
           className="text-mainBlack flex md:gap-[12px] gap-[8px] items-center"
           onClick={() => {
             handleAddToFavourite(data?.id)
@@ -74,6 +103,19 @@ function SingleProductRight({ data }: any) {
           <button className="absolute top-[11px] right-[11px]"></button>
           <span className="md:text-[14px] text-[10px]">В избранное</span>
         </button>
+        ) : (
+          <button
+          className="text-mainBlack flex md:gap-[12px] gap-[8px] items-center"
+          onClick={() => {
+            setIsNumberModalOpen(true);
+          }}
+        >
+          {data?.isFavorite ? <Favourited /> : <Favourite />}
+          <button className="absolute top-[11px] right-[11px]"></button>
+          <span className="md:text-[14px] text-[10px]">В избранное</span>
+        </button>
+        )}
+    
       </div>
       <div className="bg-buttonBg rounded-[16px] md:p-[20px_16px] p-[16px] flex flex-col md:gap-5 gap-3">
         <h2 className="text-mainBlack md:text-[24px] text-[20px] font-semibold">
@@ -107,12 +149,22 @@ function SingleProductRight({ data }: any) {
           <button className="md:text-[16px] text-[14px] md:max-w-[201px] w-full font-medium md:py-[14px] py-[10px] bg-darkGreen text-white rounded-[8px]">
             Купить сейчас
           </button>
-          <button
-            onClick={() => handleAddToBasket(data?.id)}
+          {authed ? (
+              <button
+              onClick={() => handleAddToBasket(data?.id)}
+              className="md:text-[16px] text-[14px] md:max-w-[201px] w-full font-medium md:py-[14px] py-[10px] text-darkGreen bg-[rgb(2,115,115,.15)] rounded-[8px]"
+            >
+              В корзину
+            </button>
+          ): (
+            <button
+            onClick={() =>  setIsNumberModalOpen(true)}
             className="md:text-[16px] text-[14px] md:max-w-[201px] w-full font-medium md:py-[14px] py-[10px] text-darkGreen bg-[rgb(2,115,115,.15)] rounded-[8px]"
           >
             В корзину
           </button>
+          )}
+     
         </div>
       </div>
       <div className="border border-line rounded-2xl flex flex-col gap-5 p-[20px_16px]">
@@ -138,6 +190,8 @@ function SingleProductRight({ data }: any) {
         </div>
       </div>
     </div>
+  </>
+  
   );
 }
 

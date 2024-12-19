@@ -1,4 +1,4 @@
-import { Link, useParams, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import {
   Basket,
   BasketBought,
@@ -23,6 +23,8 @@ interface CardProps {
 }
 
 const Card = ({ discount, setIsNumberModalOpen, prod }: CardProps) => {
+
+  const navigate = useNavigate()
 
   const { setErrors } = useErrorContext();
 
@@ -105,21 +107,46 @@ const Card = ({ discount, setIsNumberModalOpen, prod }: CardProps) => {
           Sale
         </div>
         {/* Heart Icon */}
+        {authed ? (
         <button
+        onClick={() => {
+          handleAddToFavouriteList(prod?.id);
+        }}
+        className="absolute top-[11px] right-[11px]"
+      >
+        {prod?.isFavorite ? <Favourited /> : <Favourite />}
+        </button>
+        ) : (
+          <button
           onClick={() => {
-            handleAddToFavouriteList(prod?.id);
+            setIsNumberModalOpen(true);
           }}
           className="absolute top-[11px] right-[11px]"
         >
           {prod?.isFavorite ? <Favourited /> : <Favourite />}
         </button>
+        )}
+   
         {/*  Balance Icon */}
-        <Link
-          to={`${APP_ROUTES.COMPARE}`}
+       {authed ? (
+         <button
+         onClick={() => {
+           navigate(APP_ROUTES.COMPARE)
+         }}
+         className="cursor-pointer absolute top-10 right-[9px]"
+       >
+         <Scale />
+       </button>
+        ) : (
+          <button
+          onClick={() => {
+            setIsNumberModalOpen(true);
+          }}
           className="cursor-pointer absolute top-10 right-[9px]"
         >
           <Scale />
-        </Link>
+        </button>
+        )}
         {/* Product Image */}
         <Link to={`${APP_ROUTES.PRODUCTSINGLE}/${prod?.id}`}>
           <img
