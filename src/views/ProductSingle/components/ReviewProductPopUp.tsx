@@ -2,6 +2,8 @@ import { IoClose } from "react-icons/io5";
 import { Star } from "../../../assets/icon";
 import ReviewComment from "./ReviewComment";
 import { ASSETS } from "../../../assets/img/assets";
+import { useParams } from "react-router-dom";
+import { reviewsDetail } from "../../../hook/queries";
 interface Review {
   id: number;
   name: string;
@@ -65,6 +67,9 @@ const reviews: Review[] = [
 ];
 
 function ReviewProductPopUp({ setReviewPoUp }: { setReviewPoUp: any }) {
+  const {id} = useParams();
+  const {data: reviewsDetailItems} = reviewsDetail(id)
+  console.log(reviewsDetailItems, 'items')
   return (
     <div className="fixed inset-0 z-[999]">
       <div

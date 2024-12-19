@@ -198,3 +198,13 @@ export const sendOrder = async (payload:any) => {
   const { data } = await requests.sendOrderFetch(payload);
   return data;
 };
+
+
+export const reviewsDetail = (payload: number) =>
+  useQuery({
+    queryKey: ["reviewsDetail" + payload],
+    queryFn: async () => {
+      const { data } = await requests.reviewsDetailFetch(payload);
+      return data;
+    },
+});

@@ -2,6 +2,7 @@ import { ReactNode, useState } from "react";
 import { Card, Title } from "../components";
 import SendNum from "../modal/auth/SendNum";
 import SendCode from "../modal/auth/SendCode";
+import { useParams } from "react-router-dom";
 
 interface Props {
   className?: string;
@@ -12,6 +13,7 @@ interface Props {
 const ProductsSection = ({ className, title, products }: Props) => {
   const [isNumberModalOpen, setIsNumberModalOpen] = useState(false);
   const [isCodeModalOpen, setIsCodeModalOpen] = useState(false);
+ 
 
   return (
     <>
