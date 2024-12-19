@@ -10,7 +10,7 @@ function CategRight() {
 
   const {id} = useParams();
 
-    const {data: categoryData} = productByCategory(id)
+  const {data: categoryData} = productByCategory(id)
 
 
   return (

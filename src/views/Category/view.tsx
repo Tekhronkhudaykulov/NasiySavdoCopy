@@ -1,9 +1,13 @@
 import { Categories } from "../../components";
+import ErrorList from "../../components/ErrorList/ErrorList";
+import { ErrorProvider } from "../../context/ErrorContext";
 import CategLeft from "./components/CategLeft";
 import CategRight from "./components/CategRight";
 function CategoryPage() {
   return (
-    <>
+
+  <>
+      <ErrorList/>
       <Categories />
       <h1 className="md:text-[24px] text-[20px] mt-[36px] 2md:mt-5 md:mb-[20px] mb-4 text-txtSecondary2 font-normal">
         Категории
@@ -12,7 +16,7 @@ function CategoryPage() {
         <CategLeft />
         <CategRight />
       </div>
-    </>
+      </>
   );
 }
 

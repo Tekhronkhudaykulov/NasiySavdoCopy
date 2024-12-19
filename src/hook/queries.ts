@@ -48,7 +48,7 @@ export const productByTagQuery = (payload: string) =>
 
   export const productByCategory = (payload: any) =>
     useQuery({
-      queryKey: [payload],
+      queryKey: ["categoryProd" + payload],
       queryFn: async () => {
         const { data } = await requests.productByCategoryFetch(payload);
         return data.data;

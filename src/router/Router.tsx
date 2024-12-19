@@ -5,6 +5,7 @@ import "react-lazy-load-image-component/src/effects/opacity.css";
 import PrivateRoute from "./PrivateRoute";
 import { initApp } from "../helpers/api";
 import Loader from "../components/PageLoader/Loader";
+import { ErrorProvider } from "../context/ErrorContext";
 
 const Router = () => {
   initApp();
@@ -12,6 +13,7 @@ const Router = () => {
   return (
     <HashRouter>
       <Suspense fallback={<Loader />}>
+        <ErrorProvider>
         <Routes>
           {_routes?.map(({ path, element: Component, childs }, idx) =>
             childs && childs?.length > 0 ? (
@@ -34,6 +36,7 @@ const Router = () => {
           )}
           <Route path="" />
         </Routes>
+        </ErrorProvider>
       </Suspense>
     </HashRouter>
   );

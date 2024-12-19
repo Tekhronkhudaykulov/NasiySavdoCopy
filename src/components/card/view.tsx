@@ -12,8 +12,9 @@ import { useState } from "react";
 import { APP_ROUTES } from "../../router";
 import { tokenName } from "../../helpers/api";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { add, addFavourites,  cardInfo,  productByTagQuery, profileQuery, similarProduct } from "../../hook/queries";
+import { add, addFavourites,  cardInfo,  productByCategory,  productByTagQuery, profileQuery, similarProduct } from "../../hook/queries";
 import { errorNotification } from "../Notifikation/view";
+import { useErrorContext } from "../../context/ErrorContext";
 
 interface CardProps {
   discount?: boolean;
@@ -23,22 +24,28 @@ interface CardProps {
 
 const Card = ({ discount, setIsNumberModalOpen, prod }: CardProps) => {
 
+  const { setErrors } = useErrorContext();
+
+
   const [searchParamsValue] = useSearchParams();
 
 
 
   const queryClient = useQueryClient();
 
-  const {id} = useParams()
+  const {id} = useParams();
+
+
 
   const { data: newProd } = productByTagQuery("novinki");
   const { data: saleProd } = productByTagQuery("rasprodaja");
 
+
+
+
   const query = searchParamsValue.get("query") || "";
 
  
-
-
   const { data: cardInfoList } = useQuery({
     queryKey: ["cardInfo"],
     queryFn: cardInfo,
@@ -59,13 +66,13 @@ const Card = ({ discount, setIsNumberModalOpen, prod }: CardProps) => {
       queryClient.invalidateQueries({ queryKey: ["similar" + id] });
       queryClient.invalidateQueries({ queryKey: ["productViews"] });
       queryClient.invalidateQueries({ queryKey: ["search" + query] });
-
-
-      
+      queryClient.invalidateQueries({ queryKey: ["categoryProd" + id] });
 
     },
     onError: (res) => {
-      errorNotification(res.message)
+      // errorNotification(res.message)
+      const errors = res.response.data.errors;
+      setErrors(errors);
     }
   });
 

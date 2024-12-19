@@ -19,11 +19,7 @@ const BasketOrderSummary: React.FC = () => {
 
   const { setErrors } = useErrorContext();
 
-  
 
-
-
-  
   let allPrice = basketList?.reduce((sum: any, product: any) => sum + product.price, 0);
 
 
