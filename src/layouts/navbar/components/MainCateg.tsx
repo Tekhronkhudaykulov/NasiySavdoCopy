@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SingleCategoryIcon } from "../../../assets/icon";
 import { FaAngleRight } from "react-icons/fa";
 import { APP_ROUTES } from "../../../router";
@@ -16,7 +16,7 @@ function MainCateg({
 }) {
   return (
     <Link
-      to={`${APP_ROUTES.CATEGORY}/${index}`}
+      to={`${APP_ROUTES.CATEGORY}/${index}`} state={{ selectedCategory: categ.name }}
       className={`${
         active ? "bg-buttonBg text-mainBlack" : "text-txtSecondary2"
       } flex items-center py-[5px] pr-[10px] pl-1 rounded-[10px] gap-3 cursor-pointer`}

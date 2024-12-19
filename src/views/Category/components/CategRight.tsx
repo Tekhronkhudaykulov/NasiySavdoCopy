@@ -12,6 +12,7 @@ function CategRight() {
 
   const {data: categoryData} = productByCategory(id)
 
+  
 
   return (
     <div className="flex flex-col gap-[36px] overflow-hidden">

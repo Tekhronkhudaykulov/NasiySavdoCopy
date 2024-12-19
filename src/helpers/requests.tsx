@@ -44,7 +44,7 @@ export const requests = {
   sendOrderFetch: (payload: any) => $api.post(`${API_URL}/order/send`,payload),
 
   reviewsDetailFetch: (payload: number) => $api.get(`/product/reviews?product_id=${payload}`),
-
+  subCategoryFetch:  (payload: number) => $api.get(`/category/sub-category?id=${payload}`),
 
 
 

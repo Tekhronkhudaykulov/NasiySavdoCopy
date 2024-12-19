@@ -5,6 +5,9 @@ import SortMobileFilter from "./SortMobileFilter";
 import ColorFilterMobile from "./ColorFilterMobile";
 import PriceFilterMobile from "./PriceFilterMobile";
 import { MobileSearchIcon } from "../../../assets/icon";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { subCategory } from "../../../hook/queries";
+import { APP_ROUTES } from "../../../router";
 const buttonData = [
   "Чехлы",
   "Кабели",
@@ -16,11 +19,20 @@ const buttonData = [
 ];
 
 function CategRightHead({product}: any) {
-  console.log(product, 'product')
+
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [showFilter, setShowFilter] = useState(false);
   const [isAtStart, setIsAtStart] = useState(true);
   const [isAtEnd, setIsAtEnd] = useState(false);
+
+  const location = useLocation();
+  const navigate = useNavigate()
+
+  const {id } = useParams()
+
+  const {data: subCategoryItems} = subCategory(id)
+
+  const [isCategory, setIsCategory] = useState("")
 
   const handleScrollLeft = () => {
     if (scrollContainerRef.current) {
@@ -58,6 +70,12 @@ function CategRightHead({product}: any) {
     }
   }, []);
 
+  useEffect(() => {
+    if (location.state) {
+      setIsCategory(location.state)
+    }
+  }, [location]);
+
   return (
     <div className="flex flex-col gap-4">
       <div className="flex justify-between 2md:flex-col 2md:gap-3 items-start">
@@ -73,7 +91,10 @@ function CategRightHead({product}: any) {
         </form>
         <div className="flex flex-col 2md:flex-row 2md:justify-between 2md:w-full 2md:items-center gap-[6px]">
           <h1 className="text-mainBlack xl:text-[24px] text-[20px] 2md:text-[16px] font-semibold">
-            Смартфоны и телефоны
+            {
+              // @ts-ignore
+            isCategory?.selectedCategory
+            }
           </h1>
           <span className="text-txtSecondary2 text-[14px] 2md:text-[12px]">
             {product?.length} товаров
@@ -136,12 +157,15 @@ function CategRightHead({product}: any) {
           ref={scrollContainerRef}
           className="flex gap-[8px] overflow-auto categScroll no-scrollbar flex-1"
         >
-          {buttonData.map((item, idx) => (
+          {subCategoryItems?.map((item: any, idx: any) => (
             <button
               key={idx}
+              onClick={() => {
+                navigate(`${APP_ROUTES.CATEGORY}/${item.id}`)
+              }}
               className="md:p-[10px_12px] p-[8px_10px] md:text-[16px] text-[14px] flex-shrink-0 rounded-[8px] bg-buttonBg text-mainBlack font-medium"
             >
-              {item}
+              {item.name}
             </button>
           ))}
         </div>

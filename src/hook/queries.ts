@@ -208,3 +208,14 @@ export const reviewsDetail = (payload: number) =>
       return data;
     },
 });
+
+
+export const subCategory = (payload: any) =>
+  useQuery({
+    queryKey: ["subCategory" + payload],
+    queryFn: async () => {
+      const { data } = await requests.subCategoryFetch(payload);
+      return data.data;
+    },
+    enabled: !!payload, 
+  });

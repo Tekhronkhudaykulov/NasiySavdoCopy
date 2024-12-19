@@ -21,7 +21,6 @@ const MultiLevelDropdown = () => {
 
   const { data, isLoading } = categoryQuery();
 
-  console.log(data);
   return (
     <div className="dropdown-container fixed top-0 h-screen overflow-auto z-[20] bg-[#fff] w-full py-4">
       <div className="wrapper flex h-full">
@@ -31,7 +30,6 @@ const MultiLevelDropdown = () => {
             {data?.map((categ: any, index: any) => (
               <div
                 key={index}
-                
                 onMouseEnter={() => {
                   setActiveCategory(index);
                   setActiveSubCategory(undefined);
