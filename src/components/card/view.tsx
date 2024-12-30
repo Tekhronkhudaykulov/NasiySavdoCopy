@@ -10,7 +10,7 @@ import {
 import { ASSETS } from "../../assets/img/assets";
 import { useState } from "react";
 import { APP_ROUTES } from "../../router";
-import { tokenName } from "../../helpers/api";
+import { imgUrl, tokenName } from "../../helpers/api";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { add, addFavourites,  cardInfo,  productByCategory,  productByTagQuery, profileQuery, similarProduct } from "../../hook/queries";
 import { errorNotification } from "../Notifikation/view";
@@ -23,6 +23,7 @@ interface CardProps {
 }
 
 const Card = ({ discount, setIsNumberModalOpen, prod }: CardProps) => {
+  console.log(prod, 'prod')
 
   const navigate = useNavigate()
 
@@ -151,7 +152,7 @@ const Card = ({ discount, setIsNumberModalOpen, prod }: CardProps) => {
         <Link to={`${APP_ROUTES.PRODUCTSINGLE}/${prod?.id}`}>
           <img
             className="w-full 2md:min-h-[235px] rounded-[10px]"
-            src={ASSETS.CardImg}
+            src={`${imgUrl}/${prod?.photo}`}
             alt="Product Image"
           />
         </Link>

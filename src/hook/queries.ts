@@ -219,3 +219,13 @@ export const subCategory = (payload: any) =>
     },
     enabled: !!payload, 
   });
+
+export const getOrders = () =>
+  useQuery({
+    queryKey: ["orderList"],
+    queryFn: async () => {
+      const { data } = await requests.getOrdersFetch();
+      return data.data;
+    },
+  });
+

@@ -5,6 +5,7 @@ import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import { ProductSingleStar, Star } from "../../../assets/icon";
 import ColorSelect from "./ColorSelect";
 import SizeSelect from "./SizeSelect";
+import { imgUrl } from "../../../helpers/api";
 function SingleProductLeft({
   setAboutPopUp,
   setReviewPoUp,
@@ -32,6 +33,8 @@ function SingleProductLeft({
     }
   };
 
+  console.log(prod, 'prodsingle')
+
   return (
     <div className="flex flex-col gap-[20px]">
       <div className="grid xl:grid-cols-2 md:grid-cols-2 grid-cols-1 lg:grid-cols-1 gap-[20px]">
@@ -43,14 +46,14 @@ function SingleProductLeft({
             slidesPerView={4.5}
             direction="vertical"
           >
-            {data?.map((i, idx: number) => (
+            {prod?.gallery?.map((i:any, idx: number) => (
               <SwiperSlide
                 key={idx}
                 className="bg-[#EFEFEF] rounded-[12px] overflow-hidden"
                 onClick={() => handleButtonClick(idx)}
               >
                 <img
-                  src={`${i.location}`}
+                  src={`${imgUrl}/${i}`}
                   className="h-full w-full cursor-pointer object-contain"
                   alt=""
                 />
@@ -66,10 +69,10 @@ function SingleProductLeft({
             loop={data.length > 1}
             className="h-full w-full rounded-[16px] overflow-hidden"
           >
-            {data?.map((i, idx: number) => (
+            {prod?.gallery?.map((i:any, idx: number) => (
               <SwiperSlide className="bg-[#efefef] cursor-pointer" key={idx}>
                 <img
-                  src={`${i.location}`}
+                    src={`${imgUrl}/${i}`}
                   className="h-full w-full items-center rounded-lg object-contain"
                 />
               </SwiperSlide>

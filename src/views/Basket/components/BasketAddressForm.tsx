@@ -1,4 +1,4 @@
-import { Select } from "antd";
+import { Input, Select } from "antd";
 import LabelBasketForm from "../../../components/LabelBasketForm/LabelBasketForm";
 import InputBasketForm from "../../../components/InputBasketForm/InputBasketForm";
 import { useState } from "react";
@@ -43,6 +43,12 @@ function BasketAddressForm() {
           </Select>
         </div>
         <div className="flex flex-col md:gap-3 gap-2">
+          <div className="flex flex-col md:gap-3 gap-2">
+            <LabelBasketForm text={"Адресс"} />
+             <Input  onChange={(e: any) => {
+              setFormData("address", e.target.value)
+            }} className="h-[48px] px-2 text-[16px] rounded-[10px] bg-secondary text-txtSecondary"/>
+          </div>
           <LabelBasketForm text={"Район"} />
           <Select
             className={`h-[48px] text-[16px] px-2 border border-line rounded-[8px] text-txtSecondary`}

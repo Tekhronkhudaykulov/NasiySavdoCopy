@@ -34,7 +34,7 @@ function OrderInfos({ order }: { order: Order }) {
       </div>
       <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4">
         <p className={`${pClass}`}>Дата заказа</p>
-        <span className={`${spanClass}`}>{order.orderDate}</span>
+        <span className={`${spanClass}`}>{order.date}</span>
       </div>
       {order.sentDate && (
         <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4">
@@ -68,7 +68,7 @@ function OrderInfos({ order }: { order: Order }) {
       )}
       <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4">
         <p className={`${pClass}`}>Место доставки</p>
-        <span className={`${spanClass}`}>{order.deliveryLocation}</span>
+        <span className={`${spanClass}`}>{order.address}</span>
       </div>
       {order.shipmentDate && (
         <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4">
@@ -78,7 +78,7 @@ function OrderInfos({ order }: { order: Order }) {
       )}
       <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4">
         <p className={`${pClass}`}>Сумма заказа</p>
-        <span className={`${spanClass}`}>{order.price} сум</span>
+        <span className={`${spanClass}`}>{order.price?.toLocaleString("ru-RU")} сум</span>
       </div>
       <button className={`${pClass} underline underline-offset-4 w-max`}>
         Электронный чек

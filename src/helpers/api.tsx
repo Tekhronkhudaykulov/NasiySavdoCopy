@@ -2,6 +2,9 @@ import i18n from "../i18/i18n";
 
 import axios from "axios";
 
+
+export const imgUrl = "https://api.nasiyasavdo.uz";
+
 export const $api = axios.create({
   baseURL: "https://api.nasiyasavdo.uz/api",
 });

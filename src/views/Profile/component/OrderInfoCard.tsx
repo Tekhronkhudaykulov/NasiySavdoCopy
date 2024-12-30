@@ -26,6 +26,7 @@ interface Order {
   products: Product[];
 }
 function OrderInfoCard({ order }: { order: Order }) {
+  console.log(order, 'order')
   const [expanded, setExpanded] = useState(false);
 
   const handleChange = (_: React.SyntheticEvent, isExpanded: boolean) => {
@@ -50,8 +51,8 @@ function OrderInfoCard({ order }: { order: Order }) {
         <AccordionDetails>
           <Typography>
             <div className="flex flex-col md:gap-4 gap-3">
-              {order.products.map((_, index: number) => (
-                <ProductInMore key={index} />
+              {order?.orderProducts?.map((prod: any, index: number) => (
+                <ProductInMore prod={prod} key={index} />
               ))}
             </div>
           </Typography>

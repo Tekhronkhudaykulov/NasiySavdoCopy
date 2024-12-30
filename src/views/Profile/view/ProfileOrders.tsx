@@ -3,6 +3,7 @@ import OrderEmpty from "../../../empty/OrderEmpty";
 import MyOrdersTabs from "../component/MyOrdersTabs";
 import OrderInfoCard from "../component/OrderInfoCard";
 import { EmptyOrder } from "../../../assets/icon";
+import { getOrders } from "../../../hook/queries";
 
 interface Product {
   name: string;
@@ -25,6 +26,9 @@ interface Order {
 }
 const ProfileOrders = () => {
   const [activeTab, setActiveTab] = useState("all");
+
+  const {data: orderList} = getOrders();
+
 
   const orderData: Order[] = [
     {
@@ -85,8 +89,8 @@ const ProfileOrders = () => {
   return (
     <div>
       <MyOrdersTabs activeTab={activeTab} setActiveTab={setActiveTab} />
-      {filteredOrders.length > 0 ? (
-        filteredOrders.map((order, index) => (
+      {orderList?.length > 0 ? (
+        orderList?.map((order: any, index:any) => (
           <OrderInfoCard key={index} order={order} />
         ))
       ) : (

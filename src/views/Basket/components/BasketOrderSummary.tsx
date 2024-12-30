@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import BasketSmallProductCard from "../components/BasketSmallProductCard";
 import InputBasketForm from "../../../components/InputBasketForm/InputBasketForm";
 import { APP_ROUTES } from "../../../router";
@@ -10,6 +10,8 @@ import { errorNotification } from "../../../components/Notifikation/view";
 import { useErrorContext } from "../../../context/ErrorContext";
 
 const BasketOrderSummary: React.FC = () => {
+  const navigate = useNavigate()
+
   const { data: basketList } = useQuery({
     queryKey: ["basket"],
     queryFn: getBasketList,
@@ -25,6 +27,9 @@ const BasketOrderSummary: React.FC = () => {
 
   const sendOrderMutation = useMutation({
     mutationFn: sendOrder,
+    onSuccess: () => {
+        navigate(`${APP_ROUTES.PROFILE}/${APP_ROUTES.PROFILE_ORDERS}`)
+    },
     onError: (e) => {
       // errorNotification(e)
       // @ts-ignore
