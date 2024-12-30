@@ -51,7 +51,9 @@ function OrderInfoCard({ order }: { order: Order }) {
         <AccordionDetails>
           <Typography>
             <div className="flex flex-col md:gap-4 gap-3">
-              {order?.orderProducts?.map((prod: any, index: number) => (
+              {
+              // @ts-ignore
+              order?.orderProducts?.map((prod: any, index: number) => (
                 <ProductInMore prod={prod} key={index} />
               ))}
             </div>

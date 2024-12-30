@@ -15,6 +15,8 @@ interface Order {
   productVolume?: string;
   deliveryLocation: string;
   price: string;
+  date?: string;
+  address?: string
 }
 
 function OrderInfos({ order }: { order: Order }) {
@@ -78,7 +80,10 @@ function OrderInfos({ order }: { order: Order }) {
       )}
       <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4">
         <p className={`${pClass}`}>Сумма заказа</p>
-        <span className={`${spanClass}`}>{order.price?.toLocaleString("ru-RU")} сум</span>
+        
+        <span className={`${spanClass}`}>{
+        // @ts-ignore
+        order.price?.toLocaleString("ru-RU")} сум</span>
       </div>
       <button className={`${pClass} underline underline-offset-4 w-max`}>
         Электронный чек
