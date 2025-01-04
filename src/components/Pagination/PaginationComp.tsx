@@ -76,7 +76,7 @@ function PaginationComp({
                     strokeLinecap="round"
                   />
                 </svg>
-                <span className="md:block hidden">назад</span>
+                <span className="hidden">назад</span>
               </button>
             );
           }

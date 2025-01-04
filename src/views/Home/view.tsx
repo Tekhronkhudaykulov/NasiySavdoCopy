@@ -22,13 +22,13 @@ const Home = () => {
         title="Новинки"
         products={newProd}
       />
-      <ProductsSection
+      {/* <ProductsSection
         className="md:mt-[48px] mt-[20px]"
         title="Распродажа"
         products={saleProd}
-      />
+      /> */}
       <AdvertisingSection />
-      <ProductsSection products={[...Array(10)]} />
+      {/* <ProductsSection products={[...Array(10)]} /> */}
     </>
   );
 };

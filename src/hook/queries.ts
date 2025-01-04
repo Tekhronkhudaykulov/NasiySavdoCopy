@@ -51,7 +51,7 @@ export const productByTagQuery = (payload: string) =>
       queryKey: ["categoryProd" + payload],
       queryFn: async () => {
         const { data } = await requests.productByCategoryFetch(payload);
-        return data.data;
+        return data;
       },
       enabled: !!payload
     });

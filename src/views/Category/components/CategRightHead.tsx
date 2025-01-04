@@ -20,6 +20,7 @@ const buttonData = [
 
 function CategRightHead({product}: any) {
 
+
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [showFilter, setShowFilter] = useState(false);
   const [isAtStart, setIsAtStart] = useState(true);
