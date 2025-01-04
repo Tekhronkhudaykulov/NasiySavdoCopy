@@ -13,17 +13,17 @@ import { bannerQuery } from "../../hook/queries";
 import { API_URL } from "../../config";
 import { imgUrl } from "../../helpers/api";
 
-const Banner = () => {
+const Slider = () => {
   const { data } = bannerQuery();
 
-  console.log(data, 'banner');
+  console.log(data);
 
   return (
     <Swiper
       className="swiper-arrow md:rounded-[20px] rounded-[10px] mt-[10px]"
       loop
       speed={1500}
-      
+    
       spaceBetween={10}
       autoplay={{
         delay: 2500,
@@ -55,7 +55,7 @@ const Banner = () => {
                 effect="opacity"
                 alt=""
                 className="h-full object-cover w-full bg-[#eee] md:rounded-[0] rounded-[20px]"
-                src={`${imgUrl}/${item.photo}`}
+                src={`${API_URL}/${item.photo}`}
                 wrapperClassName="w-full h-full"
               />
             </Image>
@@ -66,4 +66,4 @@ const Banner = () => {
   );
 };
 
-export default Banner;
+export default Slider;
