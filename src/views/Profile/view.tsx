@@ -5,9 +5,17 @@ import BreadCrumb from "../../components/breadCump/view";
 import { Ava, Card, Exit, Orders, Sale } from "../../assets/icon";
 import { useEffect, useState } from "react";
 import { tokenName } from "../../helpers/api";
+import { useQueryClient } from "@tanstack/react-query";
+import { profileQuery } from "../../hook/queries";
 const Profile = () => {
   const { pathname } = useLocation();
   const [show, setShow] = useState(false);
+
+  const queryClient = useQueryClient();
+
+    const { data } = profileQuery();
+  
+
   const profileList = [
     {
       name: "Профиль",
@@ -68,9 +76,11 @@ const Profile = () => {
               <div className="flex items-center xl:mr-[12px] mr-2 justify-center xl:w-[60px] xl:h-[60px] w-[50px] h-[50px] rounded-full bg-[#F2F5F7]">
                 <Ava />
               </div>
-              <p className="xl:text-[16px] text-[14px] font-[500] text-[#212121]">
-                Новый пользователь
-              </p>
+              {data?.client?.first_name && (
+                  <p className="xl:text-[16px] text-[14px] font-[500] text-[#212121]">
+                    {data?.client?.first_name}
+                  </p>
+              )}
             </div>
             {profileList.map((item, idx) => {
               return (
@@ -86,7 +96,8 @@ const Profile = () => {
                   }`}
                   onClick={() => {
                     if (item.name === "Выйти из системы") {
-                      localStorage.removeItem(tokenName); 
+                      localStorage.clear();
+                      queryClient.clear(); 
                     }
                   }}
                 >

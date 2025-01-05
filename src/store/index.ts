@@ -10,6 +10,7 @@ import categoryStore from "./category/categorySlice";
 import comparesStore from "./compare/compareStore";
 import clientFavouriteStore from "./clientFavourite/clientFavouriteSlice";
 import clientCartStore from "./clientCard/clientCardSlice";
+import { errorSlice } from "./error/errorSlice";
 export {
   appStore,
   modalsStore,
@@ -23,4 +24,5 @@ export {
   comparesStore,
   clientFavouriteStore,
   clientCartStore,
+  errorSlice
 };

@@ -5,6 +5,8 @@ import "./style.scss"
 const ErrorList: React.FC = () => {
     const { errors, setErrors } = useErrorContext();
 
+
+
     useEffect(() => {
       const timer = setTimeout(() => {
         setErrors({});

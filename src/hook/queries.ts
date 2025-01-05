@@ -1,13 +1,16 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { requests } from "../helpers/requests";
+import { errorSlice } from "../store";
 
 export const profileQuery = () =>
   useQuery({
     queryKey: ["profile"],
     queryFn: async () => {
       const { data } = await requests.profile();
-    return data.data.client
+    return data.data
     },
+    staleTime: 0,
+    refetchOnMount: true,
   });
 
 export const productQuery = () =>
@@ -110,10 +113,23 @@ export const addFavourites = async (payload: any) => {
   return data;
 };
 
+
+// export const getFavouriteList = () =>
+//   useQuery({
+//     queryKey: ["favouriteList"],
+//     queryFn: async () => {
+//       const { data } = await requests.favouriteList();
+//       return data.data;
+//     },
+// });
+
+
 export const getFavouriteList = async () => {
-  const { data } = await requests.favouriteList();
-  return data.data;
+    const { data } = await requests.favouriteList();
+    return data.data;
 };
+
+
 
 export const cardInfo = async () => {
   const { data } = await requests.cardInfoFetch();

@@ -87,7 +87,7 @@ function BasketProducts({ prod }: any) {
                 Вы экономите:
               </span>
               <span className="text-mainBlack font-semibold md:text-[20px]">
-                520 000 uzs
+                0 uzs
               </span>
             </div>
           </div>

@@ -9,6 +9,17 @@ export const $api = axios.create({
   baseURL: "https://api.nasiyasavdo.uz/api",
 });
 
+
+  $api.interceptors.response.use(
+    (response: any) => response,
+    (error: any) => {
+      if (error.response?.status === 401) {
+       localStorage.clear();
+      }
+      return Promise.reject(error);
+    }
+  );
+
 $api.defaults.headers.common["Accept"] = "application/json";
 
 export const tokenName = "nasiyaSavdoAccessToken";

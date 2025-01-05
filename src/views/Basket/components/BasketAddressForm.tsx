@@ -4,9 +4,16 @@ import InputBasketForm from "../../../components/InputBasketForm/InputBasketForm
 import { useState } from "react";
 import { cities, delivery, regions } from "../../../hook/queries";
 import { useFormContext } from "../../../context/FormContext";
+import { useErrorContext } from "../../../context/ErrorContext";
 
 function BasketAddressForm() {
   const { formData, setFormData } = useFormContext();
+
+  const { errors, setErrors } = useErrorContext();
+
+
+  console.log(errors)
+  
 
 
   
@@ -47,7 +54,10 @@ function BasketAddressForm() {
             <LabelBasketForm text={"Адресс"} />
              <Input  onChange={(e: any) => {
               setFormData("address", e.target.value)
-            }} className="h-[48px] px-2 text-[16px] rounded-[10px] bg-secondary text-txtSecondary"/>
+            }} className={`h-[48px] px-2 text-[16px] rounded-[10px] bg-secondary text-txtSecondary ${errors?.address ? "border-[red]" : "border-none"}`}/>
+             {errors?.address && (
+              <p className="text-[red] text-[12px]">{errors?.address[0]}</p>
+            )}
           </div>
           <LabelBasketForm text={"Район"} />
           <Select
@@ -60,7 +70,7 @@ function BasketAddressForm() {
             ))}
           </Select>
         </div>
-        <div className="flex flex-col md:gap-3 gap-2">
+        <div className="flex flex-col md:gap-3 gap-2 ">
           <LabelBasketForm text={"Способ получения"} />
           {deliveryItems?.map((item: any, ind: any) => (
             <button
@@ -68,7 +78,7 @@ function BasketAddressForm() {
                 setIsChecked(item.id);
                 setFormData("delivery_id", item.id)
               }}
-              className="min-h-[68px] select-none cursor-pointer p-[16px_18px] rounded-[10px] flex items-start gap-[16px] bg-secondary"
+              className={`min-h-[68px] select-none cursor-pointer p-[16px_18px] rounded-[10px] flex items-start gap-[16px] bg-secondary ${errors?.delivery_id ? "!border-[red] border-[1px]" : "border-none"}`}
           >
             <div className="rounded-full flex items-center justify-center border-[2px] border-darkGreen w-[24px] h-[24px] flex-shrink-0">
               <div
@@ -85,9 +95,11 @@ function BasketAddressForm() {
                {item.name}
               </h4>
             </div>
-          </button>
+            </button>
           ))}
-    
+           {errors?.delivery_id && (
+              <p className="text-[red] text-[12px]">{errors?.delivery_id[0]}</p>
+            )}
         </div>
 
         {isChecked === 2 && (

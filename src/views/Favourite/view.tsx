@@ -10,10 +10,7 @@ function Favourite() {
     queryKey: ["favourites"],
     queryFn: getFavouriteList,
   });
-
-
  
-
 
   return (
     <>

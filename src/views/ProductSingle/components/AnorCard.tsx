@@ -23,11 +23,11 @@ function AnorCard({
           {tariffsName}
         </span>
         <div className="flex justify-between items-center">
-          <img
+          {/* <img
             className="md:h-[18px] h-[16px] w-auto"
             src={ASSETS.AnorBank}
             alt="anor bank"
-          />
+          /> */}
           <span className="text-mainBlack font-semibold md:text-[14px] text-[12px]">
             {monthly_payment?.toLocaleString("RU-ru")} сум/мес
           </span>

@@ -6,6 +6,7 @@ import { FiTrash2 } from "react-icons/fi";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { add, minus, productByTagQuery, remove } from "../../../hook/queries";
 import { errorNotification } from "../../../components/Notifikation/view";
+import { imgUrl } from "../../../helpers/api";
 function BasketSingleCard({
   isChecked,
   index,
@@ -78,8 +79,10 @@ function BasketSingleCard({
 
   // Raqamga aylantirish
   const priceNumber: number = Number(priceWithoutComma);
+  console.log(item);
+  
 
-
+  
   return (
     <div className="border-t py-[20px] border-line relative flex md:flex-row flex-col items-start justify-between">
       <div className="flex flex-col xl:gap-5 gap-4">
@@ -93,7 +96,7 @@ function BasketSingleCard({
           <div className="xl:w-[100px] xl:h-[126px] md:w-[90px] rounded-[6px] md:h-[115px] bg-[#efefef]">
             <img
               className="h-full object-contain w-full rounded-[6px]"
-              src={ASSETS.CardImg}
+              src={`${imgUrl}/${item?.product.photo}`}
               alt=""
             />
           </div>
@@ -110,11 +113,11 @@ function BasketSingleCard({
               </div>
               <div className="text-[14px] flex gap-1 md:flex-row flex-col">
                 <span className="text-gray">Размер:</span>
-                <span className="text-mainBlack font-medium">24см</span>
+                <span className="text-mainBlack font-medium"></span>
               </div>
               <div className="text-[14px] flex gap-1 md:flex-row flex-col">
                 <span className="text-gray">Цвет:</span>
-                <span className="text-mainBlack font-medium">Черный</span>
+                <span className="text-mainBlack font-medium"></span>
               </div>
             </div>
           </div>
@@ -155,14 +158,14 @@ function BasketSingleCard({
         </button>
         <div className="md:flex flex-col grid grid-cols-2 w-full items-end gap-x-2 gap-y-2 md:gap-y-0 md:mt-[34px] mt-5">
           <p className="bg-pink md:mb-3 text-textPink md:text-[14px] text-[12px] font-[500] w-max px-[6px] py-[4px] rounded-[6px]">
-            35 000 сум x 12
+            {item?.product.monthly_payment?.toLocaleString("ru-RU")} сум x {item?.product.duration}
           </p>
           <p className="text-mainBlack md:text-[20px] text-[16px] font-[600] md:mb-[4px]">
             {item?.price.toLocaleString("ru-RU")} сум
           </p>
-          <p className="text-gray font-[400] md:text-[14px] text-[12px] line-through">
+          {/* <p className="text-gray font-[400] md:text-[14px] text-[12px] line-through">
             260 000 сум
-          </p>
+          </p> */}
         </div>
       </div>
     </div>

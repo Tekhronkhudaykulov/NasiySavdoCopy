@@ -8,9 +8,20 @@ import { getBasketList, sendOrder } from "../../../hook/queries";
 import { useFormContext } from "../../../context/FormContext";
 import { errorNotification } from "../../../components/Notifikation/view";
 import { useErrorContext } from "../../../context/ErrorContext";
+import { OrderContextItems } from "../../../context/OrderContext";
 
 const BasketOrderSummary: React.FC = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
+  const { items, setItems, extraData, setExtraData } = OrderContextItems();
+
+
+  console.log( extraData);
+      
+
+
+    
+  
 
   const { data: basketList } = useQuery({
     queryKey: ["basket"],
@@ -88,7 +99,7 @@ const BasketOrderSummary: React.FC = () => {
             Доставка курьером:
           </span>
           <span className="text-mainBlack font-semibold md:text-[16px] text-[14px]">
-            30 000 uzs
+            0 uzs
           </span>
         </div>
         <div className="flex justify-between items-center">
@@ -96,20 +107,33 @@ const BasketOrderSummary: React.FC = () => {
             Скидка по промокоду:
           </span>
           <span className="text-mainBlack font-semibold md:text-[16px] text-[14px]">
-            40 000 uzs
+            0 uzs
           </span>
         </div>
-        <div className="flex justify-between items-center">
-          <span className="md:text-[14px] text-[12px] text-txtSecondary">
-            Итого:
-          </span>
-          <span className="text-mainBlack font-semibold md:text-[16px] text-[14px]">
-          {allPrice?.toLocaleString("ru-RU")} uzs
-          </span>
-        </div>
+          <div className="flex justify-between items-center">
+            <span className="md:text-[14px] text-[12px] text-txtSecondary">
+              Итого:
+            </span>
+            <span className="text-mainBlack font-semibold md:text-[16px] text-[14px]">
+            {allPrice?.toLocaleString("ru-RU")} uzs
+            </span>
+          </div>  
+          {extraData === "Рассрочку" && (
+            items?.map((item: any) => (
+              <div className="flex justify-between items-center">
+              <span className="md:text-[14px] text-[12px] text-txtSecondary">
+                Итого в Nasiya Savdo
+              </span>
+              <span className="text-mainBlack font-semibold md:text-[16px] text-[14px]">
+              {item.installment_price?.toLocaleString("ru-RU")} uzs
+              </span>
+            </div>
+            ))
+        )}
+    
       </div>
       {/*  */}
-      <div className="flex flex-col gap-3">
+      {/* <div className="flex flex-col gap-3">
         <label className="md:text-[14px] text-[12px] text-txtSecondary font-medium">
           Есть промокод?
         </label>
@@ -118,7 +142,7 @@ const BasketOrderSummary: React.FC = () => {
           placeHolder="Введите промокод"
           value="SHAMSPROMO"
         />
-      </div>
+      </div> */}
       {/*  */}
       <button onClick={() => handleSendOrder()} className="flex justify-center rounded-[8px] text-white bg-[#03a5a5] hover:bg-darkGreen md:p-[14px_32px] p-[10px_26px]">
         Оформить

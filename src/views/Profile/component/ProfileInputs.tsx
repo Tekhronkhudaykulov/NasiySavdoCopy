@@ -29,22 +29,25 @@ function ProfileInputs() {
   };
 
   
+  
 
 
   useEffect(() => {
+
     if (data) {
-      const [year, month, day] = data.birthday.split("-"); // "2002-03-30" formatini "30.03.2002" formatiga o'tkazish
+      const [year, month, day] = data.client.birthday.split("-"); // "2002-03-30" formatini "30.03.2002" formatiga o'tkazish
       const formattedBirthday = `${day}.${month}.${year}`; // Yangi format
 
       setPayload({
-        phone: data.phone || "",
-        first_name: data.first_name || "",
-        last_name: data.last_name || "",
-        middle_name: data.middle_name || "",
-        birthday: formattedBirthday || "", // Formatlangan sanani qo'shamiz
+        phone: data.client.phone,
+        first_name: data.client.first_name,
+        last_name: data.client.last_name,
+        middle_name: data.client.middle_name,
+        birthday: formattedBirthday, // Formatlangan sanani qo'shamiz
       });
     }
-  }, [data]);
+
+  }, [data?.client]);
 
 
 

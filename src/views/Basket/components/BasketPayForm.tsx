@@ -4,6 +4,8 @@ import UzumCard from "../../ProductSingle/components/UzumCard";
 import { getBasketList, paymentType, tariffs } from "../../../hook/queries";
 import { useQuery } from "@tanstack/react-query";
 import { useFormContext } from "../../../context/FormContext";
+import { useErrorContext } from "../../../context/ErrorContext";
+import { OrderContextItems } from "../../../context/OrderContext";
 
 function BasketPayForm() {
   const [isRadio, setIsRadio] = useState(0);
@@ -11,6 +13,9 @@ function BasketPayForm() {
   const [selected, setSelected] = useState<any>();
 
   const { formData, setFormData } = useFormContext();
+
+    const { errors, setErrors } = useErrorContext();
+  
 
 
   const { data: basketList } = useQuery({
@@ -31,10 +36,15 @@ function BasketPayForm() {
 
   const [selectedItems, setSelectedItems] = useState([]);
 
+  const { items, setItems, extraData, setExtraData } = OrderContextItems();
+
+  
+
 
 
   const handleClick = (items: []) => {
     setSelectedItems(items); 
+    setItems(items);
   };
   
 
@@ -50,8 +60,9 @@ function BasketPayForm() {
           onClick={() => {
             setIsRadio(item.id);
             setFormData("payment_id", item.id)
+            setExtraData(item.name)
           }}
-          className="select-none cursor-pointer md:p-[16px_18px] p-[12px_14px] rounded-[10px] flex flex-col md:gap-[11px] gap-[8px] bg-secondary"
+          className={`select-none cursor-pointer md:p-[16px_18px] p-[12px_14px] rounded-[10px] flex flex-col md:gap-[11px] gap-[8px] bg-secondary ${errors?.delivery_id ? "border-[red] border-[1px]" : "border-none"}`}
         >
           <div className="flex md:gap-4 gap-3 items-center">
             <div className="rounded-full flex items-center justify-center border-[2px] border-darkGreen w-[24px] h-[24px]">
@@ -90,6 +101,7 @@ function BasketPayForm() {
           </div>
           {selectedItems?.map((item: any, ind: any) => (
         <>
+    
           <AnorCard setActiveCart={setActiveCart} active={activeCard == 1} tariffsName={item.name} monthly_payment={item.monthly_payment}/>
           <div className="flex justify-between items-center">
           <span className="text-[12px] font-medium text-txtSecondary">
@@ -122,6 +134,9 @@ function BasketPayForm() {
           ))}
       
         </div>
+        )}
+        {errors?.payment_id && (
+              <p className="text-[red] text-[12px]">{errors?.payment_id[0]}</p>
         )}
       </div>
     </div>

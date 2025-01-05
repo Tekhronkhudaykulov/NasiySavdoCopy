@@ -104,9 +104,9 @@ const Card = ({ discount, setIsNumberModalOpen, prod }: CardProps) => {
     <>
       <div className="relative flex flex-col h-full rounded-lg">
         {/* Sale Badge */}
-        <div className="absolute z-[1] top-2 left-2 bg-gradient-sale text-[11px] md:text-[12px] font-[400] text-white px-2 py-1 md:rounded-md rounded-[4px]">
+        {/* <div className="absolute z-[1] top-2 left-2 bg-gradient-sale text-[11px] md:text-[12px] font-[400] text-white px-2 py-1 md:rounded-md rounded-[4px]">
           Sale
-        </div>
+        </div> */}
         {/* Heart Icon */}
         {authed ? (
         <button
@@ -151,21 +151,21 @@ const Card = ({ discount, setIsNumberModalOpen, prod }: CardProps) => {
         {/* Product Image */}
         <Link to={`${APP_ROUTES.PRODUCTSINGLE}/${prod?.id}`}>
           <img
-            className="w-full 2md:min-h-[235px] rounded-[10px]"
+            className="w-full 2md:min-h-[235px] h-[235px] rounded-[10px]"
             src={`${imgUrl}/${prod?.photo}`}
             alt="Product Image"
           />
         </Link>
         {/* Product Name */}
         <div className="p-[8px] h-full flex flex-col">
-          <div className="flex items-center gap-x-[4px]">
+          {/* <div className="flex items-center gap-x-[4px]">
             <Star />
             <p className="text-gray md:text-[12px] text-[10px] font-[500]">
               4.9 {`(${prod?.rating} оценок)`}
             </p>
-          </div>
+          </div> */}
           <Link
-            to={`/productSingle`}
+            to=""
             className="text-mainBlack font-[400] md:text-[16px] text-[12px] mt-[6px] text-hidden-2"
           >
             {prod?.name}
@@ -176,11 +176,11 @@ const Card = ({ discount, setIsNumberModalOpen, prod }: CardProps) => {
                 {discount ? " 260 000 сум" : ""}
               </p>
               <p className="text-mainBlack mt-auto md:text-[16px] text-[12px] font-[600] my-[4px]">
-                {prod?.price.toLocaleString("ru-RU")}
+                {`${prod?.price.toLocaleString("ru-RU")} сум`}
               </p>
-              <p className="bg-pink text-textPink md:text-[12px] text-[10px] font-[500] w-max px-[6px] py-[3px] rounded-[6px]">
+              {/* <p className="bg-pink text-textPink md:text-[12px] text-[10px] font-[500] w-max px-[6px] py-[3px] rounded-[6px]">
                 35 000 сум x 12 месяц
-              </p>
+              </p> */}
             </div>
             {authed && (
               <button

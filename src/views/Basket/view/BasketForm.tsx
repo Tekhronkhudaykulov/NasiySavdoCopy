@@ -5,7 +5,8 @@ import BasketFormLeft from "../components/BasketFormLeft";
 import BasketOrderSummary from "../components/BasketOrderSummary";
 import { FormProvider } from "../../../context/FormContext";
 import { ErrorProvider } from "../../../context/ErrorContext";
-import ErrorList from "../../../components/ErrorList/ErrorList";
+import { OrderContextProvider } from "../../../context/OrderContext";
+// import ErrorList from "../../../components/ErrorList/ErrorList";
 
 
 function BasketForm() {
@@ -14,7 +15,8 @@ function BasketForm() {
   return (
     <ErrorProvider>
  <FormProvider>
-    <ErrorList/>
+ <OrderContextProvider>
+    {/* <ErrorList/> */}
     <BreadCrumb
       items={[
         { name: "Корзина", link: "/basket" },
@@ -28,10 +30,12 @@ function BasketForm() {
         </h2>
       </div>
       <div className="grid xl:grid-cols-[2fr,1fr] lg:grid-cols-[1fr,1fr] gap-5">
-        <BasketFormLeft />
-        <BasketOrderSummary />
+      
+          <BasketFormLeft />
+          <BasketOrderSummary />
       </div>
     </section>
+    </OrderContextProvider>
   </FormProvider>
     </ErrorProvider>
    
