@@ -13,6 +13,9 @@ import { OrderContextItems } from "../../../context/OrderContext";
 const BasketOrderSummary: React.FC = () => {
   const navigate = useNavigate();
 
+  const queryClient = useQueryClient();
+
+
   const { items, setItems, extraData, setExtraData } = OrderContextItems();
 
 
@@ -39,7 +42,9 @@ const BasketOrderSummary: React.FC = () => {
   const sendOrderMutation = useMutation({
     mutationFn: sendOrder,
     onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ["basket"] });
         navigate(`${APP_ROUTES.PROFILE}/${APP_ROUTES.PROFILE_ORDERS}`)
+
     },
     onError: (e) => {
       // errorNotification(e)

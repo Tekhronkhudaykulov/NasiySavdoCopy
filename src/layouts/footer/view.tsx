@@ -17,11 +17,11 @@ const Footer = () => {
               to={APP_ROUTES.VACANCIES}
               className="text-gray font-[500] text-[16px]"
             >
-              Lorem
+              Вакансии
             </Link>
-            <Link to={``} className="text-gray font-[500] text-[16px]">
+            {/* <Link to={``} className="text-gray font-[500] text-[16px]">
               Карьера в Nasiya.uz
-            </Link>
+            </Link> */}
           </div>
         </div>
         <div className="flex flex-col gap-4">
@@ -45,7 +45,7 @@ const Footer = () => {
             </Link>
           </div>
         </div>
-        <div className="flex flex-col gap-4">
+        {/* <div className="flex flex-col gap-4">
           <h2 className="text-[20px] font-[700] text-mainBlack">
             Для предпринимателей
           </h2>
@@ -57,7 +57,7 @@ const Footer = () => {
               Вход для продавцов
             </Link>
           </div>
-        </div>
+        </div> */}
       </div>
       <div className="flex items-center 2md:items-start gap-y-5 2md:flex-col justify-between mt-[60px]">
         <div>
