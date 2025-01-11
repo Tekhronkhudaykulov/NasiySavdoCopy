@@ -9,7 +9,7 @@ import {
 import AnorCard from "./AnorCard";
 import UzumCard from "./UzumCard.tsx";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { add, addFavourites,  } from "../../../hook/queries.ts";
+import { add, addFavourites, setCompare,  } from "../../../hook/queries.ts";
 import { useNavigate } from "react-router-dom";
 import { APP_ROUTES } from "../../../router/index.ts";
 import { tokenName } from "../../../helpers/api.tsx";
@@ -49,6 +49,13 @@ function SingleProductRight({ data }: any) {
     },
   });
 
+  const setCompareMutation = useMutation({
+    mutationFn: setCompare,
+    onSuccess: () => {
+      navigate(APP_ROUTES.COMPARE)
+    },
+  });
+
   const handleAddToBasket = (productId: any) => {
     addMutation.mutate({ product_id: productId, amount: 1 });
   };
@@ -61,6 +68,11 @@ function SingleProductRight({ data }: any) {
   const [authed, setAuthed] = useState(
     Boolean(localStorage.getItem(tokenName)),
   );
+
+
+  const handleAddCompate = (productId: any) => {
+    setCompareMutation.mutate({ product_id: productId });
+  };
 
   return (
 
@@ -75,7 +87,7 @@ function SingleProductRight({ data }: any) {
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between md:gap-[30px] lg:gap-[20px] xl:gap-[30px] gap-[12px]">
         {authed ? (
-          <button onClick={() => navigate(APP_ROUTES.COMPARE)} className="text-mainBlack flex md:gap-[12px] gap-[8px] items-center">
+          <button onClick={() => handleAddCompate(data?.id)} className="text-mainBlack flex md:gap-[12px] gap-[8px] items-center">
           <Scale />
           <span className="md:text-[14px] text-[10px]">Сравнить</span>
         </button>

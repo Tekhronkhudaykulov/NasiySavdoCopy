@@ -53,6 +53,13 @@ export const requests = {
 
   resendVerifyFetch: (payload: any) => $api.post(`${API_URL}/resend-verify`,payload),
 
+  allClientCardFetch: () => $api.get(`client-card`),
+
+  setCompareFetch: (payload: any) => $api.post(`${API_URL}/product/set-compare`,payload),
+
+ compareFetch: () => $api.get(`product/compares`),
+
+
 
 
 

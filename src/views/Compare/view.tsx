@@ -2,8 +2,12 @@ import { FaPlus } from "react-icons/fa6";
 import { Categories } from "../../components";
 import CompareLeft from "./components/CompareLeft";
 import CompareRight from "./components/CompareRight";
+import { compare } from "../../hook/queries";
 
 function Compare() {
+  const {data} = compare();
+
+ 
   return (
     <>
       <Categories />
@@ -17,8 +21,10 @@ function Compare() {
         </button>
       </div>
       <div className="grid lg:grid-cols-[400px_1fr] grid-cols-[300px_1fr] 2md:grid-cols-1 gap-[60px]">
-        <CompareLeft />
-        <CompareRight />
+        {data?.map((item: any, ind: any) => (
+        <CompareLeft value={item}/>
+        ))}
+        {/* <CompareRight /> */}
       </div>
     </>
   );

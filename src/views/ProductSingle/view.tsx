@@ -43,7 +43,7 @@ function ProductSingle() {
         />
         <SingleProductRight data={data} />
       </div>
-      {aboutPopUp && <AboutProductPopUp setAboutPopUp={setAboutPopUp} />}
+      {aboutPopUp && <AboutProductPopUp setAboutPopUp={setAboutPopUp} item={data} />}
       {reviewPopUp && <ReviewProductPopUp setReviewPoUp={setReviewPoUp} />}
       <ProductsSection
         className="md:mt-[48px] mt-5"

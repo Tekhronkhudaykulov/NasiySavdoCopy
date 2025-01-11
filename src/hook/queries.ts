@@ -259,3 +259,26 @@ export const getOrders = () =>
     const { data } = await requests.resendVerifyFetch(payload);
     return data;
   };
+
+export const allClientCard = () =>
+  useQuery({
+    queryKey: ["clientCardList"],
+    queryFn: async () => {
+      const { data } = await requests.allClientCardFetch();
+      return data.data;
+    },
+  });
+
+  export const setCompare = async (payload:any) => {
+    const { data } = await requests.setCompareFetch(payload);
+    return data;
+  };
+
+  export const compare = () =>
+    useQuery({
+      queryKey: ["compareList"],
+      queryFn: async () => {
+        const { data } = await requests.compareFetch();
+        return data.data;
+      },
+    });

@@ -33,6 +33,8 @@ function SingleProductLeft({
     }
   };
 
+  
+
   console.log(prod, 'prodsingle')
 
   return (
@@ -121,23 +123,7 @@ function SingleProductLeft({
               show ? "" : "text-hidden-7"
             }`}
           >
-            Lorem ipsum dolor sit amet consectetur. Risus vulputate tellus
-            vestibulum tristique amet vitae aliquam faucibus. Tempor odio
-            tincidunt volutpat ac luctus massa morbi. Sit volutpat ridiculus
-            semper arcu diam platea dictum magna. Scelerisque nisi molestie eget
-            dignissim. Fusce ac malesuada elementum orci adipiscing. Lobortis
-            amet id sollicitudin augue risus non. Eget sit arcu dignissim
-            gravida sit faucibus tortor felis. Diam varius viverra nunc amet
-            magna tellus sed accumsan convallis. Amet nulla viverra gravida
-            dignissim semper massa. Maecenas et orci convallis amet nibh.
-            Quisque tortor enim condimentum faucibus gravida. Morbi magna id
-            nullam et felis. Lectus fringilla eget vestibulum tellus in ultrices
-            condimentum faucibus gravida. Morbi magna id nullam nulla viverra
-            gravida. Morbi magna id nullam et felis. Lectus fringilla eget
-            vestibulum tellus in ultrices condimentum faucibus gravida. Morbi
-            magna id nullam nulla viverra gravida. Morbi magna id nullam et
-            felis. Lectus fringilla eget vestibulum tellus in ultrices
-            condimentum faucibus gravida. Morbi magna id nullam nulla viverra
+            {prod?.description_ru}
           </p>
           <button
             onClick={() => setShow(!show)}
