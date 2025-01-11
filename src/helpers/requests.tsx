@@ -47,6 +47,15 @@ export const requests = {
   getOrdersFetch: () => $api.get(`order/index`),
   subCategoryFetch:  (payload: number) => $api.get(`/category/sub-category?id=${payload}`),
 
+  clientCardFetch: (payload: any) => $api.post(`${API_URL}/client-card/send`,payload),
+
+  sendVerifyFetch: (payload: any) => $api.post(`${API_URL}/send-verify-code`,payload),
+
+  resendVerifyFetch: (payload: any) => $api.post(`${API_URL}/resend-verify`,payload),
+
+
+
+
 
 
 

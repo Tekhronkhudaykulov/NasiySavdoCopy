@@ -6,6 +6,7 @@ import PrivateRoute from "./PrivateRoute";
 import { initApp } from "../helpers/api";
 import Loader from "../components/PageLoader/Loader";
 import { ErrorProvider } from "../context/ErrorContext";
+import { ValueProvider } from "../context/ValueContext";
 
 const Router = () => {
   initApp();
@@ -14,7 +15,8 @@ const Router = () => {
     <HashRouter>
       <Suspense fallback={<Loader />}>
         <ErrorProvider>
-        <Routes>
+          <ValueProvider>
+          <Routes>
           {_routes?.map(({ path, element: Component, childs }, idx) =>
             childs && childs?.length > 0 ? (
               <Route
@@ -36,6 +38,8 @@ const Router = () => {
           )}
           <Route path="" />
         </Routes>
+          </ValueProvider>
+ 
         </ErrorProvider>
       </Suspense>
     </HashRouter>

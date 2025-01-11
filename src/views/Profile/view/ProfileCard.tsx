@@ -1,8 +1,11 @@
+import { useEffect } from "react";
 import { TrashCan } from "../../../assets/icon";
 import { ASSETS } from "../../../assets/img/assets";
+import { useErrorContext } from "../../../context/ErrorContext";
 import ProfileCardEmpty from "../../../empty/ProfileCardEmpty";
 import { modalsStore } from "../../../store";
 import AddCard from "../component/AddCard";
+import { errorNotification } from "../../../components/Notifikation/view";
 type PlasticCard = {
   cardNumber: string;
   cardName: string;
@@ -12,6 +15,8 @@ const PlastikCard = ({ plastic }: { plastic: PlasticCard }) => {
   const formatCardNumber = (number: string) => {
     return `${number.slice(0, 4)} **** **** ${number.slice(-4)}`;
   };
+
+  
   return (
     <div
       className={`p-[20px] rounded-[12px] select-none bg-buttonBg flex flex-col gap-[17px] cursor-pointer `}
@@ -59,11 +64,12 @@ const plasticCards: PlasticCard[] = [
 
 const ProfileCard = () => {
   const { openModal } = modalsStore();
+
   return (
     <>
       <div>
         <div className="flex items-center md:p-[20px] p-4 justify-center flex-col bg-[#FFFFFF] md:py-[24px] py-5 md:rounded-[18px] rounded-[14px]  border border-[#E2E3E5]">
-          {plasticCards.length === 0 ? (
+          {plasticCards.length === 2 ? (
             <div className="my-8">
               <ProfileCardEmpty
                 title="Вы еше не добавили карту"

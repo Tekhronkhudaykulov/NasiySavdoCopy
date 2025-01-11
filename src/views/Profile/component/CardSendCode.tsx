@@ -3,6 +3,10 @@ import { Button, Modal } from "antd";
 import VerificationInput from "react-verification-input";
 import { ASSETS } from "../../../assets/img/assets";
 import { Link } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
+import { clientCard, resendVerify, sendVerify } from "../../../hook/queries";
+import { useValueContext } from "../../../context/ValueContext";
+import { errorNotification } from "../../../components/Notifikation/view";
 
 type SendNumProps = {
   open: boolean;
@@ -20,6 +24,14 @@ function maskPhoneNumber(phoneNumber: string): string {
 const CardSendCode: React.FC<SendNumProps> = ({ open, setOpen }) => {
   const [timer, setTimer] = useState<number>(59);
   const [code, setCode] = useState<string>("");
+
+  
+  const { valueData } = useValueContext();
+
+  console.log(valueData, 'data');
+  
+  
+
   const [isSuccess, setIsSuccess] = useState(false);
   const [isResendEnabled, setIsResendEnabled] = useState<boolean>(false);
   const phoneNumber = localStorage.getItem("phoneNumber") || "";
@@ -36,12 +48,7 @@ const CardSendCode: React.FC<SendNumProps> = ({ open, setOpen }) => {
     return () => clearInterval(countdown);
   }, []);
 
-  const handleSubmit = () => {
-    if (code.length === 5) {
-      setOpen(false);
-      setIsSuccess(true);
-    }
-  };
+
 
   const handleCancel = () => {
     setOpen(false);
@@ -49,9 +56,48 @@ const CardSendCode: React.FC<SendNumProps> = ({ open, setOpen }) => {
   const handleCancel2 = () => {
     setIsSuccess(false);
   };
+
+  
+
+
+
+  const sendClientCard = useMutation({
+    mutationFn: sendVerify,
+    onSuccess: () => {
+      setOpen(false);
+      setIsSuccess(true);
+    },
+    onError: (e) => {
+      // errorNotification(e)
+      // @ts-ignore
+      const errors = e.response.data.message;
+      errorNotification(errors)
+ 
+    }
+  });
+
+  const sendResendVerify = useMutation({
+    mutationFn: resendVerify,
+    onSuccess: () => {
+      setTimer(59);
+      setIsResendEnabled(false);
+    },
+    onError: (e) => {
+      // errorNotification(e)
+      // @ts-ignore
+      const errors = e.response.data.message;
+      errorNotification(errors)
+    }
+  });
+
+  
+  
   const handleResendCode = () => {
-    setTimer(59);
-    setIsResendEnabled(false);
+    sendResendVerify.mutate({card_id: valueData?.id})
+  };
+
+  const handleClientCard = () => {
+    sendClientCard.mutate({card_id:valueData?.id, code});
   };
   return (
     <>
@@ -68,13 +114,13 @@ const CardSendCode: React.FC<SendNumProps> = ({ open, setOpen }) => {
             </p>
             <p className="md:text-[16px] text-[12px] leading-[1.5] line-clamp-2 font-[500] mt-[6px] md:mb-[38px] mb-[24px] text-txtSecondary2 text-center">
               SMS с кодом отправлено на номер <br /> +
-              {maskPhoneNumber(phoneNumber)}
+             {valueData?.otpSendPhone}
             </p>
             <p className="md:text-[14px] text-[12px] font-[400] mb-[14px] text-txtSecondary2 text-center">
               Введите код из смс
             </p>
             <VerificationInput
-              length={5}
+              length={6}
               value={code}
               onChange={setCode}
               classNames={{
@@ -105,8 +151,8 @@ const CardSendCode: React.FC<SendNumProps> = ({ open, setOpen }) => {
             <Button
               className="!bg-darkGreen !text-white w-full h-[46px] md:h-[56px] rounded-[8px] md:text-[16px] text-[14px] md:mt-[50px] mt-[30px] font-[500]"
               type="default"
-              onClick={handleSubmit}
-              disabled={code.length < 5}
+              onClick={handleClientCard}
+              disabled={code.length < 6}
             >
               Подтвердить
             </Button>

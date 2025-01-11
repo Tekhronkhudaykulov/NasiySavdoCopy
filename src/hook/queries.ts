@@ -245,3 +245,17 @@ export const getOrders = () =>
     },
   });
 
+  export const clientCard = async (payload:any) => {
+    const { data } = await requests.clientCardFetch(payload);
+    return data;
+  };
+
+  export const sendVerify = async (payload:any) => {
+    const { data } = await requests.sendVerifyFetch(payload);
+    return data;
+  };
+
+  export const resendVerify = async (payload:any) => {
+    const { data } = await requests.resendVerifyFetch(payload);
+    return data;
+  };
