@@ -6,20 +6,23 @@ import ProfileCardEmpty from "../../../empty/ProfileCardEmpty";
 import { modalsStore } from "../../../store";
 import AddCard from "../component/AddCard";
 import { errorNotification } from "../../../components/Notifikation/view";
+import { allClientCard } from "../../../hook/queries";
 type PlasticCard = {
   cardNumber: string;
   cardName: string;
-  cardImg: string; // If ASSETS.Humo is a string (URL path or file path), otherwise specify its type
+  cardImg: string;
+  pan?: string // If ASSETS.Humo is a string (URL path or file path), otherwise specify its type
 };
 const PlastikCard = ({ plastic }: { plastic: PlasticCard }) => {
   const formatCardNumber = (number: string) => {
-    return `${number.slice(0, 4)} **** **** ${number.slice(-4)}`;
+    return `${plastic?.pan.slice(0, 4)} **** **** ${plastic?.pan.slice(-4)}`;
   };
 
+  console.log(plastic, 'plastik')
   
   return (
     <div
-      className={`p-[20px] rounded-[12px] select-none bg-buttonBg flex flex-col gap-[17px] cursor-pointer `}
+      className={`p-[20px]  rounded-[12px] select-none bg-buttonBg flex flex-col gap-[17px] cursor-pointer `}
     >
       <div className="flex justify-between">
         <div className="flex flex-col gap-[7px]">
@@ -36,7 +39,7 @@ const PlastikCard = ({ plastic }: { plastic: PlasticCard }) => {
       </div>
       <div className="flex justify-between">
         <p className="text-[14px] text-txtSecondary2 font-medium">
-          {plastic.cardName}
+          {plastic?.cardName}
         </p>
         <div className="w-[42px] h-[25px]">
           <img
@@ -64,12 +67,13 @@ const plasticCards: PlasticCard[] = [
 
 const ProfileCard = () => {
   const { openModal } = modalsStore();
-
+  const {data} = allClientCard();
+  console.log(data, 'agnlans')
   return (
     <>
       <div>
         <div className="flex items-center md:p-[20px] p-4 justify-center flex-col bg-[#FFFFFF] md:py-[24px] py-5 md:rounded-[18px] rounded-[14px]  border border-[#E2E3E5]">
-          {plasticCards.length === 2 ? (
+          {data?.length < 0 ? (
             <div className="my-8">
               <ProfileCardEmpty
                 title="Вы еше не добавили карту"
@@ -82,11 +86,13 @@ const ProfileCard = () => {
               <h2 className="text-mainBlack lg:text-[24px] text-[20px] font-semibold">
                 Мои карты
               </h2>
-              <div className="grid grid-cols-[repeat(auto-fit,minmax(270px,1fr))] lg:mt-5 mt-4 xl:gap-[20px] gap-4">
-                {plasticCards.map((plastic, i) => {
-                  return <PlastikCard key={i} plastic={plastic} />;
+                {data?.map((plastic: any, i: any) => {
+                  return (
+                    <div className="grid grid-cols-[repeat(auto-fit,minmax(270px,1fr))] lg:mt-5 mt-4 xl:gap-[20px] gap-4">
+                    <PlastikCard key={i} plastic={plastic} />
+                    </div>
+                  ) 
                 })}
-              </div>
             </div>
           )}
         </div>

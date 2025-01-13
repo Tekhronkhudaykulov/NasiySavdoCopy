@@ -49,7 +49,7 @@ export const requests = {
 
   clientCardFetch: (payload: any) => $api.post(`${API_URL}/client-card/send`,payload),
 
-  sendVerifyFetch: (payload: any) => $api.post(`${API_URL}/send-verify-code`,payload),
+  sendVerifyFetch: (payload: any) => $api.post(`${API_URL}/client-card/send-verify-code`,payload),
 
   resendVerifyFetch: (payload: any) => $api.post(`${API_URL}/resend-verify`,payload),
 
