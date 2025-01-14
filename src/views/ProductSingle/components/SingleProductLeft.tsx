@@ -93,13 +93,13 @@ function SingleProductLeft({
               {prod?.name}
             </h1>
             <p className="text-gray text-[12px] font-[500]">
-              Осталось: 12 штук
+              Осталось: {prod?.amount} штук
             </p>
           </div>
-          <div className="flex flex-col gap-[20px]">
+          {/* <div className="flex flex-col gap-[20px]">
             <ColorSelect />
             <SizeSelect />
-          </div>
+          </div> */}
           <div className="flex">
             <button
               onClick={() => setReviewPoUp(true)}

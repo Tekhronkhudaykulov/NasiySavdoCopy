@@ -11,7 +11,7 @@ type PlasticCard = {
   cardNumber: string;
   cardName: string;
   cardImg: string;
-  pan?: string // If ASSETS.Humo is a string (URL path or file path), otherwise specify its type
+  pan?: string ;
 };
 const PlastikCard = ({ plastic }: { plastic: PlasticCard }) => {
   const formatCardNumber = (number: string) => {
@@ -42,10 +42,15 @@ const PlastikCard = ({ plastic }: { plastic: PlasticCard }) => {
           {plastic?.cardName}
         </p>
         <div className="w-[42px] h-[25px]">
-          <img
-            className="w-full h-full object-contain object-right"
-            src={plastic.cardImg}
-          />
+          {plastic.cardnumber?.startsWith("5614") || plastic.cardnumber?.startsWith("8600") ? (
+              <img
+              className="w-full h-full object-contain object-right"
+              src={ASSETS.uzcard}
+            />
+          ): (
+              <img src={ASSETS.Humo} alt="" />
+          )}
+       
         </div>
       </div>
     </div>
@@ -88,7 +93,7 @@ const ProfileCard = () => {
               </h2>
                 {data?.map((plastic: any, i: any) => {
                   return (
-                    <div className="grid grid-cols-[repeat(auto-fit,minmax(270px,1fr))] lg:mt-5 mt-4 xl:gap-[20px] gap-4">
+                    <div className="grid grid-cols-2 lg:mt-5 mt-4 xl:gap-[20px] gap-4">
                     <PlastikCard key={i} plastic={plastic} />
                     </div>
                   ) 
