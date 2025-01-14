@@ -13,6 +13,7 @@ import { bannerQuery } from "../../hook/queries";
 import { API_URL } from "../../config";
 import { imgUrl } from "../../helpers/api";
 
+
 const Slider = () => {
   const { data } = bannerQuery();
 
