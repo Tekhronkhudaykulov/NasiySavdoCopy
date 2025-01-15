@@ -216,13 +216,14 @@ export const sendOrder = async (payload:any) => {
 };
 
 
-export const reviewsDetail = (payload: number) =>
+export const reviewsDetail = (payload: any) =>
   useQuery({
     queryKey: ["reviewsDetail" + payload],
     queryFn: async () => {
       const { data } = await requests.reviewsDetailFetch(payload);
       return data;
     },
+    enabled: !!payload, 
 });
 
 
@@ -284,13 +285,13 @@ export const allClientCard = () =>
     });
 
 
-    export const productTariffs = (payload:any) =>
-      useQuery({
-        queryKey: ["prodTariffs" + payload],
-        queryFn: async () => {
-          const { data } = await requests.productTariffsFetch(payload);
-          return data.data;
-        },
-        enabled: !!payload
-      });
+export const productTariffs = (payload:any) =>
+  useQuery({
+    queryKey: ["prodTariffs" + payload],
+    queryFn: async () => {
+      const { data } = await requests.productTariffsFetch(payload);
+      return data.data;
+    },
+    enabled: !!payload
+  });
 

@@ -15,6 +15,7 @@ type PlasticCard = {
 };
 const PlastikCard = ({ plastic }: { plastic: PlasticCard }) => {
   const formatCardNumber = (number: string) => {
+    // @ts-ignore
     return `${plastic?.pan.slice(0, 4)} **** **** ${plastic?.pan.slice(-4)}`;
   };
 
@@ -42,7 +43,10 @@ const PlastikCard = ({ plastic }: { plastic: PlasticCard }) => {
           {plastic?.cardName}
         </p>
         <div className="w-[42px] h-[25px]">
-          {plastic.cardnumber?.startsWith("5614") || plastic.cardnumber?.startsWith("8600") ? (
+          
+          {
+    // @ts-ignore
+          plastic.cardnumber?.startsWith("5614") || plastic.cardnumber?.startsWith("8600") ? (
               <img
               className="w-full h-full object-contain object-right"
               src={ASSETS.uzcard}

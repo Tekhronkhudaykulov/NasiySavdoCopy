@@ -6,6 +6,8 @@ import { ProductSingleStar, Star } from "../../../assets/icon";
 import ColorSelect from "./ColorSelect";
 import SizeSelect from "./SizeSelect";
 import { imgUrl } from "../../../helpers/api";
+import { reviewsDetail } from "../../../hook/queries";
+import { useParams } from "react-router-dom";
 function SingleProductLeft({
   setAboutPopUp,
   setReviewPoUp,
@@ -33,10 +35,13 @@ function SingleProductLeft({
     }
   };
 
+  const {id} = useParams()
+
+  const {data: reviewsItems} = reviewsDetail(id);
+
+  console.log(reviewsItems, 'items')
+
   
-
-  console.log(prod, 'prodsingle')
-
   return (
     <div className="flex flex-col gap-[20px]">
       <div className="grid xl:grid-cols-2 md:grid-cols-2 grid-cols-1 lg:grid-cols-1 gap-[20px]">
