@@ -31,7 +31,10 @@ function BasketSingleCard({
       queryClient.invalidateQueries({ queryKey: ["basket"] });
       queryClient.invalidateQueries({ queryKey: ["novinki"] });
       queryClient.invalidateQueries({ queryKey: ["rasprodaja"] });
+      queryClient.invalidateQueries({ queryKey: ["aksii"] });
       queryClient.invalidateQueries({ queryKey: ["cardInfo"] });
+      queryClient.invalidateQueries({ queryKey: ["product"] });
+
     },
     onError: (err) => {
       errorNotification(err.message);
@@ -44,7 +47,9 @@ function BasketSingleCard({
       queryClient.invalidateQueries({ queryKey: ["basket"] });
       queryClient.invalidateQueries({ queryKey: ["cardInfo"] });
       queryClient.invalidateQueries({ queryKey: ["novinki"] });
+      queryClient.invalidateQueries({ queryKey: ["aksii"] });
       queryClient.invalidateQueries({ queryKey: ["rasprodaja"] });
+      queryClient.invalidateQueries({ queryKey: ["product"] });
       queryClient.invalidateQueries({ queryKey: ["cardInfo"] });
     },
   });
@@ -54,8 +59,10 @@ function BasketSingleCard({
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["basket"] });
       queryClient.invalidateQueries({ queryKey: ["novinki"] });
+      queryClient.invalidateQueries({ queryKey: ["aksii"] });
       queryClient.invalidateQueries({ queryKey: ["rasprodaja"] });
       queryClient.invalidateQueries({ queryKey: ["cardInfo"] });
+      queryClient.invalidateQueries({ queryKey: ["product"] });
       
     },
   });

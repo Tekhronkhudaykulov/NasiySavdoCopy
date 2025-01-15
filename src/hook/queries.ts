@@ -13,14 +13,22 @@ export const profileQuery = () =>
     refetchOnMount: true,
   });
 
-export const productQuery = () =>
-  useQuery({
-    queryKey: ["product"],
-    queryFn: async () => {
-      const { data } = await requests.product();
-      return data.data;
-    },
-  });
+  
+
+// export const productQuery = () =>
+//   useQuery({
+//     queryKey: ["product"],
+//     queryFn: async () => {
+//       const { data } = await requests.product();
+//       return data.data;
+//     },
+//   });
+
+
+export const productQuery = async () => {
+  const { data } = await requests.product();
+  return data.data;
+};
 
 export const categoryQuery = () =>
   useQuery({

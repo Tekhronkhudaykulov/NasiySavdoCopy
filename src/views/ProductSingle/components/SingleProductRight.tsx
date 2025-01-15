@@ -39,8 +39,7 @@ function SingleProductRight({ data, tarrifsItems }: any) {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["basket"] });
       queryClient.invalidateQueries({ queryKey: ["cardInfo"] });
-
-      navigate(APP_ROUTES.BASKET);
+      queryClient.invalidateQueries({ queryKey: ["product"] });
     },
   });
 
@@ -50,7 +49,7 @@ function SingleProductRight({ data, tarrifsItems }: any) {
       queryClient.invalidateQueries({ queryKey: ["basket"] });
       queryClient.invalidateQueries({ queryKey: ["detail" + data.id] });
       queryClient.invalidateQueries({ queryKey: ["favourites"] });
-      queryClient.invalidateQueries({ queryKey: ["novinki"] });
+      queryClient.invalidateQueries({ queryKey: ["product"] });
       queryClient.invalidateQueries({ queryKey: ["rasprodaja"] });
 
     },

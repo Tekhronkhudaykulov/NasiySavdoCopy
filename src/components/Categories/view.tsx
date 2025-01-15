@@ -5,7 +5,7 @@ import "./categories.scss";
 import { SelectArea } from "..";
 import { tags } from "../../hook/queries";
 
-const Categories = () => {
+const Categories = ({onClick} : any) => {
   const {data} = tags();
 
   console.log(data, 'data')
@@ -39,6 +39,7 @@ const Categories = () => {
             <Link className="block" to={""} key={idx}>
               <Button
                 type="link"
+                onClick={() => onClick(item.name_ru)} 
                 className="category-btn bg-buttonBg rounded-[10px] gap-[10px] hover:!bg-green hover:!text-darkGreen h-[40px] text-gray"
               >
                 <img

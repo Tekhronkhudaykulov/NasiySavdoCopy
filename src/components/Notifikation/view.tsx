@@ -9,6 +9,8 @@ export const successNotification = (title: any) => {
 };
 
 export const errorNotification = (des: any) => {
+  console.log(des, 'des');
+  
   notification.error({
     message: "",
     description: des,

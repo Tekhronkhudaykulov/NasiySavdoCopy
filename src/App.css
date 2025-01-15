@@ -188,3 +188,8 @@ input[type="number"]::-webkit-outer-spin-button {
     transform: translate(24px, 0);
   }
 }
+
+
+html, body {
+  scroll-behavior: smooth;
+}

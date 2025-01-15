@@ -23,7 +23,6 @@ interface CardProps {
 }
 
 const Card = ({ discount, setIsNumberModalOpen, prod }: CardProps) => {
-  console.log(prod, 'prod')
 
   const navigate = useNavigate()
 
@@ -63,6 +62,8 @@ const Card = ({ discount, setIsNumberModalOpen, prod }: CardProps) => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["basket"] });
       queryClient.invalidateQueries({ queryKey: ["rasprodaja"] });
+      queryClient.invalidateQueries({ queryKey: ["product"] });
+      queryClient.invalidateQueries({ queryKey: ["aksii"] });
       queryClient.invalidateQueries({ queryKey: ["novinki"] });
       queryClient.invalidateQueries({ queryKey: ["favourites"] });
       queryClient.invalidateQueries({ queryKey: ["cardInfo"] });
@@ -85,11 +86,19 @@ const Card = ({ discount, setIsNumberModalOpen, prod }: CardProps) => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["favourites"] });
       queryClient.invalidateQueries({ queryKey: ["rasprodaja"] });
+      queryClient.invalidateQueries({ queryKey: ["product"] });
       queryClient.invalidateQueries({ queryKey: ["novinki"] });
+      queryClient.invalidateQueries({ queryKey: ["aksii"] });
       queryClient.invalidateQueries({ queryKey: ["similar" + id] });
       queryClient.invalidateQueries({ queryKey: ["productViews"] });
       queryClient.invalidateQueries({ queryKey: ["search" + query] });
     },
+    onError: (res) => {
+      // errorNotification(res.message)
+      // @ts-ignore
+      const errors = res.response.data.errors;
+      setErrors(errors);
+    }
   });
 
   const handleAddToBasket = (productId: any) => {
@@ -151,7 +160,7 @@ const Card = ({ discount, setIsNumberModalOpen, prod }: CardProps) => {
         {/* Product Image */}
         <Link to={`${APP_ROUTES.PRODUCTSINGLE}/${prod?.id}`}>
           <img
-            className="w-full 2md:min-h-[235px] h-[235px] rounded-[10px]"
+            className="w-[80%]  object-contain 2md:min-h-[235px] h-[235px] rounded-[10px]"
             src={`${imgUrl}/${prod?.photo}`}
             alt="Product Image"
           />

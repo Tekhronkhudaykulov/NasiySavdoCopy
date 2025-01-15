@@ -62,7 +62,7 @@ const BasketOrderSummary: React.FC = () => {
   
 
   return (
-    <div className="border border-line h-max p-5 flex flex-col gap-[36px] rounded-2xl">
+    <div className="border border-line  h-max p-5 sticky top-[100px] flex flex-col gap-[36px] rounded-2xl">
       {/*  */}
       <div className="flex flex-col md:gap-3 gap-2">
         <h2 className="md:text-[20px] text-[18px] font-medium text-mainBlack">
