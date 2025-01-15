@@ -282,3 +282,15 @@ export const allClientCard = () =>
         return data.data;
       },
     });
+
+
+    export const productTariffs = (payload:any) =>
+      useQuery({
+        queryKey: ["prodTariffs" + payload],
+        queryFn: async () => {
+          const { data } = await requests.productTariffsFetch(payload);
+          return data.data;
+        },
+        enabled: !!payload
+      });
+

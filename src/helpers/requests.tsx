@@ -59,7 +59,9 @@ export const requests = {
 
  compareFetch: () => $api.get(`product/compares`),
 
-
+ productTariffsFetch:  (payload: number) => $api.get(`/product/tariffs?id=${payload}`),
+ 
+  
 
 
 

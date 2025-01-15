@@ -7,11 +7,12 @@ import SingleProductRight from "./components/SingleProductRight";
 import SingleProductLeft from "./components/SingleProductLeft";
 import ReviewProductPopUp from "./components/ReviewProductPopUp";
 import { useParams } from "react-router-dom";
-import { productDetail, productViews, similarProduct } from "../../hook/queries";
+import { productDetail, productTariffs, productViews, similarProduct } from "../../hook/queries";
 
 function ProductSingle() {
   const [aboutPopUp, setAboutPopUp] = useState(false);
   const [reviewPopUp, setReviewPoUp] = useState(false);
+
 
   useEffect(() => {
     if (aboutPopUp || reviewPopUp) {
@@ -30,7 +31,9 @@ function ProductSingle() {
 
   const {data: similarProdList} = similarProduct(id)
 
-  const {data: productViewsList} = productViews()
+  const {data: productViewsList} = productViews();
+
+  // const {data: productTariffsItems} = productTariffs(id)
 
   return (
     <>

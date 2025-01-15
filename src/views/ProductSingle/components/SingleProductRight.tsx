@@ -9,18 +9,25 @@ import {
 import AnorCard from "./AnorCard";
 import UzumCard from "./UzumCard.tsx";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { add, addFavourites, setCompare,  } from "../../../hook/queries.ts";
-import { useNavigate } from "react-router-dom";
+import { add, addFavourites, productTariffs, setCompare,  } from "../../../hook/queries.ts";
+import { useNavigate, useParams } from "react-router-dom";
 import { APP_ROUTES } from "../../../router/index.ts";
 import { tokenName } from "../../../helpers/api.tsx";
 import SendNum from "../../../modal/auth/SendNum.tsx";
 
-function SingleProductRight({ data }: any) {
+function SingleProductRight({ data, tarrifsItems }: any) {
+
+
+
+  
+
 
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [activeCard, setActiveCart] = useState(0);
   const [selected, setSelected] = useState<string>("6 мес");
+
+
   const durations = ["3 мес", "6 мес", "12 мес", "24 мес"];
 
   const [isNumberModalOpen, setIsNumberModalOpen] = useState(false);
@@ -191,7 +198,10 @@ function SingleProductRight({ data }: any) {
                     ? "bg-[rgb(2,115,115,.15)] text-darkGreen border-line"
                     : "text-txtSecondary2 border-line"
                 }`}
-                onClick={() => setSelected(duration)}
+                onClick={() => {
+                  setSelected(duration);
+                  
+                }}
               >
                 {duration}
               </button>
