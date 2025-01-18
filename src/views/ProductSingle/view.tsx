@@ -33,7 +33,9 @@ function ProductSingle() {
 
   const {data: productViewsList} = productViews();
 
-  // const {data: productTariffsItems} = productTariffs(id)
+  const {data: productTariffsItems} = productTariffs(id);
+
+  console.log(productTariffsItems, 'items')
 
   return (
     <>

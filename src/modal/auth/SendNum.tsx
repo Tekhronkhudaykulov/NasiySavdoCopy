@@ -18,7 +18,7 @@ const SendNum: React.FC<SendNumProps> = ({
 }: SendNumProps) => {
   const [phoneNumber, setPhoneNumber] = useState<string>("");
 
-  const { mutate } = useSendPhone();
+  const { mutate, isPending } = useSendPhone();
 
   const { setUserNumber } = authStore();
 
@@ -83,7 +83,7 @@ const SendNum: React.FC<SendNumProps> = ({
             className="!bg-darkGreen  !text-white w-full md:h-[56px] h-[46px] rounded-[8px] text-[14px] md:text-[16px] font-[500]"
             type="default"
           >
-            Получить код
+            {isPending ? "Loading..." : "Получить код"}
           </Button>
           <div className="flex justify-center md:mt-[100px] mt-[50px]">
             <p className="font-[500] text-[12px] text-gray max-w-[265px] text-center">
