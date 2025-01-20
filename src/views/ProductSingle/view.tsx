@@ -27,16 +27,14 @@ function ProductSingle() {
 
   const { id } = useParams();
 
+
   const { data } = productDetail(id);
 
   const {data: similarProdList} = similarProduct(id)
 
   const {data: productViewsList} = productViews();
 
-  const {data: productTariffsItems} = productTariffs(id);
-
-  console.log(productTariffsItems, 'items')
-
+ 
   return (
     <>
       <BreadCrumb items={[{ name: "Продукт название" }]} />
@@ -46,7 +44,7 @@ function ProductSingle() {
           setAboutPopUp={setAboutPopUp}
           setReviewPoUp={setReviewPoUp}
         />
-        <SingleProductRight data={data} />
+        <SingleProductRight  data={data} />
       </div>
       {aboutPopUp && <AboutProductPopUp setAboutPopUp={setAboutPopUp} item={data} />}
       {reviewPopUp && <ReviewProductPopUp setReviewPoUp={setReviewPoUp} />}

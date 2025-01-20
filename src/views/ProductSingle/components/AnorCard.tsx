@@ -4,12 +4,14 @@ function AnorCard({
   active,
   setActiveCart,
   tariffsName,
-  monthly_payment
+  monthly_payment, 
+  items
 }: {
   active: boolean;
   setActiveCart: any;
   tariffsName?: string,
-  monthly_payment?: string | number
+  monthly_payment?: string | number,
+  items?: any
 }) {
   return (
     <div
@@ -23,13 +25,13 @@ function AnorCard({
           {tariffsName}
         </span>
         <div className="flex justify-between items-center">
-          {/* <img
-            className="md:h-[18px] h-[16px] w-auto"
-            src={ASSETS.AnorBank}
+          <img
+            className="md:h-[30px] h-[16px] w-auto"
+            src={ASSETS.Logo}
             alt="anor bank"
-          /> */}
+          />
           <span className="text-mainBlack font-semibold md:text-[14px] text-[12px]">
-            {monthly_payment?.toLocaleString("RU-ru")} сум/мес
+            {items[0]?.monthly_payment?.toLocaleString("RU-ru")} сум/мес
           </span>
         </div>
       </div>

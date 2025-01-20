@@ -6,10 +6,15 @@ import { Button } from "antd";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 
-function ProfileInputs() {
+
+function ProfileAdress() {
   const { data } = profileQuery();
 
   const queryClient = useQueryClient();
+  
+  
+
+  
 
 
   const [payload, setPayload] = useState({
@@ -71,7 +76,6 @@ function ProfileInputs() {
         name="first_name"
         onChange={handleChange}
         value={payload.first_name}
-      
       />
       <input
         type="text"
@@ -131,4 +135,4 @@ function ProfileInputs() {
   );
 }
 
-export default ProfileInputs;
+export default ProfileAdress;

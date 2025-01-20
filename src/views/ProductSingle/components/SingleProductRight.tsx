@@ -15,7 +15,11 @@ import { APP_ROUTES } from "../../../router/index.ts";
 import { tokenName } from "../../../helpers/api.tsx";
 import SendNum from "../../../modal/auth/SendNum.tsx";
 
-function SingleProductRight({ data, tarrifsItems }: any) {
+function SingleProductRight({ data }: any) {
+
+  const {id} = useParams()
+
+  const {data: productTariffsItems} = productTariffs(id);
 
 
 
@@ -26,6 +30,18 @@ function SingleProductRight({ data, tarrifsItems }: any) {
   const queryClient = useQueryClient();
   const [activeCard, setActiveCart] = useState(0);
   const [selected, setSelected] = useState<string>("6 мес");
+
+  const [selectedTarrifs, setSelectedTarrifs] = useState<any>([]);
+
+  console.log(selectedTarrifs, "tarrifs");
+  
+
+  const handleClick = (index: any) => {
+    // setSelectedTarrifs(data[index].tarrifs);
+    setSelectedTarrifs(index);
+    
+  };
+
 
 
   const durations = ["3 мес", "6 мес", "12 мес", "24 мес"];
@@ -150,7 +166,7 @@ function SingleProductRight({ data, tarrifsItems }: any) {
               </span>
               <div className="flex items-center gap-x-[2px]">
                 <Star />
-                <p className="text-gray text-[12px] font-[500]">4.0</p>
+                {/* <p className="text-gray text-[12px] font-[500]">4.0</p> */}
               </div>
             </div>
           </div>
@@ -189,25 +205,27 @@ function SingleProductRight({ data, tarrifsItems }: any) {
         <h2 className="text-[20px] font-semibold">Рассрочка платежа:</h2>
         <div className="flex flex-col gap-4 rounded-[10px]">
           <div className="flex gap-2 items-center">
-            {durations.map((duration) => (
+            {productTariffsItems?.map((duration: any, ind: any) => (
               <button
-                key={duration}
+                key={ind}
                 className={`border-[1.5px] rounded-[8px] text-[12px] font-medium p-[9px_12px] ${
-                  selected === duration
+                  selected === ind
                     ? "bg-[rgb(2,115,115,.15)] text-darkGreen border-line"
                     : "text-txtSecondary2 border-line"
                 }`}
                 onClick={() => {
-                  setSelected(duration);
+                  setSelected(ind);
+                  handleClick(duration.tariffs)
                   
                 }}
               >
-                {duration}
+                {duration.duration}
               </button>
             ))}
           </div>
-          <AnorCard setActiveCart={setActiveCart} active={activeCard == 1} />
-          <UzumCard setActiveCart={setActiveCart} active={activeCard == 2} />
+          
+          <AnorCard items={selectedTarrifs} setActiveCart={setActiveCart} active={activeCard == 1} />
+          {/* <UzumCard setActiveCart={setActiveCart} active={activeCard == 2} /> */}
         </div>
       </div>
     </div>

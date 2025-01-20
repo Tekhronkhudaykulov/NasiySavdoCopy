@@ -7,6 +7,7 @@ import { initApp } from "../helpers/api";
 import Loader from "../components/PageLoader/Loader";
 import { ErrorProvider } from "../context/ErrorContext";
 import { ValueProvider } from "../context/ValueContext";
+import { FormProvider } from "../context/FormContext";
 
 const Router = () => {
   initApp();
@@ -16,6 +17,7 @@ const Router = () => {
       <Suspense fallback={<Loader />}>
         <ErrorProvider>
           <ValueProvider>
+          <FormProvider>
           <Routes>
           {_routes?.map(({ path, element: Component, childs }, idx) =>
             childs && childs?.length > 0 ? (
@@ -38,6 +40,7 @@ const Router = () => {
           )}
           <Route path="" />
         </Routes>
+          </FormProvider>
           </ValueProvider>
  
         </ErrorProvider>

@@ -14,7 +14,7 @@ function BasketForm() {
 
   return (
     <ErrorProvider>
- <FormProvider>
+
  <OrderContextProvider>
     {/* <ErrorList/> */}
     <BreadCrumb
@@ -36,7 +36,6 @@ function BasketForm() {
       </div>
     </section>
     </OrderContextProvider>
-  </FormProvider>
     </ErrorProvider>
    
   );

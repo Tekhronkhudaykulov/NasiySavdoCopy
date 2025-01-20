@@ -41,7 +41,8 @@ function BasketAddressForm() {
            
             onChange={(e: any) => {
               setRegionsId(e);
-              setFormData("cities", e)
+              
+              setFormData("user_address_id", e)
             }}
           >
             {citiesItems?.map((item: any, ind: any) => (

@@ -298,7 +298,7 @@ export const productTariffs = (payload:any) =>
     queryKey: ["prodTariffs" + payload],
     queryFn: async () => {
       const { data } = await requests.productTariffsFetch(payload);
-      return data.data;
+      return data;
     },
     enabled: !!payload
   });
