@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { tokenName } from "../../helpers/api";
 import { useQueryClient } from "@tanstack/react-query";
 import { profileQuery } from "../../hook/queries";
+import { FaHome } from "react-icons/fa";
 const Profile = () => {
   const { pathname } = useLocation();
   const [show, setShow] = useState(false);
@@ -25,6 +26,11 @@ const Profile = () => {
     {
       name: "Мои заказы",
       link: "/profile/profile_orders",
+      icon: <Orders />,
+    },
+    {
+      name: "Мой адресс",
+      link: "/profile/profile_adress",
       icon: <Orders />,
     },
     {

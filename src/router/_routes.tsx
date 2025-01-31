@@ -17,7 +17,9 @@ import {
   Compare,
   QuestionsAndAnswers,
   Vacancies,
-  Search
+  Search,
+  ProfileAdress,
+  AddNewAdress
 } from "../views";
 
 export const _routes = [
@@ -83,6 +85,14 @@ export const _routes = [
       {
         path: APP_ROUTES.PROFILE_ORDERS,
         element: ProfileOrders,
+      },
+      {
+        path: APP_ROUTES.PROFILE_ADRESS,
+        element: ProfileAdress,
+      },
+      {
+        path: APP_ROUTES.ADD_NEW_ADRESS,
+        element: AddNewAdress,
       },
       {
         path: APP_ROUTES.PROFILE_SALE,

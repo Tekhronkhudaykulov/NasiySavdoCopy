@@ -303,3 +303,20 @@ export const productTariffs = (payload:any) =>
     enabled: !!payload
   });
 
+
+  export const addAdress = async (payload:any) => {
+    const { data } = await requests.setAddAdressFetch(payload);
+    return data;
+  };
+
+
+
+
+export const adresList = () =>
+  useQuery({
+    queryKey: ["addressList"],
+    queryFn: async () => {
+      const { data } = await requests.addresListFetch();
+      return data.data;
+    },
+  });

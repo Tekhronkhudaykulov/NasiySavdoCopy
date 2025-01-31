@@ -11,6 +11,10 @@ const Favourite = lazy(() => import("./Favourite/view"));
 const Profile = lazy(() => import("./Profile/view"));
 const ProfileAccount = lazy(() => import("./Profile/view/ProfileAccount"));
 const ProfileOrders = lazy(() => import("./Profile/view/ProfileOrders"));
+const ProfileAdress = lazy(() => import("./Profile/view/ProfileAdresPage"));
+const AddNewAdress = lazy(() => import("./Profile/view/AddressPage"));
+
+
 const ProfileSale = lazy(() => import("./Profile/view/ProfileSale"));
 const Compare = lazy(() => import("./Compare/view"));
 const Vacancies = lazy(() => import("./Vacancies/view"));
@@ -39,5 +43,7 @@ export {
   Compare,
   QuestionsAndAnswers,
   Vacancies,
-  Search
+  Search,
+  ProfileAdress,
+  AddNewAdress
 };

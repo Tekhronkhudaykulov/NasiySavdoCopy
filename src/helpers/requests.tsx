@@ -60,6 +60,11 @@ export const requests = {
  compareFetch: () => $api.get(`product/compares`),
 
  productTariffsFetch:  (payload: number) => $api.get(`/product/tariffs?id=${payload}`),
+
+ setAddAdressFetch: (payload: any) => $api.post(`${API_URL}/user/add-address`,payload),
+
+ addresListFetch: () => $api.get(`user/addresses`),
+
  
   
 

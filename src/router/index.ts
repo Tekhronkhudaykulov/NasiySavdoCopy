@@ -14,5 +14,8 @@ export const APP_ROUTES = {
   PROFILE_SALE: "profile_sale",
   PROFILE_SALE_SINGLE: "profile_sale_single",
   PROFILE_PAYMENT: "profile_card",
-  SEARCH: "/search"
+  SEARCH: "/search",
+  PROFILE_ADRESS: "profile_adress",
+  ADD_NEW_ADRESS: "add_new_adress"
+
 };
