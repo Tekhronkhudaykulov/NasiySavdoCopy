@@ -3,12 +3,25 @@ import InputBasketForm from "../../../components/InputBasketForm/InputBasketForm
 import PhoneInput from "react-phone-input-2";
 import { useFormContext } from "../../../context/FormContext";
 import { profileQuery } from "../../../hook/queries";
+import { useEffect } from "react";
 
 function BasketOrderForm() {
   const { formData, setFormData } = useFormContext();
 
   const { data } = profileQuery();
 
+  const last_name = data?.client?.last_name;
+
+  const first_name = data?.client?.first_name
+
+
+  useEffect(() => {
+    setFormData("recipient_first_name", data?.client?.last_name || "");
+    setFormData("recipient_last_name", data?.client?.first_name || "");
+    setFormData("recipient_phone", data?.client?.phone || "");
+
+
+  }, [last_name, first_name]);
   
 
   return (
@@ -21,15 +34,20 @@ function BasketOrderForm() {
           <LabelBasketForm
             className="after:content-['*'] after:text-[#0078FF] after:ml-1"
             text={"Фамилия"}
+            
           />
-          <InputBasketForm className="text-mainBlack"  onChange={(e) => setFormData("recipient_first_name", e.target.value)} value={data?.last_name}/>
+         <InputBasketForm
+          className="text-mainBlack"
+          onChange={(e) => setFormData("recipient_first_name", e.target.value)}
+          value={data?.client?.last_name}
+        />
         </div>
         <div className="flex flex-col md:gap-3 gap-2">
           <LabelBasketForm
             className="after:content-['*'] after:text-[#0078FF] after:ml-1"
             text={"Имя"}
           />
-          <InputBasketForm className="text-mainBlack" value={data?.first_name} onChange={(e) => setFormData("recipient_last_name", e.target.value)}/>
+          <InputBasketForm className="text-mainBlack" value={data?.client?.first_name} onChange={(e) => setFormData("recipient_last_name", e.target.value)}/>
         </div>
       </div>
       <p className="text-txtSecondary text-[12px] max-w-[437px] my-5 leading-[1.5]">

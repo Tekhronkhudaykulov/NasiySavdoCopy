@@ -10,16 +10,18 @@ function CategLeft() {
 
   const {data} = filter(id);
 
-
   console.log(data, 'data')
  
   return (
     <div className="border border-line 2md:hidden h-max rounded-[12px] p-4 flex flex-col gap-[24px]">
       <CategLists />
       <CategPriceForm />
-      <CategColor />
-      <CategBrand title={"Бренд"} />
-      <CategBrand title={"Особенности"} />
+      {/* <CategColor /> */}
+      {data?.filter?.data?.map((item: any, ind: any) => (
+      <CategBrand title={item.name} items={item}/>
+      ))}
+      {/* <CategBrand title={"Бренд"} items={data}/> */}
+      {/* <CategBrand title={"Особенности"} /> */}
     </div>
   );
 }

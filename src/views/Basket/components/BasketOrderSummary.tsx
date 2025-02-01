@@ -127,7 +127,7 @@ const BasketOrderSummary: React.FC = () => {
             items?.map((item: any) => (
               <div className="flex justify-between items-center">
               <span className="md:text-[14px] text-[12px] text-txtSecondary">
-                Итого в Nasiya Savdo
+                Итого в {item.name}
               </span>
               <span className="text-mainBlack font-semibold md:text-[16px] text-[14px]">
               {item.installment_price?.toLocaleString("ru-RU")} uzs

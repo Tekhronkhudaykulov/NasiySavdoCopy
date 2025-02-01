@@ -19,6 +19,7 @@ function BasketAddressForm() {
  
   const {data: deliveryItems} = delivery();
 
+  const [active , setActive] = useState(undefined)
 
 
   const {data} = adresList();
@@ -35,8 +36,9 @@ function BasketAddressForm() {
             {data?.map((item: any, ind: any) => (
                <>
                 <div onClick={() => {
-                  setFormData("user_address_id", item.id)
-                }} className="flex items-center border-none gap-x-[10px] bg-buttonBg border-[1px] w-max px-[15px] py-[15px] rounded-[12px]">
+                  setFormData("user_address_id", item.id);
+                  setActive(ind)
+                }} className={`flex  items-center  gap-x-[10px] bg-buttonBg  w-max px-[15px]  py-[15px] rounded-[12px] ${active === ind ? "border-[1px] border-darkGreen": ""}`}>
                    <IoHomeOutline size={25}/>
                     <p className="text-[18px]">{item.address}</p>
                 </div>
