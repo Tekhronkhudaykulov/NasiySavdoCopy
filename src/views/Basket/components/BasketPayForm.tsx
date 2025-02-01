@@ -9,7 +9,6 @@ import { OrderContextItems } from "../../../context/OrderContext";
 
 function BasketPayForm() {
   const [isRadio, setIsRadio] = useState(0);
-  const [activeCard, setActiveCart] = useState(0);
   const [selected, setSelected] = useState<any>();
 
   const { formData, setFormData } = useFormContext();
@@ -29,14 +28,17 @@ function BasketPayForm() {
 
 
 
-  const durations = ["3 мес", "6 мес", "12 мес", "24 мес"];
 
   const {data: paymentTypeItems} = paymentType();
   const {data: tarrifItems} = tariffs();
 
+  
+
   const [selectedItems, setSelectedItems] = useState([]);
 
-  const { items, setItems, extraData, setExtraData } = OrderContextItems();
+  
+
+  const {  setItems,  setExtraData } = OrderContextItems();
 
   
 
@@ -101,9 +103,8 @@ function BasketPayForm() {
           </div>
           {selectedItems?.map((item: any, ind: any) => (
         <>
-    
-          <AnorCard setActiveCart={setActiveCart} active={activeCard == 1} tariffsName={item.name} monthly_payment={item.monthly_payment}/>
-          <div className="flex justify-between items-center">
+          <AnorCard items={item}/>
+          {/* <div className="flex justify-between items-center">
           <span className="text-[12px] font-medium text-txtSecondary">
             Оплата в месяц:
           </span>
@@ -129,7 +130,7 @@ function BasketPayForm() {
                 {item.installment_price?.toLocaleString("RU-ru")} сум/мес
               </span>
             </div>
-          </div>
+          </div> */}
         </>
           ))}
       

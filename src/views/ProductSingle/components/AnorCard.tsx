@@ -1,4 +1,5 @@
 import { ASSETS } from "../../../assets/img/assets";
+import { imgUrl } from "../../../helpers/api";
 
 function AnorCard({
   active,
@@ -7,8 +8,8 @@ function AnorCard({
   monthly_payment, 
   items
 }: {
-  active: boolean;
-  setActiveCart: any;
+  active?: boolean;
+  setActiveCart?: any;
   tariffsName?: string,
   monthly_payment?: string | number,
   items?: any
@@ -22,16 +23,16 @@ function AnorCard({
     >
       <div className="flex flex-col gap-3">
         <span className="text-[12px] text-txtSecondary2 font-medium">
-          {tariffsName}
+          {items.name}
         </span>
         <div className="flex justify-between items-center">
           <img
-            className="md:h-[30px] h-[16px] w-auto"
-            src={ASSETS.Logo}
+            className="h-[50px] w-[50px]"
+            src={`${imgUrl}/${items.logo}`}
             alt="anor bank"
           />
           <span className="text-mainBlack font-semibold md:text-[14px] text-[12px]">
-            {items[0]?.monthly_payment?.toLocaleString("RU-ru")} сум/мес
+            {items?.monthly_payment?.toLocaleString("RU-ru")} сум/мес
           </span>
         </div>
       </div>

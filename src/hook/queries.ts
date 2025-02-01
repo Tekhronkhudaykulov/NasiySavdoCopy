@@ -311,6 +311,18 @@ export const productTariffs = (payload:any) =>
 
 
 
+export const filter = (payload:any) =>
+  useQuery({
+    queryKey: ["filter" + payload],
+    queryFn: async () => {
+      const { data } = await requests.filterFetch(payload);
+      return data;
+    },
+    enabled: !!payload
+  });
+
+
+
 
 export const adresList = () =>
   useQuery({

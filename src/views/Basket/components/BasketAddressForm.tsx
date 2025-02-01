@@ -14,20 +14,12 @@ function BasketAddressForm() {
 
   const { errors, setErrors } = useErrorContext();
 
-
-  
-
-
-  
   const [isChecked, setIsChecked] = useState(0);
 
  
   const {data: deliveryItems} = delivery();
-  const {data: citiesItems} = cities();
 
-  const [regionsId, setRegionsId] = useState()
 
-  const {data: regionsItems} = regions(regionsId);
 
   const {data} = adresList();
   
@@ -35,16 +27,16 @@ function BasketAddressForm() {
 
   return (
     <div className="border border-line rounded-2xl p-[20px]">
-      {/* <h2 className="md:text-[24px] text-[18px] font-semibold">
-         Aдрес доставки:
-      </h2> */}
-      <LabelBasketForm text={"Aдрес доставки"} />
-
+      <h2 className="md:text-[24px] text-[18px] font-semibold">
+        Способ получения и адрес доставки:
+      </h2>
       <div className="mt-[24px] flex flex-col gap-[24px] max-w-[420px]">
-      <div className="grid lg:flex md:grid-cols-2 xl:gap-x-[14px] gap-x-[10px] gap-y-[16px] ">
+        <div className="grid  lg:flex md:grid-cols-2 xl:gap-x-[14px] gap-x-[10px] gap-y-[16px] ">
             {data?.map((item: any, ind: any) => (
                <>
-                <div className="flex items-center border-none gap-x-[10px] bg-buttonBg border-[1px] w-max px-[15px] py-[15px] rounded-[12px]">
+                <div onClick={() => {
+                  setFormData("user_address_id", item.id)
+                }} className="flex items-center border-none gap-x-[10px] bg-buttonBg border-[1px] w-max px-[15px] py-[15px] rounded-[12px]">
                    <IoHomeOutline size={25}/>
                     <p className="text-[18px]">{item.address}</p>
                 </div>

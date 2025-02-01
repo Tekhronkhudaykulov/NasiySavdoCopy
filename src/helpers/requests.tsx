@@ -65,6 +65,9 @@ export const requests = {
 
  addresListFetch: () => $api.get(`user/addresses`),
 
+ filterFetch: (payload: any) => $api.get(`${API_URL}/category/filter?category_id=${payload}`),
+
+
  
   
 
