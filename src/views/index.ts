@@ -1,6 +1,9 @@
 import { lazy } from "react";
 
 const Home = lazy(() => import("./Home/view"));
+const AllProd = lazy(() => import("./AllProd/view"));
+const NewProd = lazy(() => import("./NewProd/view"));
+
 const CategoryPage = lazy(() => import("./Category/view"));
 const ProductSingle = lazy(() => import("./ProductSingle/view"));
 const Basket = lazy(() => import("./Basket/Basket"));
@@ -45,5 +48,7 @@ export {
   Vacancies,
   Search,
   ProfileAdress,
-  AddNewAdress
+  AddNewAdress,
+  AllProd,
+  NewProd
 };

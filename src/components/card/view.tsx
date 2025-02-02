@@ -39,8 +39,8 @@ const Card = ({ discount, setIsNumberModalOpen, prod }: CardProps) => {
 
 
 
-  const { data: newProd } = productByTagQuery("novinki");
-  const { data: saleProd } = productByTagQuery("rasprodaja");
+  const { data: newProd } = productByTagQuery("novinki", 1);
+  const { data: saleProd } = productByTagQuery("rasprodaja", 1);
 
 
 
@@ -62,9 +62,9 @@ const Card = ({ discount, setIsNumberModalOpen, prod }: CardProps) => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["basket"] });
       queryClient.invalidateQueries({ queryKey: ["rasprodaja"] });
-      queryClient.invalidateQueries({ queryKey: ["product"] });
+      queryClient.invalidateQueries({ queryKey: ["productQuery", 1] });
       queryClient.invalidateQueries({ queryKey: ["aksii"] });
-      queryClient.invalidateQueries({ queryKey: ["novinki"] });
+      queryClient.invalidateQueries({ queryKey: ["productByTag", "novinki", 1] });
       queryClient.invalidateQueries({ queryKey: ["favourites"] });
       queryClient.invalidateQueries({ queryKey: ["cardInfo"] });
       queryClient.invalidateQueries({ queryKey: ["similar" + id] });

@@ -39,7 +39,10 @@ const Categories = ({onClick} : any) => {
             <Link className="block" to={""} key={idx}>
               <Button
                 type="link"
-                onClick={() => onClick(item.name_ru)} 
+                onClick={() => {
+                  onClick(item.name_ru);
+                  
+                }} 
                 className="category-btn bg-buttonBg rounded-[10px] gap-[10px] hover:!bg-green hover:!text-darkGreen h-[40px] text-gray"
               >
                 <img

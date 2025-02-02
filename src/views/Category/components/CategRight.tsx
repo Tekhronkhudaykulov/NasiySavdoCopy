@@ -55,6 +55,8 @@ console.log(categoryItems,'asfnmlkasnflksnfla');
               onChange={(page) => {
                 setSearchParams({ page: String(page) });
               }}
+              showSizeChanger={false}
+
             />
     </div>
   );
