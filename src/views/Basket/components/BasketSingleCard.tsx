@@ -4,7 +4,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { FiTrash2 } from "react-icons/fi";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { add, minus, productByTagQuery, remove } from "../../../hook/queries";
+import { add, minus, productByTagQuery, productQuery, remove } from "../../../hook/queries";
 import { errorNotification } from "../../../components/Notifikation/view";
 import { imgUrl } from "../../../helpers/api";
 function BasketSingleCard({
@@ -21,19 +21,27 @@ function BasketSingleCard({
 }) {
   const queryClient = useQueryClient();
 
-  const { data: newProd } = productByTagQuery("novinki");
+  const { data: newProd } = productByTagQuery("novinki", 1);
 
-  const { data: saleProd } = productByTagQuery("rasprodaja");
+  const { data: saleProd } = productByTagQuery("rasprodaja", 1);
+
+  const { data: product } = productQuery(1);
+
+
+
 
   const addMutation = useMutation({
     mutationFn: add,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["basket"] });
-      queryClient.invalidateQueries({ queryKey: ["novinki"] });
+      queryClient.invalidateQueries({ queryKey: ["productByTag", "novinki", 1] });
+      queryClient.invalidateQueries({ queryKey: ["productQuery"] });
       queryClient.invalidateQueries({ queryKey: ["rasprodaja"] });
       queryClient.invalidateQueries({ queryKey: ["aksii"] });
       queryClient.invalidateQueries({ queryKey: ["cardInfo"] });
-      queryClient.invalidateQueries({ queryKey: ["product"] });
+
+
+
 
     },
     onError: (err) => {
@@ -46,10 +54,14 @@ function BasketSingleCard({
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["basket"] });
       queryClient.invalidateQueries({ queryKey: ["cardInfo"] });
-      queryClient.invalidateQueries({ queryKey: ["novinki"] });
+      queryClient.invalidateQueries({ queryKey: ["productByTag", "novinki", 1] });
+      queryClient.invalidateQueries({ queryKey: ["productQuery"] });
+
       queryClient.invalidateQueries({ queryKey: ["aksii"] });
       queryClient.invalidateQueries({ queryKey: ["rasprodaja"] });
-      queryClient.invalidateQueries({ queryKey: ["product"] });
+
+
+
       queryClient.invalidateQueries({ queryKey: ["cardInfo"] });
     },
   });
@@ -58,11 +70,15 @@ function BasketSingleCard({
     mutationFn: remove,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["basket"] });
-      queryClient.invalidateQueries({ queryKey: ["novinki"] });
+      queryClient.invalidateQueries({ queryKey: ["productByTag", "novinki", 1] });
+      queryClient.invalidateQueries({ queryKey: ["productQuery"] });
+
       queryClient.invalidateQueries({ queryKey: ["aksii"] });
       queryClient.invalidateQueries({ queryKey: ["rasprodaja"] });
       queryClient.invalidateQueries({ queryKey: ["cardInfo"] });
-      queryClient.invalidateQueries({ queryKey: ["product"] });
+
+
+
       
     },
   });

@@ -62,7 +62,8 @@ const Card = ({ discount, setIsNumberModalOpen, prod }: CardProps) => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["basket"] });
       queryClient.invalidateQueries({ queryKey: ["rasprodaja"] });
-      queryClient.invalidateQueries({ queryKey: ["productQuery", 1] });
+      queryClient.invalidateQueries({ queryKey: ["productQuery"] });
+
       queryClient.invalidateQueries({ queryKey: ["aksii"] });
       queryClient.invalidateQueries({ queryKey: ["productByTag", "novinki", 1] });
       queryClient.invalidateQueries({ queryKey: ["favourites"] });
@@ -86,8 +87,12 @@ const Card = ({ discount, setIsNumberModalOpen, prod }: CardProps) => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["favourites"] });
       queryClient.invalidateQueries({ queryKey: ["rasprodaja"] });
-      queryClient.invalidateQueries({ queryKey: ["product"] });
-      queryClient.invalidateQueries({ queryKey: ["novinki"] });
+      queryClient.invalidateQueries({ queryKey: ["productQuery"] });
+
+
+
+      queryClient.invalidateQueries({ queryKey: ["productByTag", "novinki", 1] });
+
       queryClient.invalidateQueries({ queryKey: ["aksii"] });
       queryClient.invalidateQueries({ queryKey: ["similar" + id] });
       queryClient.invalidateQueries({ queryKey: ["productViews"] });

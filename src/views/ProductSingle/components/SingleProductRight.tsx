@@ -56,7 +56,12 @@ function SingleProductRight({ data }: any) {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["basket"] });
       queryClient.invalidateQueries({ queryKey: ["cardInfo"] });
-      queryClient.invalidateQueries({ queryKey: ["product"] });
+
+      
+      queryClient.invalidateQueries({ queryKey: ["productQuery"] });
+      queryClient.invalidateQueries({ queryKey: ["productByTag", "novinki", 1] });
+
+
     },
   });
 
@@ -66,7 +71,9 @@ function SingleProductRight({ data }: any) {
       queryClient.invalidateQueries({ queryKey: ["basket"] });
       queryClient.invalidateQueries({ queryKey: ["detail" + data.id] });
       queryClient.invalidateQueries({ queryKey: ["favourites"] });
-      queryClient.invalidateQueries({ queryKey: ["product"] });
+      queryClient.invalidateQueries({ queryKey: ["productQuery"] });
+      queryClient.invalidateQueries({ queryKey: ["productByTag", "novinki", 1] });
+
       queryClient.invalidateQueries({ queryKey: ["rasprodaja"] });
 
     },
