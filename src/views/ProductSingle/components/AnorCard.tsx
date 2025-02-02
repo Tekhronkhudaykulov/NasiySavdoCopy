@@ -6,7 +6,7 @@ function AnorCard({
   setActiveCart,
   tariffsName,
   monthly_payment, 
-  items
+  items,
 }: {
   active?: boolean;
   setActiveCart?: any;
@@ -18,7 +18,7 @@ function AnorCard({
     <div
       onClick={() => setActiveCart(1)}
       className={`${
-        active ? " border-darkGreen" : "bg-secondary border-transparent"
+         "bg-secondary border-transparent"
       }  p-4 rounded-[10px] flex border-[1.5px] flex-col gap-4 cursor-pointer  `}
     >
       <div className="flex flex-col gap-3">
