@@ -21,10 +21,11 @@ function BasketAddressForm() {
 
   const [active, setActive] = useState(undefined);
 
-  const { data } = adresList();
+  const {data} = adresList();
+
 
   const navigate = useNavigate();
-  const [isChoosen, setIsChoosen] = useState<number>(data.id);
+  const [isChoosen, setIsChoosen] = useState<number>(data?.id);
   return (
     <div className="border border-line rounded-2xl p-[20px]">
       <div className="flex justify-between items-center">
@@ -43,14 +44,16 @@ function BasketAddressForm() {
       </div>
       <div className="mt-[24px] flex flex-col gap-[24px]">
         <div className="grid grid-cols-2 gap-[12px]">
-          {data?.map((item: any, ind: any) => (
+        {data?.map((item: any, ind: any) => (
+          item.street !== null && item.street !== undefined ? (
             <AddressCard
               item={item}
               key={ind}
               isChoosen={isChoosen}
               setIsChoosen={setIsChoosen}
             />
-          ))}
+          ) : null
+        ))}
         </div>
         {/* <div className="flex flex-col md:gap-3 gap-2">
           <LabelBasketForm text={"Город доставки"} />

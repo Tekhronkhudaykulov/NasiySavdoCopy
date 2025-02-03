@@ -44,11 +44,16 @@ const ProfileAdresPage = () => {
             </div>
           ))} */}
         <div className="grid grid-cols-2 gap-[12px]">
-          {data?.map((item: any, i: number) => {
-            return (
-              <AddressCard item={item} key={i} isChoosen={isChoosen} setIsChoosen={setIsChoosen} />
-            );
-          })}
+        {data?.map((item: any, ind: any) => (
+          item.street !== null && item.street !== undefined ? (
+            <AddressCard
+              item={item}
+              key={ind}
+              isChoosen={isChoosen}
+              setIsChoosen={setIsChoosen}
+            />
+          ) : null
+        ))}
         </div>
       </div>
     </>

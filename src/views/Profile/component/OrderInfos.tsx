@@ -26,56 +26,56 @@ function OrderInfos({ order }: { order: Order }) {
         <p className={`${pClass}`}>Статус</p>
         <span
           className={`${
-            order.status === "delivered"
+            order?.status === "delivered"
               ? "text-darkGreen bg-green"
               : "text-[#2E80CD] bg-[#E8F1FF]"
           } text-[12px] p-[5px_16px] rounded-[4px] w-max`}
         >
-          {order.status === "delivered" ? "Доставлено" : "В процессе доставки"}
+          {order?.status === "delivered" ? "Доставлено" : "В процессе доставки"}
         </span>
       </div>
       <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4">
         <p className={`${pClass}`}>Дата заказа</p>
-        <span className={`${spanClass}`}>{order.date}</span>
+        <span className={`${spanClass}`}>{order?.date}</span>
       </div>
-      {order.sentDate && (
+      {order?.sentDate && (
         <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4">
           <p className={`${pClass}`}>Дата отправки</p>
-          <span className={`${spanClass}`}>{order.sentDate}</span>
+          <span className={`${spanClass}`}>{order?.sentDate}</span>
         </div>
       )}
-      {order.senderCity && (
+      {order?.senderCity && (
         <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4">
           <p className={`${pClass}`}>Город отправителя</p>
-          <span className={`${spanClass}`}>{order.senderCity}</span>
+          <span className={`${spanClass}`}>{order?.senderCity}</span>
         </div>
       )}
-      {order.senderLocation && (
+      {order?.senderLocation && (
         <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4">
           <p className={`${pClass}`}>Место отправки</p>
-          <span className={`${spanClass}`}>{order.senderLocation}</span>
+          <span className={`${spanClass}`}>{order?.senderLocation}</span>
         </div>
       )}
-      {order.productWeight && (
+      {order?.productWeight && (
         <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4">
           <p className={`${pClass}`}>Вес товара</p>
-          <span className={`${spanClass}`}>{order.productWeight}</span>
+          <span className={`${spanClass}`}>{order?.productWeight}</span>
         </div>
       )}
-      {order.productVolume && (
+      {order?.productVolume && (
         <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4">
           <p className={`${pClass}`}>Обьем товара</p>
-          <span className={`${spanClass}`}>{order.productVolume}</span>
+          <span className={`${spanClass}`}>{order?.productVolume}</span>
         </div>
       )}
       <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4">
         <p className={`${pClass}`}>Место доставки</p>
-        <span className={`${spanClass}`}>{order.address}</span>
+        <span className={`${spanClass}`}>{order?.address}</span>
       </div>
-      {order.shipmentDate && (
+      {order?.shipmentDate && (
         <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4">
           <p className={`${pClass}`}>Дата доставки</p>
-          <span className={`${spanClass}`}>{order.shipmentDate}</span>
+          <span className={`${spanClass}`}>{order?.shipmentDate}</span>
         </div>
       )}
       <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4">
@@ -83,7 +83,7 @@ function OrderInfos({ order }: { order: Order }) {
         
         <span className={`${spanClass}`}>{
         // @ts-ignore
-        order.price?.toLocaleString("ru-RU")} сум</span>
+        order?.price?.toLocaleString("ru-RU")} сум</span>
       </div>
       <button className={`${pClass} underline underline-offset-4 w-max`}>
         Электронный чек
