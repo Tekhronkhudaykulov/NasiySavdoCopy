@@ -11,11 +11,11 @@ import { FaHome } from "react-icons/fa";
 const Profile = () => {
   const { pathname } = useLocation();
   const [show, setShow] = useState(false);
+console.log(pathname);
 
   const queryClient = useQueryClient();
 
-    const { data } = profileQuery();
-  
+  const { data } = profileQuery();
 
   const profileList = [
     {
@@ -64,7 +64,7 @@ const Profile = () => {
         />
         <div className="grid xl:grid-cols-[320px_1fr] mt-5 grid-cols-[280px_1fr] 2md:grid-cols-1 gap-5 mb-[100px]">
           <div
-            className={`border-line border transition-transform duration-300 rounded-[24px] max-h-[385px] xl:p-[24px] p-5 2md:fixed bg-white sticky top-[90px] 2md:left-[0px] 2md:top-0 2md:rounded-none 2md:h-full 2md:z-[11] 2md:max-h-full 2md:pt-[80px] ${
+            className={`border-line border transition-transform duration-300 rounded-[24px] max-h-max xl:p-[24px] p-5 2md:fixed bg-white sticky top-[90px] 2md:left-[0px] 2md:top-0 2md:rounded-none 2md:h-full 2md:z-[11] 2md:max-h-full 2md:pt-[80px] ${
               show ? "2md:translate-x-[0%]" : "2md:translate-x-[-100%]"
             }`}
           >
@@ -83,9 +83,9 @@ const Profile = () => {
                 <Ava />
               </div>
               {data?.client?.first_name && (
-                  <p className="xl:text-[16px] text-[14px] font-[500] text-[#212121]">
-                    {data?.client?.first_name}
-                  </p>
+                <p className="xl:text-[16px] text-[14px] font-[500] text-[#212121]">
+                  {data?.client?.first_name}
+                </p>
               )}
             </div>
             {profileList.map((item, idx) => {
@@ -103,7 +103,7 @@ const Profile = () => {
                   onClick={() => {
                     if (item.name === "Выйти из системы") {
                       localStorage.clear();
-                      queryClient.clear(); 
+                      queryClient.clear();
                     }
                   }}
                 >
