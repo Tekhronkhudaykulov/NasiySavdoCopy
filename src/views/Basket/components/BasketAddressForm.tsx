@@ -45,14 +45,16 @@ function BasketAddressForm() {
       </div>
       <div className="mt-[24px] flex flex-col gap-[24px]">
         <div className="grid grid-cols-2 gap-[12px]">
-          {data?.map((item: any, ind: any) => (
+        {data?.map((item: any, ind: any) => (
+          item.street !== null && item.street !== undefined ? (
             <AddressCard
               item={item}
               key={ind}
               isChoosen={isChoosen}
               setIsChoosen={setIsChoosen}
             />
-          ))}
+          ) : null
+        ))}
         </div>
         {/* <div className="flex flex-col md:gap-3 gap-2">
           <LabelBasketForm text={"Город доставки"} />

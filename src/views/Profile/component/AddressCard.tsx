@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useFormContext } from "../../../context/FormContext";
 
 type Props = {
   isChoosen: any;
@@ -7,22 +8,31 @@ type Props = {
 };
 
 function AddressCard({ isChoosen, setIsChoosen, item }: Props) {
+
+  console.log(item, "itemProd")
   const [showInfo, setShowInfo] = useState(false);
+
+  const { formData, setFormData } = useFormContext();
+  
   return (
     <div
       onClick={() => {
         setIsChoosen(item.id);
+        setFormData("user_address_id", item.id);
       }}
       className={`flex items-center relative bg-[#f8fafc] border border-[#e6eaf0] select-none ${isChoosen == item.id ? "cursor-default" : "cursor-pointer"}`}
     >
       <div className="flex justify-between items-center gap-1 w-full min-h-[72px] p-[12px]">
         <div className="flex flex-col gap-[2px] w-full">
           <div className="text-[15px] leading-[18px] font-medium">
-            Тверская улица дом 9с5 кв 22
+            {`Ул ${item.street && item.street}`} {`Дом ${item.house_number && item.home}`} {`Кв ${item.house_number}`}
           </div>
+          {item.region && (
           <div className="text-[15px] leading-[18px] font-normal opacity-[.5]">
-            Москва г, Россия, 125009
-          </div>
+           {item.region.name}
+          </div> 
+          )}
+       
         </div>
         <label className="flex items-center relative cursor-pointer">
           <input type="radio" className="opacity-0 absolute" />
