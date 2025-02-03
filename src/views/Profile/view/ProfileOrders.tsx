@@ -24,7 +24,7 @@ const ProfileOrders = () => {
   return (
     <div>
       <MyOrdersTabs activeTab={activeTab} setActiveTab={setActiveTab} />
-      {/* {orderList.length > 0 ? ( 
+      {orderList?.length > 0 ? ( 
         orderList.map((order: any, index: any) => (
           <OrderInfoCard key={index} order={order} />
         ))
@@ -34,7 +34,7 @@ const ProfileOrders = () => {
           texts="Чтобы отслеживать статус заказа, нужно его оформить"
           img={EmptyOrder}
         />
-      )} */}
+      )}
     </div>
   );
 };
