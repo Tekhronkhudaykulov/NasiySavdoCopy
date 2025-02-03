@@ -22,6 +22,8 @@ function BasketAddressForm() {
   const [active, setActive] = useState(undefined);
 
   const { data } = adresList();
+  if (!data) return;
+  console.log(data);
 
   const navigate = useNavigate();
   const [isChoosen, setIsChoosen] = useState<number>(data?.id || 1);
