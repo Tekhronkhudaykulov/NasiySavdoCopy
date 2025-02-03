@@ -10,17 +10,21 @@ import axios from "axios";
 function CategRight() {
   const [searchParams, setSearchParams] = useSearchParams();
   const page = searchParams.get("page") || 1;
-
+  const categId = searchParams.get("categId");
+  const subCategId = searchParams.get("subCategId");
   const { id } = useParams();
 
   const { data: categoryData } = productByCategory(id);
 
   const [categoryItems, setCategoryItems] = useState(null);
+  console.log(
+    `https://api.nasiyasavdo.uz/api/product/by-category?id=${subCategId || categId}&page=${page}`
+  );
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const url = `https://api.nasiyasavdo.uz/api/product/by-category?id=${id}&page=${page}`;
+        const url = `https://api.nasiyasavdo.uz/api/product/by-category?id=${subCategId || categId}&page=${page}`;
         const response = await axios.get(url);
         setCategoryItems(response.data.data);
       } catch (error) {
@@ -28,8 +32,7 @@ function CategRight() {
       }
     };
     fetchProducts();
-  }, [id, page]);
-
+  }, [id, page, categId, subCategId]);
 
   return (
     <div className="flex flex-col gap-[36px] overflow-hidden">

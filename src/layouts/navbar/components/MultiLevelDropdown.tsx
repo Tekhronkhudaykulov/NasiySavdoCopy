@@ -65,6 +65,7 @@ const MultiLevelDropdown = () => {
                       subCateg.subcategories &&
                       subCateg.subcategories.length > 0
                     }
+                    activeCategory={data[activeCategory]?.id}
                     active={index === activeSubCategory}
                     subCateg={subCateg}
                   />
@@ -83,6 +84,9 @@ const MultiLevelDropdown = () => {
                     onMouseEnter={() => setActiveSubSubCategory(index)}
                   >
                     <SubCateg
+                      activeCategory={
+                        data[activeCategory]?.childs?.[activeSubCategory]?.id
+                      }
                       index={subCateg.id}
                       activeArrow={
                         subCateg.subcategories &&

@@ -5,7 +5,12 @@ import SortMobileFilter from "./SortMobileFilter";
 import ColorFilterMobile from "./ColorFilterMobile";
 import PriceFilterMobile from "./PriceFilterMobile";
 import { MobileSearchIcon } from "../../../assets/icon";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import {
+  useLocation,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
 import { subCategory } from "../../../hook/queries";
 import { APP_ROUTES } from "../../../router";
 const buttonData = [
@@ -18,8 +23,8 @@ const buttonData = [
   "Сетевые зарядные устройства",
 ];
 
-function CategRightHead({product}: any) {
-
+function CategRightHead({ product }: any) {
+  const [searchParams] = useSearchParams();
 
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [showFilter, setShowFilter] = useState(false);
@@ -27,13 +32,14 @@ function CategRightHead({product}: any) {
   const [isAtEnd, setIsAtEnd] = useState(false);
 
   const location = useLocation();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const categId = searchParams.get("categId");
+  const subCategId = searchParams.get("subCategId");
+  const { id } = useParams();
 
-  const {id } = useParams()
+  const { data: subCategoryItems } = subCategory(categId);
 
-  const {data: subCategoryItems} = subCategory(id)
-
-  const [isCategory, setIsCategory] = useState("")
+  const [isCategory, setIsCategory] = useState("");
 
   const handleScrollLeft = () => {
     if (scrollContainerRef.current) {
@@ -73,7 +79,7 @@ function CategRightHead({product}: any) {
 
   useEffect(() => {
     if (location.state) {
-      setIsCategory(location.state)
+      setIsCategory(location.state);
     }
   }, [location]);
 
@@ -94,7 +100,7 @@ function CategRightHead({product}: any) {
           <h1 className="text-mainBlack xl:text-[24px] text-[20px] 2md:text-[16px] font-semibold">
             {
               // @ts-ignore
-            isCategory?.selectedCategory
+              isCategory?.selectedCategory
             }
           </h1>
           <span className="text-txtSecondary2 text-[14px] 2md:text-[12px]">
@@ -153,42 +159,44 @@ function CategRightHead({product}: any) {
           </button>
         </div>
       </div>
-      <div className="relative flex items-center">
-        <div
-          ref={scrollContainerRef}
-          className="flex gap-[8px] overflow-auto categScroll no-scrollbar flex-1"
-        >
-          {subCategoryItems?.map((item: any, idx: any) => (
-            <button
-              key={idx}
-              onClick={() => {
-                navigate(`${APP_ROUTES.CATEGORY}/${item.id}`)
-              }}
-              className="md:p-[10px_12px] p-[8px_10px] md:text-[16px] text-[14px] flex-shrink-0 rounded-[8px] bg-buttonBg text-mainBlack font-medium"
-            >
-              {item.name}
-            </button>
-          ))}
+      {!subCategId && (
+        <div className="relative flex items-center">
+          <div
+            ref={scrollContainerRef}
+            className="flex gap-[8px] overflow-auto categScroll no-scrollbar flex-1"
+          >
+            {subCategoryItems?.map((item: any, idx: any) => (
+              <button
+                key={idx}
+                onClick={() => {
+                  navigate(`${APP_ROUTES.CATEGORY}/${item.id}`);
+                }}
+                className="md:p-[10px_12px] p-[8px_10px] md:text-[16px] text-[14px] flex-shrink-0 rounded-[8px] bg-buttonBg text-mainBlack font-medium"
+              >
+                {item.name}
+              </button>
+            ))}
+          </div>
+          <button
+            onClick={handleScrollLeft}
+            className={`text-white rounded-full 2md:hidden top-[50%] translate-y-[-50%] absolute left-0 w-[32px] aspect-square grid place-content-center bg-mainBlack ${
+              isAtStart ? "hidden" : ""
+            }`}
+            disabled={isAtStart}
+          >
+            <FaChevronLeft />
+          </button>
+          <button
+            onClick={handleScrollRight}
+            className={`text-white rounded-full 2md:hidden top-[50%] translate-y-[-50%] absolute right-0 w-[32px] aspect-square grid place-content-center bg-mainBlack ${
+              isAtEnd ? "hidden" : ""
+            }`}
+            disabled={isAtEnd}
+          >
+            <FaChevronRight />
+          </button>
         </div>
-        <button
-          onClick={handleScrollLeft}
-          className={`text-white rounded-full 2md:hidden top-[50%] translate-y-[-50%] absolute left-0 w-[32px] aspect-square grid place-content-center bg-mainBlack ${
-            isAtStart ? "hidden" : ""
-          }`}
-          disabled={isAtStart}
-        >
-          <FaChevronLeft />
-        </button>
-        <button
-          onClick={handleScrollRight}
-          className={`text-white rounded-full 2md:hidden top-[50%] translate-y-[-50%] absolute right-0 w-[32px] aspect-square grid place-content-center bg-mainBlack ${
-            isAtEnd ? "hidden" : ""
-          }`}
-          disabled={isAtEnd}
-        >
-          <FaChevronRight />
-        </button>
-      </div>
+      )}
       {showFilter && (
         <div className="fixed inset-0 h-screen overflow-auto categScroll flex flex-col bg-white z-[200] p-4">
           <div className="flex justify-between pb-5">

@@ -16,7 +16,7 @@ function MainCateg({
 }) {
   return (
     <Link
-      to={`${APP_ROUTES.CATEGORY}/${index}`} state={{ selectedCategory: categ.name }}
+      to={`${APP_ROUTES.CATEGORY}?categId=${index}`} state={{ selectedCategory: categ.name }}
       className={`${
         active ? "bg-buttonBg text-mainBlack" : "text-txtSecondary2"
       } flex items-center py-[5px] pr-[10px] pl-1 rounded-[10px] gap-3 cursor-pointer`}
