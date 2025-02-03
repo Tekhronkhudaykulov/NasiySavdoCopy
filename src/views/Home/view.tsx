@@ -2,17 +2,16 @@ import { useQuery } from "@tanstack/react-query";
 import { Banner, Categories } from "../../components";
 import { cardInfo, getFavouriteList, productByTagQuery, productQuery } from "../../hook/queries";
 import { AdvertisingSection, ProductsSection } from "../../sections";
-import { errorSlice } from "../../store";
-import { useEffect, useRef } from "react";
-import { tokenName } from "../../helpers/api";
-import { useErrorContext } from "../../context/ErrorContext";
-import { errorNotification } from "../../components/Notifikation/view";
+
 import ErrorList from "../../components/ErrorList/ErrorList";
+import { Button } from "antd";
+import { useNavigate } from "react-router-dom";
+import { APP_ROUTES } from "../../router";
 
 const Home = () => {
-  const { data: newProd } = productByTagQuery("novinki");
-  const { data: saleProd } = productByTagQuery("rasprodaja");
-  const { data: aksi } = productByTagQuery("aksii");
+  const { data: newProd } = productByTagQuery("novinki", 1);
+  const { data: saleProd } = productByTagQuery("rasprodaja", 1);
+  const { data: aksi } = productByTagQuery("aksii", 1);
 
  
 
@@ -27,17 +26,16 @@ const Home = () => {
     });
 
 
-    const { data: products } = useQuery({
-      queryKey: ["product"],
-      queryFn: productQuery,
-    });
+   
+
+    const {data:products} = productQuery(1)
 
 
    
 
 
 
-    
+    const navigate = useNavigate()
 
     
   return (
@@ -46,10 +44,33 @@ const Home = () => {
       <Banner />
       <Categories/>
       <ProductsSection
+        className="md:mt-[48px] mt-[20px]"
+        title="Все"
+        products={products?.data}
+      />
+      <div className="flex justify-center">
+      <Button
+        className="!bg-darkGreen w-max !text-white w-full md:h-[56px] h-[46px] rounded-[8px] text-[14px] md:text-[16px] font-[500]"
+        type="default"
+        onClick={() => navigate(APP_ROUTES.ALL_PRODUCTS)}
+        >
+        Посмотреть все
+      </Button>
+      </div>
+      <ProductsSection
         className="mt-[15px]"
         title="Новинки"
-        products={newProd}
+        products={newProd?.data}
       />
+       <div className="flex justify-center">
+      <Button
+        className="!bg-darkGreen w-max !text-white w-full md:h-[56px] h-[46px] rounded-[8px] text-[14px] md:text-[16px] font-[500]"
+        type="default"
+        onClick={() => navigate(APP_ROUTES.NEW_PRODUCTS)}
+        >
+        Посмотреть все
+      </Button>
+      </div>
       <ProductsSection
         className="md:mt-[48px] mt-[20px]"
         title="Распродажа"
@@ -62,11 +83,7 @@ const Home = () => {
         products={aksi}
 
       />
-      <ProductsSection
-        className="md:mt-[48px] mt-[20px]"
-        title="Все"
-        products={products}
-      />
+    
       <AdvertisingSection />
       {/* <ProductsSection products={[...Array(10)]} /> */}
     </>

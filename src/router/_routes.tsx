@@ -19,7 +19,9 @@ import {
   Vacancies,
   Search,
   ProfileAdress,
-  AddNewAdress
+  AddNewAdress,
+  AllProd,
+  NewProd
 } from "../views";
 
 export const _routes = [
@@ -39,6 +41,14 @@ export const _routes = [
   {
     path: APP_ROUTES.QUESTIONS,
     element: QuestionsAndAnswers,
+  },
+  {
+    path: APP_ROUTES.ALL_PRODUCTS,
+    element: AllProd,
+  },
+  {
+    path: APP_ROUTES.NEW_PRODUCTS,
+    element: NewProd,
   },
   {
     path: APP_ROUTES.VACANCIES,
