@@ -82,14 +82,14 @@ function BasketProducts({ prod }: any) {
                 {result} uzs
               </span>
             </div>
-            <div className="flex justify-between items-end">
+            {/* <div className="flex justify-between items-end">
               <span className="text-txtSecondary md:text-[16px] text-[14px]">
                 Вы экономите:
               </span>
               <span className="text-mainBlack font-semibold md:text-[20px]">
                 0 uzs
               </span>
-            </div>
+            </div> */}
           </div>
           <div className="xl:mt-[120px] md:mt-[80px] mt-[40px]">
             <div className="flex justify-between items-end">

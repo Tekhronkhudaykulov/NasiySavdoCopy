@@ -6,11 +6,11 @@ export const requests = {
   sendPhone: (payload: any) => $api.post(`${API_URL}/user/send-phone`, payload),
   sendCode: (payload: any) => $api.post(`${API_URL}/user/send-code`, payload),
   profile: () => $api.get(`${API_URL}/user/profile`),
-  product: () => $api.get(`${API_URL}/product/index`),
+  product: (page:any) => $api.get(`${API_URL}/product/index?page=${page}`),
   category: () => $api.get(`${API_URL}/category`),
   banner: () => $api.get(`${API_URL}/banner/index`),
-  tagProduct: (payload: any) =>
-    $api.get(`${API_URL}/product/by-tag?slug=${payload}`),
+  tagProduct: (payload: { slug: string; page: number }) =>
+    $api.get(`${API_URL}/product/by-tag?slug=${payload.slug}&page=${payload.page}`),
   addToBasket: (payload: any) => $api.post(`${API_URL}/cart/add`, payload),
   basketList: () => $api.get(`${API_URL}/cart`),
   minusToBasket: (payload: any) => $api.post(`${API_URL}/cart/minus`, payload),

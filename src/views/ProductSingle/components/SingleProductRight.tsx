@@ -14,6 +14,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { APP_ROUTES } from "../../../router/index.ts";
 import { tokenName } from "../../../helpers/api.tsx";
 import SendNum from "../../../modal/auth/SendNum.tsx";
+import { useFormContext } from "../../../context/FormContext.tsx";
 
 function SingleProductRight({ data }: any) {
 
@@ -33,7 +34,6 @@ function SingleProductRight({ data }: any) {
 
   const [selectedTarrifs, setSelectedTarrifs] = useState<any>([]);
 
-  console.log(selectedTarrifs, "tarrifs");
   
 
   const handleClick = (index: any) => {
@@ -55,7 +55,12 @@ function SingleProductRight({ data }: any) {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["basket"] });
       queryClient.invalidateQueries({ queryKey: ["cardInfo"] });
-      queryClient.invalidateQueries({ queryKey: ["product"] });
+
+      
+      queryClient.invalidateQueries({ queryKey: ["productQuery"] });
+      queryClient.invalidateQueries({ queryKey: ["productByTag", "novinki", 1] });
+
+
     },
   });
 
@@ -65,7 +70,9 @@ function SingleProductRight({ data }: any) {
       queryClient.invalidateQueries({ queryKey: ["basket"] });
       queryClient.invalidateQueries({ queryKey: ["detail" + data.id] });
       queryClient.invalidateQueries({ queryKey: ["favourites"] });
-      queryClient.invalidateQueries({ queryKey: ["product"] });
+      queryClient.invalidateQueries({ queryKey: ["productQuery"] });
+      queryClient.invalidateQueries({ queryKey: ["productByTag", "novinki", 1] });
+
       queryClient.invalidateQueries({ queryKey: ["rasprodaja"] });
 
     },
@@ -96,6 +103,10 @@ function SingleProductRight({ data }: any) {
     setCompareMutation.mutate({ product_id: productId });
   };
 
+  const [active, setActive] = useState(undefined);
+
+  
+  
   return (
 
   <>
@@ -223,8 +234,18 @@ function SingleProductRight({ data }: any) {
               </button>
             ))}
           </div>
+
+          {selectedTarrifs?.map((item: any, ind: any) => (
+        <>
+        <div onClick={() => {
+          setActive(ind);
+        }} className={`${active === ind ? "border-darkGreen border-[1px] rounded-[12px]" : ""}`}>
+          <AnorCard items={item} />
+        </div>
+        </>
+          ))}
           
-          <AnorCard items={selectedTarrifs} setActiveCart={setActiveCart} active={activeCard == 1} />
+         
           {/* <UzumCard setActiveCart={setActiveCart} active={activeCard == 2} /> */}
         </div>
       </div>

@@ -8,6 +8,7 @@ import { useErrorContext } from "../../../context/ErrorContext";
 import { IoHomeOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { APP_ROUTES } from "../../../router";
+import AddressCard from "../../Profile/component/AddressCard";
 
 function BasketAddressForm() {
   const { formData, setFormData } = useFormContext();
@@ -16,41 +17,43 @@ function BasketAddressForm() {
 
   const [isChecked, setIsChecked] = useState(0);
 
- 
-  const {data: deliveryItems} = delivery();
+  const { data: deliveryItems } = delivery();
 
-  const [active , setActive] = useState(undefined)
-
+  const [active, setActive] = useState(undefined);
 
   const {data} = adresList();
-  
-  const navigate = useNavigate()
 
+
+  const navigate = useNavigate();
+  const [isChoosen, setIsChoosen] = useState<number>(data?.id);
   return (
     <div className="border border-line rounded-2xl p-[20px]">
-      <h2 className="md:text-[24px] text-[18px] font-semibold">
-        Способ получения и адрес доставки:
-      </h2>
-      <div className="mt-[24px] flex flex-col gap-[24px] max-w-[420px]">
-        <div className="grid  lg:flex md:grid-cols-2 xl:gap-x-[14px] gap-x-[10px] gap-y-[16px] ">
-            {data?.map((item: any, ind: any) => (
-               <>
-                <div onClick={() => {
-                  setFormData("user_address_id", item.id);
-                  setActive(ind)
-                }} className={`flex  items-center  gap-x-[10px] bg-buttonBg  w-max px-[15px]  py-[15px] rounded-[12px] ${active === ind ? "border-[1px] border-darkGreen": ""}`}>
-                   <IoHomeOutline size={25}/>
-                    <p className="text-[18px]">{item.address}</p>
-                </div>
-            </>
-            ))}
-            <Button
-            onClick={() => navigate(`${APP_ROUTES.PROFILE}/${APP_ROUTES.ADD_NEW_ADRESS}`) }
-            className="!bg-darkGreen  !text-white w-full md:h-[56px] h-[46px] rounded-[8px] text-[14px] md:text-[16px] font-[500]"
-            type="default"
-          >
-            Добавить адресс
-          </Button>
+      <div className="flex justify-between items-center">
+        <h2 className="md:text-[24px] text-[18px] font-semibold">
+          Способ получения и адрес доставки:
+        </h2>
+        <Button
+          onClick={() =>
+            navigate(`${APP_ROUTES.PROFILE}/${APP_ROUTES.ADD_NEW_ADRESS}`)
+          }
+          className="!bg-darkGreen px-[40px] !text-white max-w-full md:h-[56px] h-[46px] rounded-[8px] text-[14px] md:text-[16px] font-[500]"
+          type="default"
+        >
+          Добавить адресс
+        </Button>
+      </div>
+      <div className="mt-[24px] flex flex-col gap-[24px]">
+        <div className="grid grid-cols-2 gap-[12px]">
+        {data?.map((item: any, ind: any) => (
+          item.street !== null && item.street !== undefined ? (
+            <AddressCard
+              item={item}
+              key={ind}
+              isChoosen={isChoosen}
+              setIsChoosen={setIsChoosen}
+            />
+          ) : null
+        ))}
         </div>
         {/* <div className="flex flex-col md:gap-3 gap-2">
           <LabelBasketForm text={"Город доставки"} />
@@ -95,72 +98,91 @@ function BasketAddressForm() {
             <button
               onClick={() => {
                 setIsChecked(item.id);
-                setFormData("delivery_id", item.id)
+                setFormData("delivery_id", item.id);
               }}
               className={`min-h-[68px] select-none cursor-pointer p-[16px_18px] rounded-[10px] flex items-start gap-[16px] bg-secondary ${errors?.delivery_id ? "!border-[red] border-[1px]" : "border-none"}`}
-          >
-            <div className="rounded-full flex items-center justify-center border-[2px] border-darkGreen w-[24px] h-[24px] flex-shrink-0">
-              <div
-                className={`w-[14px] h-[14px] rounded-full ${
-                  isChecked === item.id ? "bg-darkGreen" : ""
-                }`}
-              ></div>
-            </div>
-            <div className="flex flex-col text-start gap-1">
-              <span className="text-[12px] text-txtSecondary2">
-                Вид доставки
-              </span>
-              <h4 className="text-mainBlack text-[14px] font-medium">
-               {item.name}
-              </h4>
-            </div>
+            >
+              <div className="rounded-full flex items-center justify-center border-[2px] border-darkGreen w-[24px] h-[24px] flex-shrink-0">
+                <div
+                  className={`w-[14px] h-[14px] rounded-full ${
+                    isChecked === item.id ? "bg-darkGreen" : ""
+                  }`}
+                ></div>
+              </div>
+              <div className="flex flex-col text-start gap-1">
+                <span className="text-[12px] text-txtSecondary2">
+                  Вид доставки
+                </span>
+                <h4 className="text-mainBlack text-[14px] font-medium">
+                  {item.name}
+                </h4>
+              </div>
             </button>
           ))}
-           {errors?.delivery_id && (
-              <p className="text-[red] text-[12px]">{errors?.delivery_id[0]}</p>
-            )}
+          {errors?.delivery_id && (
+            <p className="text-[red] text-[12px]">{errors?.delivery_id[0]}</p>
+          )}
         </div>
 
         {isChecked === 2 && (
-    <>
-      <div className="grid grid-cols-2 md:gap-x-3 gap-x-2 md:gap-y-5 gap-y-4">
-          <div className="flex flex-col md:gap-3 gap-2">
-            <LabelBasketForm text={"Дом"} />
-            <InputBasketForm onChange={(e) => setFormData("home", e.target.value)} value={""} />
-          </div>
-          <div className="flex flex-col md:gap-3 gap-2">
-            <LabelBasketForm text={"Улица"} />
-            <InputBasketForm onChange={(e) => setFormData("street", e.target.value)} value={""} />
-          </div>
-          <div className="flex flex-col md:gap-3 gap-2">
-            <LabelBasketForm text={"Квартира/офис"} />
-            <InputBasketForm onChange={(e) => setFormData("house_number", e.target.value)} value={""} />
-          </div>
-          <div className="flex flex-col md:gap-3 gap-2">
-            <LabelBasketForm text={"Подъезд"} />
-            <InputBasketForm onChange={(e) => setFormData("entrance", e.target.value)}  value={""} />
-          </div>
-          <div className="flex flex-col md:gap-3 gap-2">
-            <LabelBasketForm text={"Этаж"} />
-            <InputBasketForm onChange={(e) => setFormData("floor", e.target.value)} value={""} />
-          </div>
-          <div className="flex flex-col md:gap-3 gap-2">
-            <LabelBasketForm text={"Код домофона"} />
-            <InputBasketForm onChange={(e) => setFormData("intercom_code", e.target.value)} value={""} />
-          </div>
-        </div>
-        <div className="flex text-txtSecondary flex-col gap-3">
-          <LabelBasketForm  text={"Комментарий для курьера"} />
-          <textarea
-          onChange={(e) => setFormData("delivery_comment", e.target.value)}
-            className="p-4 rounded-lg text-[12px] border border-line outline-none min-h-[120px]"
-            defaultValue="Например, куда именно привезти заказ, ближайший адрес или ориентир"
-          />
-        </div>
-        </>
+          <>
+            <div className="grid grid-cols-2 md:gap-x-3 gap-x-2 md:gap-y-5 gap-y-4">
+              <div className="flex flex-col md:gap-3 gap-2">
+                <LabelBasketForm text={"Дом"} />
+                <InputBasketForm
+                  onChange={(e) => setFormData("home", e.target.value)}
+                  value={""}
+                />
+              </div>
+              <div className="flex flex-col md:gap-3 gap-2">
+                <LabelBasketForm text={"Улица"} />
+                <InputBasketForm
+                  onChange={(e) => setFormData("street", e.target.value)}
+                  value={""}
+                />
+              </div>
+              <div className="flex flex-col md:gap-3 gap-2">
+                <LabelBasketForm text={"Квартира/офис"} />
+                <InputBasketForm
+                  onChange={(e) => setFormData("house_number", e.target.value)}
+                  value={""}
+                />
+              </div>
+              <div className="flex flex-col md:gap-3 gap-2">
+                <LabelBasketForm text={"Подъезд"} />
+                <InputBasketForm
+                  onChange={(e) => setFormData("entrance", e.target.value)}
+                  value={""}
+                />
+              </div>
+              <div className="flex flex-col md:gap-3 gap-2">
+                <LabelBasketForm text={"Этаж"} />
+                <InputBasketForm
+                  onChange={(e) => setFormData("floor", e.target.value)}
+                  value={""}
+                />
+              </div>
+              <div className="flex flex-col md:gap-3 gap-2">
+                <LabelBasketForm text={"Код домофона"} />
+                <InputBasketForm
+                  onChange={(e) => setFormData("intercom_code", e.target.value)}
+                  value={""}
+                />
+              </div>
+            </div>
+            <div className="flex text-txtSecondary flex-col gap-3">
+              <LabelBasketForm text={"Комментарий для курьера"} />
+              <textarea
+                onChange={(e) =>
+                  setFormData("delivery_comment", e.target.value)
+                }
+                className="p-4 rounded-lg text-[12px] border border-line outline-none min-h-[120px]"
+                defaultValue="Например, куда именно привезти заказ, ближайший адрес или ориентир"
+              />
+            </div>
+          </>
         )}
 
-       
         {/* <div className="flex flex-col gap-3">
           <LabelBasketForm text={"Дата и время доставки"} />
           <div className="grid grid-cols-2 gap-x-3 gap-y-5">

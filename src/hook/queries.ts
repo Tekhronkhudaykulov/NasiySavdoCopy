@@ -25,10 +25,21 @@ export const profileQuery = () =>
 //   });
 
 
-export const productQuery = async () => {
-  const { data } = await requests.product();
-  return data.data;
-};
+// export const productQuery = async () => {
+//   const { data } = await requests.product();
+//   return data.data;
+// };
+
+
+export const productQuery = (payload:any) =>
+  useQuery({
+    queryKey: ["productQuery", payload],
+    queryFn: async () => {
+      const { data } = await requests.product(payload);
+      return data;
+    },
+    enabled: !!payload
+  });
 
 export const categoryQuery = () =>
   useQuery({
@@ -48,13 +59,14 @@ export const bannerQuery = () =>
     },
   });
 
-export const productByTagQuery = (payload: string) =>
+export const productByTagQuery = (payload: string, page: any ) =>
   useQuery({
-    queryKey: [payload],
+    queryKey: ["productByTag", payload, page],
     queryFn: async () => {
-      const { data } = await requests.tagProduct(payload);
-      return data.data;
+      const { data } = await requests.tagProduct({ slug: payload, page });
+      return data;
     },
+    enabled: !!payload && page !== undefined,
   });
 
   export const productByCategory = (payload: any) =>
@@ -245,14 +257,20 @@ export const subCategory = (payload: any) =>
     enabled: !!payload, 
   });
 
-export const getOrders = () =>
-  useQuery({
-    queryKey: ["orderList"],
-    queryFn: async () => {
-      const { data } = await requests.getOrdersFetch();
-      return data.data;
-    },
-  });
+// export const getOrders = () =>
+//   useQuery({
+//     queryKey: ["orderList"],
+//     queryFn: async () => {
+//       const { data } = await requests.getOrdersFetch();
+//       return data.data;
+//     },
+//   });
+
+
+export const getOrders = async () => {
+  const { data } = await requests.getOrdersFetch();
+  return data.data;
+};
 
   export const clientCard = async (payload:any) => {
     const { data } = await requests.clientCardFetch(payload);
@@ -329,6 +347,9 @@ export const adresList = () =>
     queryKey: ["addressList"],
     queryFn: async () => {
       const { data } = await requests.addresListFetch();
+      
       return data.data;
     },
   });
+
+

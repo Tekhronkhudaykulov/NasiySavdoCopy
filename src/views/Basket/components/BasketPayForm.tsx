@@ -43,11 +43,12 @@ function BasketPayForm() {
   
 
 
-
   const handleClick = (items: []) => {
     setSelectedItems(items); 
     setItems(items);
   };
+
+  const [active, setActive] = useState(undefined)
   
 
   return (
@@ -94,7 +95,8 @@ function BasketPayForm() {
                 }`}
                 onClick={() => {
                   handleClick(item?.tariffs); 
-                  setSelected(item.duration)
+                  setSelected(item.duration);
+                  setFormData("tariff_id", item.duration)
                 }}
               >
                 {item.duration}
@@ -103,37 +105,14 @@ function BasketPayForm() {
           </div>
           {selectedItems?.map((item: any, ind: any) => (
         <>
-          <AnorCard items={item}/>
-          {/* <div className="flex justify-between items-center">
-          <span className="text-[12px] font-medium text-txtSecondary">
-            Оплата в месяц:
-          </span>
-          <span className="text-mainBlack font-semibold md:text-[16px] text-[14px]">
-            {item.monthly_payment?.toLocaleString("RU-ru")} сум/мес
-          </span>
-          </div>
-          <div className="flex flex-col gap-[10px]">
-            <div className="flex justify-between items-center">
-              <span className="text-[12px] font-medium text-txtSecondary">
-                Цена товара:
-              </span>
-              <span className="text-mainBlack font-semibold md:text-[16px] text-[14px]">
-                {allPrice?.toLocaleString("RU-ru")} сум/мес
-              </span>
-            </div>
-            <hr className="text-line md:my-[10px] my-[6px]" />
-            <div className="flex justify-between items-center">
-              <span className="text-[12px] font-medium text-txtSecondary">
-                Итоговая цена:
-              </span>
-              <span className="text-mainBlack font-semibold md:text-[16px] text-[14px]">
-                {item.installment_price?.toLocaleString("RU-ru")} сум/мес
-              </span>
-            </div>
-          </div> */}
+        <div onClick={() => {
+          setActive(ind);
+          setFormData("installment_id", item.installment_id)
+        }} className={`${active === ind ? "border-darkGreen border-[1px] rounded-[12px]" : ""}`}>
+          <AnorCard items={item} />
+        </div>
         </>
           ))}
-      
         </div>
         )}
         {errors?.payment_id && (
