@@ -67,6 +67,9 @@ export const requests = {
 
  filterFetch: (payload: any) => $api.get(`${API_URL}/category/filter?category_id=${payload}`),
 
+ contractsFetch: () => $api.get(`${API_URL}/user/contracts`),
+
+
 
  
   

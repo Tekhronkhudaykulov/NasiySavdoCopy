@@ -18,10 +18,10 @@ const initialState: StateAction = {
 const productStore = create(
   devtools((set: SetState<StateAction>) => ({
     ...initialState,
-    productRequest: async () => {
+    productRequest: async (payload: any) => {
       set({ productLoading: true });
       try {
-        const { data } = await requests.product();
+        const { data } = await requests.product(payload);
         set({ productList: data });
         return data;
       } catch (err) {

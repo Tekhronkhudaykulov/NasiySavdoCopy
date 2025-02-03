@@ -3,6 +3,7 @@ import OrderEmpty from "../../../empty/OrderEmpty";
 import { useState } from "react";
 import SaleTabs from "../component/SaleTabs";
 import PaymentInfoCard from "../component/PaymentInfoCard";
+import { contracts } from "../../../hook/queries";
 
 type PaymentStatus = "Просрочен" | "Активный" | "Отменен" | "Заверщен";
 
@@ -23,6 +24,9 @@ interface InstallmentPlan {
 
 const ProfileSale = () => {
   const [activeTab, setActiveTab] = useState("all");
+
+  const {data} = contracts();
+  
 
   const installmentPlans: InstallmentPlan[] = [
     {

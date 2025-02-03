@@ -20,7 +20,6 @@ interface Order {
 }
 
 function OrderInfos({ order }: { order: Order }) {
-  console.log(order.order, 'orderinfo')
   return (
     <div className="flex flex-col gap-3 md:my-4 my-3">
       <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4 items-end">
@@ -37,50 +36,81 @@ function OrderInfos({ order }: { order: Order }) {
       </div>
       <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4">
         <p className={`${pClass}`}>Дата заказа</p>
-        <span className={`${spanClass}`}>{order.order?.date}</span>
+
+        <span className={`${spanClass}`}>{
+          // @ts-ignore
+        order.order?.date
+        }</span>
       </div>
       <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4">
         <p className={`${pClass}`}>Тип доставки</p>
-        <span className={`${spanClass}`}>{order.order?.delivery?.name}</span>
+        <span className={`${spanClass}`}>{
+          // @ts-ignore
+        order.order?.delivery?.name}</span>
       </div>
-      {order?.order?.sentDate && (
+      {
+          // @ts-ignore
+      order?.order?.sentDate && (
         <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4">
           <p className={`${pClass}`}>Дата отправки</p>
-          <span className={`${spanClass}`}>{order.order?.sentDate}</span>
+          <span className={`${spanClass}`}>{
+          // @ts-ignore
+          order.order?.sentDate}</span>
         </div>
       )}
-      {order?.order?.senderCity && (
+      {
+          // @ts-ignore
+      order?.order?.senderCity && (
         <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4">
           <p className={`${pClass}`}>Город отправителя</p>
-          <span className={`${spanClass}`}>{order.order?.senderCity}</span>
+          <span className={`${spanClass}`}>{
+          // @ts-ignore
+          order.order?.senderCity}</span>
         </div>
       )}
-      {order?.order?.userAddress && (
+      {
+          // @ts-ignore
+      order?.order?.userAddress && (
         <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4">
           <p className={`${pClass}`}>Место доставки</p>
-          <span className={`${spanClass}`}>{`Ул ${order.order?.userAddress?.address}, Дом ${order.order?.userAddress?.home}, Кв ${order.order?.userAddress?.house_number}`}</span>
+          <span className={`${spanClass}`}>{`Ул ${
+          // @ts-ignore
+            order.order?.userAddress?.address}, Дом ${order.order?.userAddress?.home}, Кв ${order.order?.userAddress?.house_number}`}</span>
         </div>
       )}
-      {order?.order?.productWeight && (
+      {
+          // @ts-ignore
+      order?.order?.productWeight && (
         <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4">
           <p className={`${pClass}`}>Вес товара</p>
-          <span className={`${spanClass}`}>{order.order?.productWeight}</span>
+          <span className={`${spanClass}`}>{
+          // @ts-ignore
+        
+          order.order?.productWeight}</span>
         </div>
       )}
-      {order?.order?.productVolume && (
+      {
+          // @ts-ignore
+      order?.order?.productVolume && (
         <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4">
           <p className={`${pClass}`}>Обьем товара</p>
-          <span className={`${spanClass}`}>{order.order?.productVolume}</span>
+          <span className={`${spanClass}`}>{
+          // @ts-ignore
+          order.order?.productVolume}</span>
         </div>
       )}
       {/* <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4">
         <p className={`${pClass}`}>Место доставки</p>
         <span className={`${spanClass}`}>{order.order?.address}</span>
       </div> */}
-      {order?.order?.shipmentDate && (
+      {
+          // @ts-ignore
+      order?.order?.shipmentDate && (
         <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4">
           <p className={`${pClass}`}>Дата доставки</p>
-          <span className={`${spanClass}`}>{order.order?.shipmentDate}</span>
+          <span className={`${spanClass}`}>{
+          // @ts-ignore
+          order.order?.shipmentDate}</span>
         </div>
       )}
       <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4">

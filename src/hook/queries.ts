@@ -352,4 +352,14 @@ export const adresList = () =>
     },
   });
 
+  export const contracts = () =>
+    useQuery({
+      queryKey: ["contracts"],
+      queryFn: async () => {
+        const { data } = await requests.contractsFetch();
+        
+        return data.data;
+      },
+    });
+
 
