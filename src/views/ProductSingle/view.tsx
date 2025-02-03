@@ -8,6 +8,7 @@ import SingleProductLeft from "./components/SingleProductLeft";
 import ReviewProductPopUp from "./components/ReviewProductPopUp";
 import { useParams } from "react-router-dom";
 import { productDetail, productTariffs, productViews, similarProduct } from "../../hook/queries";
+import ErrorList from "antd/es/form/ErrorList";
 
 function ProductSingle() {
   const [aboutPopUp, setAboutPopUp] = useState(false);

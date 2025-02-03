@@ -14,7 +14,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { APP_ROUTES } from "../../../router/index.ts";
 import { tokenName } from "../../../helpers/api.tsx";
 import SendNum from "../../../modal/auth/SendNum.tsx";
-import { useFormContext } from "../../../context/FormContext.tsx";
 
 function SingleProductRight({ data }: any) {
 
@@ -49,6 +48,8 @@ function SingleProductRight({ data }: any) {
   const [isNumberModalOpen, setIsNumberModalOpen] = useState(false);
   const [isCodeModalOpen, setIsCodeModalOpen] = useState(false);
 
+  
+
 
   const addMutation = useMutation({
     mutationFn: add,
@@ -62,6 +63,11 @@ function SingleProductRight({ data }: any) {
 
 
     },
+    onError: (res) => {
+      // errorNotification(res.message)
+      // @ts-ignore
+      const errors = res.response.data.errors;
+    }
   });
 
   const addFavouritesMutaion = useMutation({

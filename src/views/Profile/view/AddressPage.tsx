@@ -3,7 +3,7 @@ import { addAdress, adresList, cities, regions } from "../../../hook/queries";
 
 import { Button } from "antd";
 import { useFormContext } from "../../../context/FormContext";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import ProfileSuccess from "../component/ProfileSuccess";
 import { useNavigate } from "react-router-dom";
 import { APP_ROUTES } from "../../../router";
@@ -14,6 +14,9 @@ function AddAdressPage() {
   const navigate = useNavigate();
   const { data: citiesItems } = cities();
 
+  const queryClient = useQueryClient();
+
+
   const [regionsId, setRegionsId] = useState();
 
   const { data: regionsItems } = regions(regionsId);
@@ -21,13 +24,12 @@ function AddAdressPage() {
   const addAdressFunction = useMutation({
     mutationFn: addAdress,
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["addressList"] });
       navigate(`${APP_ROUTES.PROFILE}/${APP_ROUTES.PROFILE_ADRESS}`);
     },
   });
 
   const handleAddToBasket = () => {
-    console.log(formData);
-
     addAdressFunction.mutate(formData);
   };
 
