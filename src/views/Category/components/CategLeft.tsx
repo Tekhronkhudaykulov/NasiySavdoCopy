@@ -10,8 +10,6 @@ function CategLeft() {
 
   const { data } = filter(id);
 
-  console.log(data, "data");
-
   return (
     <div className="border border-line 2md:hidden h-max rounded-[12px] p-4 flex flex-col gap-[24px]">
       <CategLists />

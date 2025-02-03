@@ -8,9 +8,9 @@ import { useNavigate } from "react-router-dom";
 import { APP_ROUTES } from "../../../router";
 
 const MultiLevelDropdown = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState<number | undefined>(
-    undefined,
+    undefined
   );
   const [activeSubCategory, setActiveSubCategory] = useState<
     number | undefined
@@ -40,7 +40,6 @@ const MultiLevelDropdown = () => {
                   activeArrow={
                     categ.subcategories && categ.subcategories.length > 0
                   }
-                  
                   index={categ.id}
                   active={index === activeCategory}
                   categ={categ}
@@ -93,7 +92,7 @@ const MultiLevelDropdown = () => {
                       subCateg={subCateg}
                     />
                   </div>
-                ),
+                )
               )}
           </div>
 
