@@ -52,7 +52,7 @@ function OrderInfoCard(order: any) {
             <div className="flex flex-col md:gap-4 gap-3">
               {
               // @ts-ignore
-              order?.orderProducts?.map((prod: any, index: number) => (
+              order?.order?.orderProducts?.map((prod: any, index: number) => (
                 <ProductInMore prod={prod} key={index} />
               ))}
             </div>

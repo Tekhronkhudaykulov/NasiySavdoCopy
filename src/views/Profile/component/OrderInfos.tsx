@@ -20,6 +20,7 @@ interface Order {
 }
 
 function OrderInfos({ order }: { order: Order }) {
+  console.log(order.order, 'orderinfo')
   return (
     <div className="flex flex-col gap-3 md:my-4 my-3">
       <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4 items-end">
@@ -36,46 +37,50 @@ function OrderInfos({ order }: { order: Order }) {
       </div>
       <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4">
         <p className={`${pClass}`}>Дата заказа</p>
-        <span className={`${spanClass}`}>{order?.date}</span>
+        <span className={`${spanClass}`}>{order.order?.date}</span>
       </div>
-      {order?.sentDate && (
+      <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4">
+        <p className={`${pClass}`}>Тип доставки</p>
+        <span className={`${spanClass}`}>{order.order?.delivery?.name}</span>
+      </div>
+      {order?.order?.sentDate && (
         <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4">
           <p className={`${pClass}`}>Дата отправки</p>
-          <span className={`${spanClass}`}>{order?.sentDate}</span>
+          <span className={`${spanClass}`}>{order.order?.sentDate}</span>
         </div>
       )}
-      {order?.senderCity && (
+      {order?.order?.senderCity && (
         <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4">
           <p className={`${pClass}`}>Город отправителя</p>
-          <span className={`${spanClass}`}>{order?.senderCity}</span>
+          <span className={`${spanClass}`}>{order.order?.senderCity}</span>
         </div>
       )}
-      {order?.senderLocation && (
+      {order?.order?.userAddress && (
         <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4">
-          <p className={`${pClass}`}>Место отправки</p>
-          <span className={`${spanClass}`}>{order?.senderLocation}</span>
+          <p className={`${pClass}`}>Место доставки</p>
+          <span className={`${spanClass}`}>{`Ул ${order.order?.userAddress?.address}, Дом ${order.order?.userAddress?.home}, Кв ${order.order?.userAddress?.house_number}`}</span>
         </div>
       )}
-      {order?.productWeight && (
+      {order?.order?.productWeight && (
         <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4">
           <p className={`${pClass}`}>Вес товара</p>
-          <span className={`${spanClass}`}>{order?.productWeight}</span>
+          <span className={`${spanClass}`}>{order.order?.productWeight}</span>
         </div>
       )}
-      {order?.productVolume && (
+      {order?.order?.productVolume && (
         <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4">
           <p className={`${pClass}`}>Обьем товара</p>
-          <span className={`${spanClass}`}>{order?.productVolume}</span>
+          <span className={`${spanClass}`}>{order.order?.productVolume}</span>
         </div>
       )}
-      <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4">
+      {/* <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4">
         <p className={`${pClass}`}>Место доставки</p>
-        <span className={`${spanClass}`}>{order?.address}</span>
-      </div>
-      {order?.shipmentDate && (
+        <span className={`${spanClass}`}>{order.order?.address}</span>
+      </div> */}
+      {order?.order?.shipmentDate && (
         <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4">
           <p className={`${pClass}`}>Дата доставки</p>
-          <span className={`${spanClass}`}>{order?.shipmentDate}</span>
+          <span className={`${spanClass}`}>{order.order?.shipmentDate}</span>
         </div>
       )}
       <div className="grid md:grid-cols-[150px_1fr] grid-cols-[110px_1fr] gap-x-4">
@@ -83,7 +88,7 @@ function OrderInfos({ order }: { order: Order }) {
         
         <span className={`${spanClass}`}>{
         // @ts-ignore
-        order?.price?.toLocaleString("ru-RU")} сум</span>
+        order?.order?.price?.toLocaleString("ru-RU")} сум</span>
       </div>
       <button className={`${pClass} underline underline-offset-4 w-max`}>
         Электронный чек

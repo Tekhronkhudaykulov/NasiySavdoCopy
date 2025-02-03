@@ -39,10 +39,12 @@ const BasketOrderSummary: React.FC = () => {
   let allPrice = basketList?.reduce((sum: any, product: any) => sum + product.price, 0);
 
 
-  const sendOrderMutation = useMutation({
+
+  const {mutate, isPending } = useMutation({
     mutationFn: sendOrder,
     onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ["basket"] });
+        queryClient.invalidateQueries({ queryKey: ["orderList"] });
         navigate(`${APP_ROUTES.PROFILE}/${APP_ROUTES.PROFILE_ORDERS}`)
 
     },
@@ -55,7 +57,7 @@ const BasketOrderSummary: React.FC = () => {
   });
 
   const handleSendOrder = () => {
-    sendOrderMutation.mutate(formData);
+    mutate(formData);
   };
 
 
@@ -99,22 +101,22 @@ const BasketOrderSummary: React.FC = () => {
            {allPrice?.toLocaleString("ru-RU")} uzs
           </span>
         </div>
-        <div className="flex justify-between items-center">
+        {/* <div className="flex justify-between items-center">
           <span className="md:text-[14px] text-[12px] text-txtSecondary">
             Доставка курьером:
           </span>
           <span className="text-mainBlack font-semibold md:text-[16px] text-[14px]">
             0 uzs
           </span>
-        </div>
-        <div className="flex justify-between items-center">
+        </div> */}
+        {/* <div className="flex justify-between items-center">
           <span className="md:text-[14px] text-[12px] text-txtSecondary">
             Скидка по промокоду:
           </span>
           <span className="text-mainBlack font-semibold md:text-[16px] text-[14px]">
             0 uzs
           </span>
-        </div>
+        </div> */}
           <div className="flex justify-between items-center">
             <span className="md:text-[14px] text-[12px] text-txtSecondary">
               Итого:
@@ -150,7 +152,7 @@ const BasketOrderSummary: React.FC = () => {
       </div> */}
       {/*  */}
       <button onClick={() => handleSendOrder()} className="flex justify-center rounded-[8px] text-white bg-[#03a5a5] hover:bg-darkGreen md:p-[14px_32px] p-[10px_26px]">
-        Оформить
+        {isPending ? "Loading..." : "Оформить"}
       </button>
     </div>
   );

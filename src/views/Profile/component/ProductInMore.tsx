@@ -3,6 +3,7 @@ import { API_URL } from "../../../config";
 import { $api, imgUrl } from "../../../helpers/api";
 
 function ProductInMore({prod}: any) {
+  console.log(prod, 'prod')
   return (
     <div className="flex gap-4">
       <div className="h-[81px] w-[65px]">

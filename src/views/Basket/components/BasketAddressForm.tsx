@@ -32,29 +32,10 @@ function BasketAddressForm() {
         <h2 className="md:text-[24px] text-[18px] font-semibold">
           Способ получения и адрес доставки:
         </h2>
-        <Button
-          onClick={() =>
-            navigate(`${APP_ROUTES.PROFILE}/${APP_ROUTES.ADD_NEW_ADRESS}`)
-          }
-          className="!bg-darkGreen px-[40px] !text-white max-w-full md:h-[56px] h-[46px] rounded-[8px] text-[14px] md:text-[16px] font-[500]"
-          type="default"
-        >
-          Добавить адресс
-        </Button>
+      
       </div>
       <div className="mt-[24px] flex flex-col gap-[24px]">
-        <div className="grid grid-cols-2 gap-[12px]">
-        {data?.map((item: any, ind: any) => (
-          item.street !== null && item.street !== undefined ? (
-            <AddressCard
-              item={item}
-              key={ind}
-              isChoosen={isChoosen}
-              setIsChoosen={setIsChoosen}
-            />
-          ) : null
-        ))}
-        </div>
+       
         {/* <div className="flex flex-col md:gap-3 gap-2">
           <LabelBasketForm text={"Город доставки"} />
           <Select
@@ -126,50 +107,28 @@ function BasketAddressForm() {
 
         {isChecked === 2 && (
           <>
-            <div className="grid grid-cols-2 md:gap-x-3 gap-x-2 md:gap-y-5 gap-y-4">
-              <div className="flex flex-col md:gap-3 gap-2">
-                <LabelBasketForm text={"Дом"} />
-                <InputBasketForm
-                  onChange={(e) => setFormData("home", e.target.value)}
-                  value={""}
-                />
-              </div>
-              <div className="flex flex-col md:gap-3 gap-2">
-                <LabelBasketForm text={"Улица"} />
-                <InputBasketForm
-                  onChange={(e) => setFormData("street", e.target.value)}
-                  value={""}
-                />
-              </div>
-              <div className="flex flex-col md:gap-3 gap-2">
-                <LabelBasketForm text={"Квартира/офис"} />
-                <InputBasketForm
-                  onChange={(e) => setFormData("house_number", e.target.value)}
-                  value={""}
-                />
-              </div>
-              <div className="flex flex-col md:gap-3 gap-2">
-                <LabelBasketForm text={"Подъезд"} />
-                <InputBasketForm
-                  onChange={(e) => setFormData("entrance", e.target.value)}
-                  value={""}
-                />
-              </div>
-              <div className="flex flex-col md:gap-3 gap-2">
-                <LabelBasketForm text={"Этаж"} />
-                <InputBasketForm
-                  onChange={(e) => setFormData("floor", e.target.value)}
-                  value={""}
-                />
-              </div>
-              <div className="flex flex-col md:gap-3 gap-2">
-                <LabelBasketForm text={"Код домофона"} />
-                <InputBasketForm
-                  onChange={(e) => setFormData("intercom_code", e.target.value)}
-                  value={""}
-                />
-              </div>
-            </div>
+         <div className="grid grid-cols-2 gap-[12px]">
+        {data?.map((item: any, ind: any) => (
+          item.street !== null && item.street !== undefined ? (
+            <AddressCard
+              item={item}
+              key={ind}
+              isChoosen={isChoosen}
+              setIsChoosen={setIsChoosen}
+            />
+          ) : null
+        ))}
+         
+        </div>
+        <Button
+          onClick={() =>
+            navigate(`${APP_ROUTES.PROFILE}/${APP_ROUTES.ADD_NEW_ADRESS}`)
+          }
+          className="!bg-darkGreen px-[40px] !text-white max-w-full md:h-[56px] h-[46px] rounded-[8px] text-[14px] md:text-[16px] font-[500]"
+          type="default"
+        >
+          Добавить адресс
+        </Button>
             <div className="flex text-txtSecondary flex-col gap-3">
               <LabelBasketForm text={"Комментарий для курьера"} />
               <textarea
