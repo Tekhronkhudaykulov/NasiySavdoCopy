@@ -34,7 +34,6 @@ function SingleProductRight({ data }: any) {
 
   const [selectedTarrifs, setSelectedTarrifs] = useState<any>([]);
 
-  console.log(selectedTarrifs, "tarrifs");
   
 
   const handleClick = (index: any) => {
