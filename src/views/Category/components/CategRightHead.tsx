@@ -165,17 +165,21 @@ function CategRightHead({ product }: any) {
             ref={scrollContainerRef}
             className="flex gap-[8px] overflow-auto categScroll no-scrollbar flex-1"
           >
-            {subCategoryItems?.map((item: any, idx: any) => (
-              <button
-                key={idx}
-                onClick={() => {
-                  navigate(`${APP_ROUTES.CATEGORY}/${item.id}`);
-                }}
-                className="md:p-[10px_12px] p-[8px_10px] md:text-[16px] text-[14px] flex-shrink-0 rounded-[8px] bg-buttonBg text-mainBlack font-medium"
-              >
-                {item.name}
-              </button>
-            ))}
+            {subCategoryItems?.map((item: any, idx: any) => {
+              const newSearchParams = new URLSearchParams(searchParams);
+              newSearchParams.set("subCategId", item.id);
+              return (
+                <button
+                  key={idx}
+                  onClick={() => {
+                    navigate(`${APP_ROUTES.CATEGORY}?${newSearchParams.toString()}`);
+                  }}
+                  className="md:p-[10px_12px] p-[8px_10px] md:text-[16px] text-[14px] flex-shrink-0 rounded-[8px] bg-buttonBg text-mainBlack font-medium"
+                >
+                  {item.name}
+                </button>
+              );
+            })}
           </div>
           <button
             onClick={handleScrollLeft}

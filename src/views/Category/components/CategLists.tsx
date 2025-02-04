@@ -1,6 +1,7 @@
 import { FaChevronLeft } from "react-icons/fa";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { categoryQuery } from "../../../hook/queries";
+import { APP_ROUTES } from "../../../router";
 
 function CategLists() {
   const { data, isLoading } = categoryQuery();
@@ -11,7 +12,6 @@ function CategLists() {
   if (isLoading) return;
 
   let selectedCateg = data?.find((item: any) => item.id == categId);
-  console.log(data);
 
   return (
     <div className="flex flex-col gap-4">
@@ -37,20 +37,22 @@ function CategLists() {
               </Link>
             );
           })}
-        {categId &&<Link
-          to={`/category`}
-          className="cursor-pointer  text-txtSecondary2 font-normal hover:text-mainBlack flex items-center gap-2"
-        >
-          <FaChevronLeft />
-          {selectedCateg?.name}
-        </Link>}
+        {categId && (
+          <Link
+            to={`/category`}
+            className="cursor-pointer  text-txtSecondary2 font-normal hover:text-mainBlack flex items-center gap-2"
+          >
+            <FaChevronLeft />
+            {selectedCateg?.name}
+          </Link>
+        )}
         <div className="flex flex-col gap-4 pl-4 max-h-[250px] overflow-auto">
           {selectedCateg?.childs.map((child: any) => {
             const newSearchParams = new URLSearchParams(searchParams);
             newSearchParams.set("subCategId", child.id);
             return (
               <Link
-                to={`/category?${newSearchParams.toString()}`}
+                to={`${APP_ROUTES.CATEGORY}?${newSearchParams.toString()}`}
                 className={`text-[14px] text-txtSecondary2 hover:text-mainBlack ${subCategId == child.id ? "!text-black" : ""}`}
               >
                 {child.name}

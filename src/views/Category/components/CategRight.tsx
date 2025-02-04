@@ -17,9 +17,6 @@ function CategRight() {
   const { data: categoryData } = productByCategory(id);
 
   const [categoryItems, setCategoryItems] = useState(null);
-  console.log(
-    `https://api.nasiyasavdo.uz/api/product/by-category?id=${subCategId || categId}&page=${page}`
-  );
 
   useEffect(() => {
     const fetchProducts = async () => {
