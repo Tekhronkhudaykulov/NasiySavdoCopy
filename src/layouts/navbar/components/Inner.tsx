@@ -10,6 +10,7 @@ import { APP_ROUTES } from "../../../router";
 import { tokenName } from "../../../helpers/api";
 import { useQuery } from "@tanstack/react-query";
 import { getBasketList, getFavouriteList } from "../../../hook/queries";
+import { useModal } from "../../../context/ModalContext";
 
 const list = [
   {
@@ -41,6 +42,8 @@ const list = [
 
 const Inner = ({ setIsNumberModalOpen }: { setIsNumberModalOpen: any }) => {
   const authed = localStorage.getItem(tokenName);
+
+  const { isOpen, closeModal, openModal } = useModal();
 
   const location = useLocation();
   const currentPath = location.pathname;
@@ -106,7 +109,7 @@ const Inner = ({ setIsNumberModalOpen }: { setIsNumberModalOpen: any }) => {
               onClick={(event) => {
                 if (!authed && item.name === "Войти") {
                   event.preventDefault();
-                  setIsNumberModalOpen(true);
+                  openModal();
                 }
               }}
               to={item.link}

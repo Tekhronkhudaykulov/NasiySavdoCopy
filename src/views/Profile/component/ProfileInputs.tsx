@@ -7,6 +7,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 
 function ProfileInputs() {
+  // @ts-ignore
   const { data } = profileQuery();
 
   const queryClient = useQueryClient();
@@ -63,6 +64,7 @@ function ProfileInputs() {
   };
 
   return (
+    
     <div className="grid lg:grid-cols-3 md:grid-cols-2 xl:gap-x-[14px] gap-x-[10px] gap-y-[16px] ">
       <input
         type="text"

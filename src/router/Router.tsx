@@ -6,6 +6,7 @@ import PrivateRoute from "./PrivateRoute";
 import { initApp } from "../helpers/api";
 import Loader from "../components/PageLoader/Loader";
 import { ErrorProvider } from "../context/ErrorContext";
+import { ModalProvider } from "../context/ModalContext";
 import { ValueProvider } from "../context/ValueContext";
 import { FormProvider } from "../context/FormContext";
 
@@ -16,6 +17,7 @@ const Router = () => {
     <HashRouter>
       <Suspense fallback={<Loader />}>
         <ErrorProvider>
+          <ModalProvider>
           <ValueProvider>
           <FormProvider>
           <Routes>
@@ -42,6 +44,8 @@ const Router = () => {
         </Routes>
           </FormProvider>
           </ValueProvider>
+          </ModalProvider>
+        
  
         </ErrorProvider>
       </Suspense>
