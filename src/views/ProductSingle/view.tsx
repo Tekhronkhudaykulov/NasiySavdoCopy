@@ -8,7 +8,7 @@ import SingleProductLeft from "./components/SingleProductLeft";
 import ReviewProductPopUp from "./components/ReviewProductPopUp";
 import { useParams } from "react-router-dom";
 import { productDetail, productTariffs, productViews, similarProduct } from "../../hook/queries";
-import ErrorList from "antd/es/form/ErrorList";
+import ErrorList from "../../components/ErrorList/ErrorList";
 
 function ProductSingle() {
   const [aboutPopUp, setAboutPopUp] = useState(false);
@@ -38,6 +38,7 @@ function ProductSingle() {
  
   return (
     <>
+    <ErrorList/>
       <BreadCrumb items={[{ name: "Продукт название" }]} />
       <div className="grid xl:grid-cols-[2fr,1fr] grid-cols-1 lg:grid-cols-[1.5fr,1fr] gap-[28px] md:mb-[60px] mb-6">
         <SingleProductLeft

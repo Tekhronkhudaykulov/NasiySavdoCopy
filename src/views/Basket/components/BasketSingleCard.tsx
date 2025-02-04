@@ -7,6 +7,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { add, minus, productByTagQuery, productQuery, remove } from "../../../hook/queries";
 import { errorNotification } from "../../../components/Notifikation/view";
 import { imgUrl } from "../../../helpers/api";
+import { useErrorContext } from "../../../context/ErrorContext";
 function BasketSingleCard({
   isChecked,
   index,
@@ -27,6 +28,9 @@ function BasketSingleCard({
 
   const { data: product } = productQuery(1);
 
+    const { setErrors } = useErrorContext();
+  
+
 
 
 
@@ -39,14 +43,13 @@ function BasketSingleCard({
       queryClient.invalidateQueries({ queryKey: ["rasprodaja"] });
       queryClient.invalidateQueries({ queryKey: ["aksii"] });
       queryClient.invalidateQueries({ queryKey: ["cardInfo"] });
-
-
-
-
     },
-    onError: (err) => {
-      errorNotification(err.message);
-    },
+    onError: (res) => {
+      // errorNotification(res.message)
+      // @ts-ignore
+      const errors = res.response.data.errors;
+      setErrors(errors);
+    }
   });
 
   const minusMutation = useMutation({
@@ -64,6 +67,12 @@ function BasketSingleCard({
 
       queryClient.invalidateQueries({ queryKey: ["cardInfo"] });
     },
+    onError: (res) => {
+      // errorNotification(res.message)
+      // @ts-ignore
+      const errors = res.response.data.errors;
+      setErrors(errors);
+    }
   });
 
   const removeMutation = useMutation({
@@ -81,6 +90,12 @@ function BasketSingleCard({
 
       
     },
+    onError: (res) => {
+      // errorNotification(res.message)
+      // @ts-ignore
+      const errors = res.response.data.errors;
+      setErrors(errors);
+    }
   });
 
   const handleAddToBasket = (productId: any) => {

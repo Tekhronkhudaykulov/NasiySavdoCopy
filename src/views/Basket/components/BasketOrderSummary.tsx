@@ -52,6 +52,7 @@ const BasketOrderSummary: React.FC = () => {
       // errorNotification(e)
       // @ts-ignore
       const errors = e.response.data.errors;
+      
       setErrors(errors);
     }
   });

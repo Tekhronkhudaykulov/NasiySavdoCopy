@@ -24,6 +24,8 @@ interface InstallmentPlan {
 }
 
 function PaymentInfoCardHead({ plan }: { plan: InstallmentPlan }) {
+  console.log(plan, "planid");
+  
   return (
     <div className="flex justify-between items-start">
       <div className="flex flex-col gap-[6px]">
@@ -166,7 +168,10 @@ function PaymentButton() {
   );
 }
 
-function PaymentInfoCard({ plan }: { plan: InstallmentPlan }) {
+function PaymentInfoCard({ plan }: { plan: any }) {
+
+
+  
   const [expanded, setExpanded] = useState(false);
 
   const handleChange = (_: React.SyntheticEvent, isExpanded: boolean) => {
@@ -200,10 +205,10 @@ function PaymentInfoCard({ plan }: { plan: InstallmentPlan }) {
           <AccordionDetails>
             <Typography>
               <div className="flex flex-col">
-                {plan.monthlyPayments.map((payment, index) => {
+                {plan?.monthly_payments.map((payment: any, index: any) => {
                   return (
                     <GraphicCard
-                      length={plan.monthlyPayments.length}
+                      length={plan.monthly_payments.length}
                       index={index}
                       key={index}
                       payment={payment}

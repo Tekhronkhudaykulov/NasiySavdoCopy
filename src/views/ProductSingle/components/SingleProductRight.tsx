@@ -14,12 +14,16 @@ import { useNavigate, useParams } from "react-router-dom";
 import { APP_ROUTES } from "../../../router/index.ts";
 import { tokenName } from "../../../helpers/api.tsx";
 import SendNum from "../../../modal/auth/SendNum.tsx";
+import { useErrorContext } from "../../../context/ErrorContext.tsx";
 
 function SingleProductRight({ data }: any) {
 
   const {id} = useParams()
 
   const {data: productTariffsItems} = productTariffs(id);
+
+  const { setErrors } = useErrorContext();
+  
 
 
 
@@ -67,6 +71,7 @@ function SingleProductRight({ data }: any) {
       // errorNotification(res.message)
       // @ts-ignore
       const errors = res.response.data.errors;
+      setErrors(errors);
     }
   });
 
@@ -78,10 +83,15 @@ function SingleProductRight({ data }: any) {
       queryClient.invalidateQueries({ queryKey: ["favourites"] });
       queryClient.invalidateQueries({ queryKey: ["productQuery"] });
       queryClient.invalidateQueries({ queryKey: ["productByTag", "novinki", 1] });
-
       queryClient.invalidateQueries({ queryKey: ["rasprodaja"] });
-
     },
+
+    onError: (res) => {
+      // errorNotification(res.message)
+      // @ts-ignore
+      const errors = res.response.data.errors;
+      setErrors(errors);
+    }
   });
 
   const setCompareMutation = useMutation({

@@ -331,8 +331,7 @@ export const adresList = () =>
       queryKey: ["contracts"],
       queryFn: async () => {
         const { data } = await requests.contractsFetch();
-        
-        return data.data;
+        return data;
       },
     });
 

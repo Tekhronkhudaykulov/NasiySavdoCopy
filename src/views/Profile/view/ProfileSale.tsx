@@ -26,6 +26,8 @@ const ProfileSale = () => {
   const [activeTab, setActiveTab] = useState("all");
 
   const {data} = contracts();
+
+  
   
 
   const installmentPlans: InstallmentPlan[] = [
@@ -202,9 +204,9 @@ const ProfileSale = () => {
       <div>
         <SaleTabs activeTab={activeTab} setActiveTab={setActiveTab} />
 
-        {filteredPlans.length > 0 ? (
+        {data?.length > 0 ? (
           <div className="flex flex-col md:gap-4 gap-3 md:mt-5 mt-4">
-            {filteredPlans.map((plan, index) => (
+            {data?.map((plan: any, index: any) => (
               <PaymentInfoCard key={index} plan={plan} />
             ))}
           </div>

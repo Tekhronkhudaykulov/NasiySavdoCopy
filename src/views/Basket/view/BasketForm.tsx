@@ -5,11 +5,13 @@ import BasketOrderSummary from "../components/BasketOrderSummary";
 import { FormProvider } from "../../../context/FormContext";
 import { ErrorProvider } from "../../../context/ErrorContext";
 import { OrderContextProvider } from "../../../context/OrderContext";
+import ErrorList from "../../../components/ErrorList/ErrorList";
 // import ErrorList from "../../../components/ErrorList/ErrorList";
 
 function BasketForm() {
   return (
     <ErrorProvider>
+      <ErrorList/>
       <OrderContextProvider>
         <BreadCrumb
           items={[
