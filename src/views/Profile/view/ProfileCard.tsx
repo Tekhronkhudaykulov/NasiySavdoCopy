@@ -11,7 +11,7 @@ type PlasticCard = {
   cardNumber: string;
   cardName: string;
   cardImg: string;
-  pan?: string ;
+  pan?: string;
 };
 const PlastikCard = ({ plastic }: { plastic: PlasticCard }) => {
   const formatCardNumber = (number: string) => {
@@ -19,8 +19,7 @@ const PlastikCard = ({ plastic }: { plastic: PlasticCard }) => {
     return `${plastic?.pan.slice(0, 4)} **** **** ${plastic?.pan.slice(-4)}`;
   };
 
-  console.log(plastic, 'plastik')
-  
+
   return (
     <div
       className={`p-[20px]  rounded-[12px] select-none bg-buttonBg flex flex-col gap-[17px] cursor-pointer `}
@@ -43,18 +42,18 @@ const PlastikCard = ({ plastic }: { plastic: PlasticCard }) => {
           {plastic?.cardName}
         </p>
         <div className="w-[42px] h-[25px]">
-          
           {
-    // @ts-ignore
-          plastic.cardnumber?.startsWith("5614") || plastic.cardnumber?.startsWith("8600") ? (
+            // @ts-ignore
+            plastic.cardNumber?.startsWith("5614") ||
+            plastic.cardNumber?.startsWith("8600") ? (
               <img
-              className="w-full h-full object-contain object-right"
-              src={ASSETS.uzcard}
-            />
-          ): (
+                className="w-full h-full object-contain object-right"
+                src={ASSETS.uzcard}
+              />
+            ) : (
               <img src={ASSETS.Humo} alt="" />
-          )}
-       
+            )
+          }
         </div>
       </div>
     </div>
@@ -76,8 +75,8 @@ const plasticCards: PlasticCard[] = [
 
 const ProfileCard = () => {
   const { openModal } = modalsStore();
-  const {data} = allClientCard();
-  console.log(data, 'agnlans')
+  const { data } = allClientCard();
+  console.log(data, "agnlans");
   return (
     <>
       <div>
@@ -95,13 +94,13 @@ const ProfileCard = () => {
               <h2 className="text-mainBlack lg:text-[24px] text-[20px] font-semibold">
                 Мои карты
               </h2>
-                {data?.map((plastic: any, i: any) => {
-                  return (
-                    <div className="grid grid-cols-2 lg:mt-5 mt-4 xl:gap-[20px] gap-4">
+              {data?.map((plastic: any, i: any) => {
+                return (
+                  <div className="grid grid-cols-2 lg:mt-5 mt-4 xl:gap-[20px] gap-4">
                     <PlastikCard key={i} plastic={plastic} />
-                    </div>
-                  ) 
-                })}
+                  </div>
+                );
+              })}
             </div>
           )}
         </div>

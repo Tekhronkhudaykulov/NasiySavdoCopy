@@ -16,14 +16,11 @@ import { imgUrl } from "../../helpers/api";
 const Banner = () => {
   const { data } = bannerQuery();
 
-  console.log(data, 'banner');
-
   return (
     <Swiper
       className="swiper-arrow md:rounded-[20px] rounded-[10px] mt-[10px]"
       loop
       speed={1500}
-      
       spaceBetween={10}
       autoplay={{
         delay: 2500,

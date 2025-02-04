@@ -21,11 +21,12 @@ function BasketAddressForm() {
 
   const [active, setActive] = useState(undefined);
 
-  const {data} = adresList();
-
+  const { data } = adresList();
+  if (!data) return;
+  console.log(data);
 
   const navigate = useNavigate();
-  const [isChoosen, setIsChoosen] = useState<number>(data?.id);
+  const [isChoosen, setIsChoosen] = useState<number>(data?.id || 1);
   return (
     <div className="border border-line rounded-2xl p-[20px]">
       <div className="flex justify-between items-center">

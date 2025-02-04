@@ -31,7 +31,7 @@ export const _routes = [
     exact: true,
   },
   {
-    path: `${APP_ROUTES.CATEGORY}/:id`,
+    path: `${APP_ROUTES.CATEGORY}`,
     element: CategoryPage,
   },
   {

@@ -18,7 +18,8 @@ import ProfileImg from "./profilePic.jpg";
 import CardSuccess from "./cardSuccess.png";
 import Telegram from "./telegram.png";
 import Phone from "./phone.png";
-
+import EmptyAddress from "./empyAddress.png";
+export default EmptyAddress;
 export const ASSETS = {
   CardImg,
   Humo,
@@ -40,4 +41,5 @@ export const ASSETS = {
   CardSuccess,
   Telegram,
   Phone,
+  EmptyAddress,
 };
