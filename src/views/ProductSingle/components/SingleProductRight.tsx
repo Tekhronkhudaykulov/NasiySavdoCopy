@@ -239,7 +239,7 @@ function SingleProductRight({ data }: any) {
         <>
         <div onClick={() => {
           setActive(ind);
-        }} className={`${active === ind ? "border-darkGreen border-[1px] rounded-[12px]" : ""}`}>
+        }} className={`${active === ind ? "border-darkGreen border-[1px]" : "border-line"} rounded-[12px] border-[1px] `}>
           <AnorCard items={item} />
         </div>
         </>

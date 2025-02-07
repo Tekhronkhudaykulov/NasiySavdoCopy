@@ -17,7 +17,7 @@ function EmptyBasket() {
         <div className="flex gap-4">
           <Link
             className="py-[14px] max-w-[200px] w-full rounded-[8px] bg-darkGreen text-white"
-            to={``}
+            to={`/category`}
           >
             Перейти в каталог
           </Link>
